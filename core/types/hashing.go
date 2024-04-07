@@ -64,7 +64,7 @@ func prefixedRlpHash(prefix byte, x interface{}) (h common.Hash) {
 // This is internal, do not use.
 type TrieHasher interface {
 	Reset()
-	Update([]byte, []byte)
+	Update([]byte, []byte) error
 	Hash() common.Hash
 }
 
