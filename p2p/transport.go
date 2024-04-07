@@ -26,7 +26,7 @@ import (
 	"github.com/golang/snappy"
 	"golang.org/x/crypto/sha3"
 
-	"github.com/mapprotocol/atlas/metrics"
+	"github.com/Alexfordev/atlas/metrics"
 )
 
 var (

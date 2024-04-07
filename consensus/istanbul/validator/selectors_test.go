@@ -23,8 +23,8 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/helper/bls"
 )
 
 var testAddresses = []string{
@@ -45,7 +45,7 @@ func TestStickyProposer(t *testing.T) {
 	}
 
 	v, err := istanbul.CombineIstanbulExtraToValidatorData(addrs, make([]bls.SerializedPublicKey, len(addrs)),
-		make([]bls.SerializedG1PublicKey,len(addrs)))
+		make([]bls.SerializedG1PublicKey, len(addrs)))
 	if err != nil {
 		t.Fatalf("CombineIstanbulExtraToValidatorData(...): %v", err)
 	}
@@ -103,7 +103,7 @@ func TestRoundRobinProposer(t *testing.T) {
 	}
 
 	v, err := istanbul.CombineIstanbulExtraToValidatorData(addrs, make([]bls.SerializedPublicKey, len(addrs)),
-		make([]bls.SerializedG1PublicKey,len(addrs)))
+		make([]bls.SerializedG1PublicKey, len(addrs)))
 	if err != nil {
 		t.Fatalf("CombineIstanbulExtraToValidatorData(...): %v", err)
 	}
@@ -161,7 +161,7 @@ func TestShuffledRoundRobinProposer(t *testing.T) {
 	}
 
 	v, err := istanbul.CombineIstanbulExtraToValidatorData(addrs, make([]bls.SerializedPublicKey, len(addrs)),
-		make([]bls.SerializedG1PublicKey,len(addrs)))
+		make([]bls.SerializedG1PublicKey, len(addrs)))
 	if err != nil {
 		t.Fatalf("CombineIstanbulExtraToValidatorData(...): %v", err)
 	}

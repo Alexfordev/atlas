@@ -21,20 +21,20 @@ import (
 	"crypto/rand"
 	"encoding/hex"
 	"errors"
-	"github.com/mapprotocol/atlas/p2p"
+	"github.com/Alexfordev/atlas/p2p"
 	"math"
 	"sync"
 	"sync/atomic"
 	"time"
 
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/consensus/istanbul/backend/internal/enodes"
+	"github.com/Alexfordev/atlas/consensus/istanbul/proxy"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto/ecies"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/p2p/enode"
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/consensus/istanbul/backend/internal/enodes"
-	"github.com/mapprotocol/atlas/consensus/istanbul/proxy"
 )
 
 // ==============================================
@@ -173,7 +173,7 @@ func (m *AnnounceManager) wallets() *Wallets {
 func (sb *Backend) announceThread() {
 	logger := sb.logger.New("func", "announceThread")
 
-	//sb.announceThreadWg.Add(1)
+	// sb.announceThreadWg.Add(1)
 	defer sb.announceThreadWg.Done()
 
 	// Create a ticker to poll if istanbul core is running and if this node is in
@@ -1000,12 +1000,12 @@ func (sb *Backend) GetAnnounceVersion() uint {
 // setAndShareUpdatedAnnounceVersion generates announce data structures and
 // and shares them with relevant nodes.
 // It will:
-//  1) Generate a new enode certificate
-//  2) Multicast the new enode certificate to all peers in the validator conn set
-//	   * Note: If this is a proxied validator, it's multicast message will be wrapped within a forward
-//       message to the proxy, which will in turn send the enode certificate to remote validators.
-//  3) Generate a new version certificate
-//  4) Gossip the new version certificate to all peers
+//  1. Generate a new enode certificate
+//  2. Multicast the new enode certificate to all peers in the validator conn set
+//     * Note: If this is a proxied validator, it's multicast message will be wrapped within a forward
+//     message to the proxy, which will in turn send the enode certificate to remote validators.
+//  3. Generate a new version certificate
+//  4. Gossip the new version certificate to all peers
 func (m *AnnounceManager) setAndShareUpdatedAnnounceVersion(version uint) error {
 	logger := m.logger.New("func", "setAndShareUpdatedAnnounceVersion")
 	// Send new versioned enode msg to all other registered or elected validators

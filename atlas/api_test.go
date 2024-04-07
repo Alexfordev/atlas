@@ -24,11 +24,11 @@ import (
 	"sort"
 	"testing"
 
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
 	"github.com/davecgh/go-spew/spew"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
 )
 
 var dumper = spew.ConfigState{Indent: "    "}

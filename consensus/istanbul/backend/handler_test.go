@@ -24,11 +24,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/p2p"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/p2p/enode"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/p2p"
 )
 
 type MockPeer struct {
@@ -257,30 +257,30 @@ func toWei(value *big.Float) *big.Int {
 }
 func calc_reward(score, totalscore *big.Int, voteAmount, totalVote *big.Int) (*big.Int, *big.Int) {
 	v0 := new(big.Float).Quo(new(big.Float).SetInt(voteAmount), new(big.Float).SetInt(totalVote))
-	//fmt.Println("---1 v0", v0, voteAmount, "/", totalVote)
+	// fmt.Println("---1 v0", v0, voteAmount, "/", totalVote)
 	v0 = v0.Mul(big.NewFloat(P), v0)
-	//fmt.Println("---2 v0", v0)
+	// fmt.Println("---2 v0", v0)
 
 	v1 := new(big.Float).Quo(new(big.Float).SetInt(score), new(big.Float).SetInt(totalscore))
-	//fmt.Println("---3 v1", v1, score, "/", totalscore)
+	// fmt.Println("---3 v1", v1, score, "/", totalscore)
 	v1 = v1.Mul(big.NewFloat(1-P), v1)
-	//fmt.Println("---4 v1", v1)
+	// fmt.Println("---4 v1", v1)
 
 	v2 := v0.Add(v0, v1)
-	//fmt.Println("---5 v2", v2)
+	// fmt.Println("---5 v2", v2)
 
 	score0 := new(big.Float).Quo(new(big.Float).SetInt(score), big.NewFloat(float64(BaseNum)))
 	reward := new(big.Float).Mul(v2, new(big.Float).SetInt(totalReward))
 
 	reward0, _ := reward.Int(big.NewInt(0))
-	//fmt.Println("---6 all_reward", toCoin(reward0), reward0)
+	// fmt.Println("---6 all_reward", toCoin(reward0), reward0)
 
 	validator_reward := reward.Mul(reward, big.NewFloat(commision))
 	validator_reward = validator_reward.Mul(validator_reward, score0)
-	//fmt.Println("---7 val_reward commision", commision, "score0", score0)
+	// fmt.Println("---7 val_reward commision", commision, "score0", score0)
 
 	validator_reward0, _ := validator_reward.Int(big.NewInt(0))
-	//fmt.Println("---8 val_reward", toCoin(validator_reward0), validator_reward0)
+	// fmt.Println("---8 val_reward", toCoin(validator_reward0), validator_reward0)
 
 	return reward0, validator_reward0
 }
@@ -296,11 +296,11 @@ func Test_newReward(t *testing.T) {
 
 	for i := 0; i < num; i++ {
 		scores[i] = big.NewInt(100)
-		//if i%3 == 0 {
+		// if i%3 == 0 {
 		//	scores[i] = big.NewInt(0)
-		//}
+		// }
 		totalScore = totalScore.Add(totalScore, scores[i])
-		//stakings[i] = big.NewInt(int64(100 * (i + 1)))
+		// stakings[i] = big.NewInt(int64(100 * (i + 1)))
 		totalVote = totalVote.Add(totalVote, stakings[i])
 	}
 	all0 := big.NewInt(0)

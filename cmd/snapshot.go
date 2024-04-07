@@ -30,11 +30,11 @@ import (
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/ethereum/go-ethereum/trie"
 
-	"github.com/mapprotocol/atlas/cmd/utils"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/state/pruner"
-	"github.com/mapprotocol/atlas/core/state/snapshot"
+	"github.com/Alexfordev/atlas/cmd/utils"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/state/pruner"
+	"github.com/Alexfordev/atlas/core/state/snapshot"
 	cli "gopkg.in/urfave/cli.v1"
 )
 

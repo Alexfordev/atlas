@@ -19,9 +19,9 @@ package validator
 import (
 	"fmt"
 
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/consensus/istanbul/validator/random"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/consensus/istanbul/validator/random"
 )
 
 func proposerIndex(valSet istanbul.ValidatorSet, proposer common.Address) uint64 {

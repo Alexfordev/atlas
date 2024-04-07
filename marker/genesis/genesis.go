@@ -14,17 +14,17 @@ import (
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rlp"
 
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/types"
-	blscrypto "github.com/mapprotocol/atlas/helper/bls"
-	"github.com/mapprotocol/atlas/marker/env"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/types"
+	blscrypto "github.com/Alexfordev/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/marker/env"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // Keccak256 of "The Times 09/Apr/2020 With $2.3 Trillion Injection, Fed’s Plan Far Exceeds Its 2008 Rescue"
 var genesisMsgHash = bytes.Repeat([]byte{0x00}, 32)
 
-//var genesisMsgHash = common.HexToHash("ecc833a7747eaa8327335e8e0c6b6d8aa3a38d0063591e43ce116ccf5c89753e")
+// var genesisMsgHash = common.HexToHash("ecc833a7747eaa8327335e8e0c6b6d8aa3a38d0063591e43ce116ccf5c89753e")
 
 var ValidatorsAT []AccoutInfo
 
@@ -97,7 +97,7 @@ func generateGenesisExtraData(validatorAccounts []AccoutInfo) ([]byte, error) {
 	return extraBytes, nil
 }
 
-//From markerConfig.json used for validators and election contract
+// From markerConfig.json used for validators and election contract
 type AccoutInfo struct {
 	Address              string
 	SignerAddress        string

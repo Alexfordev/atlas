@@ -10,10 +10,10 @@ import (
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rlp"
 
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/chains"
-	"github.com/mapprotocol/atlas/chains/interfaces"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/chains"
+	"github.com/Alexfordev/atlas/chains/interfaces"
+	"github.com/Alexfordev/atlas/params"
 )
 
 const (
@@ -118,9 +118,9 @@ func verifyProofData(evm *EVM, contract *Contract, input []byte) (ret []byte, er
 	if bytes.Equal(args.Router.Bytes(), common.Address{}.Bytes()) {
 		return nil, errors.New("router address is empty")
 	}
-	//if bytes.Equal(args.Coin.Bytes(), common.Address{}.Bytes()) {
+	// if bytes.Equal(args.Coin.Bytes(), common.Address{}.Bytes()) {
 	//	return nil, errors.New("coin address is empty")
-	//}
+	// }
 	if !chains.IsSupportedChain(chains.ChainType(args.SrcChain.Uint64())) {
 		return nil, ErrNotSupportChain
 	}

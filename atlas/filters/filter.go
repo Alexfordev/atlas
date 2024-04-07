@@ -21,10 +21,10 @@ import (
 	"errors"
 	"math/big"
 
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/bloombits"
+	"github.com/Alexfordev/atlas/core/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/bloombits"
-	"github.com/mapprotocol/atlas/core/types"
 	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/ethereum/go-ethereum/event"
 	"github.com/ethereum/go-ethereum/rpc"

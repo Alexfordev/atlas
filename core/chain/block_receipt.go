@@ -3,8 +3,8 @@ package chain
 import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
 )
 
 // AddBlockReceipt checks whether logs were emitted by the core contract calls made as part

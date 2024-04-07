@@ -1,9 +1,10 @@
 package chainsdb
+
 //
-//import (
+// import (
 //	"encoding/json"
 //	"fmt"
-//	"github.com/mapprotocol/atlas/chains/ethereum"
+//	"github.com/Alexfordev/atlas/chains/ethereum"
 //	"io/ioutil"
 //	"math/big"
 //	"reflect"
@@ -14,27 +15,27 @@ package chainsdb
 //	eth_types "github.com/ethereum/go-ethereum/core/types"
 //	"github.com/ethereum/go-ethereum/log"
 //
-//	"github.com/mapprotocol/atlas/core/rawdb"
-//)
+//	"github.com/Alexfordev/atlas/core/rawdb"
+// )
 //
-//func testInsert01(t *testing.T, hc *HeaderChainStore, chain []*ethereum.Header, wantStatus WriteStatus, wantErr error) {
+// func testInsert01(t *testing.T, hc *HeaderChainStore, chain []*ethereum.Header, wantStatus WriteStatus, wantErr error) {
 //	t.Helper()
 //	status, _ := hc.InsertHeaderChain(chain, time.Now())
 //	if status != wantStatus {
 //		t.Errorf("wrong write status from InsertHeaderChain: got %v, want %v", status, wantStatus)
 //	}
-//}
+// }
 //
-//func converChainList(headers []*eth_types.Header) (newChains1 []*ethereum.Header) {
+// func converChainList(headers []*eth_types.Header) (newChains1 []*ethereum.Header) {
 //	l := len(headers)
 //	newChains := make([]ethereum.Header, l)
 //	for i := 0; i < l; i++ {
 //		newChains1 = append(newChains1, convertChain(&newChains[i], headers[i]))
 //	}
 //	return
-//}
+// }
 //
-//func convertChain(header *ethereum.Header, e *eth_types.Header) *ethereum.Header {
+// func convertChain(header *ethereum.Header, e *eth_types.Header) *ethereum.Header {
 //	header.ParentHash = e.ParentHash
 //	header.UncleHash = e.UncleHash
 //	header.Coinbase = e.Coinbase
@@ -60,9 +61,9 @@ package chainsdb
 //	// test rlp
 //	//fmt.Println(e.Hash(), "/n", header.Hash())
 //	return header
-//}
+// }
 //
-//func TestHeaderChainStore_CurrentHeaderHash(t *testing.T) {
+// func TestHeaderChainStore_CurrentHeaderHash(t *testing.T) {
 //	chainDb0, _ := OpenDatabase("data222", 20, 20)
 //
 //	db := HeaderChainStore{
@@ -96,9 +97,9 @@ package chainsdb
 //			fmt.Printf("CurrentHeaderHash() = %v GetTdByHash() %v GetHeaderByHash() %v ", currentHash, td, GetHeaderByHash)
 //		})
 //	}
-//}
+// }
 //
-//func TestHeaderChainStore_GetHeaderByNumber(t *testing.T) {
+// func TestHeaderChainStore_GetHeaderByNumber(t *testing.T) {
 //	chainDb0, _ := OpenDatabase("data222", 20, 20)
 //
 //	db := HeaderChainStore{
@@ -136,9 +137,9 @@ package chainsdb
 //			}
 //		})
 //	}
-//}
+// }
 //
-//func TestHeaderChainStore_CurrentHeaderNumber(t *testing.T) {
+// func TestHeaderChainStore_CurrentHeaderNumber(t *testing.T) {
 //	chainDb0, _ := OpenDatabase("data222", 20, 20)
 //
 //	db := HeaderChainStore{
@@ -168,9 +169,9 @@ package chainsdb
 //			fmt.Printf("CurrentHeaderNumber() = %v", got)
 //		})
 //	}
-//}
+// }
 //
-//func TestHeaderChainStore_ReadCanonicalHash(t *testing.T) {
+// func TestHeaderChainStore_ReadCanonicalHash(t *testing.T) {
 //	chainDb0, _ := OpenDatabase("data222", 20, 20)
 //
 //	db := HeaderChainStore{
@@ -207,9 +208,9 @@ package chainsdb
 //			fmt.Printf("ReadCanonicalHash() = %v", got)
 //		})
 //	}
-//}
+// }
 //
-//func TestRead_chaintype_config(t *testing.T) {
+// func TestRead_chaintype_config(t *testing.T) {
 //	data, err := ioutil.ReadFile(fmt.Sprintf("config/chaintype_config.json"))
 //	if err != nil {
 //		log.Error("readFile Err", err)
@@ -220,8 +221,8 @@ package chainsdb
 //	}
 //	_ = json.Unmarshal(data, &config)
 //	fmt.Println(config)
-//}
-//func TestRead_ethconfig(t *testing.T) {
+// }
+// func TestRead_ethconfig(t *testing.T) {
 //	data, err := ioutil.ReadFile(fmt.Sprintf("config/%v_config.json", "eth"))
 //	if err != nil {
 //		log.Error("read eht store config err", err)
@@ -232,4 +233,4 @@ package chainsdb
 //		log.Error("Unmarshal Err", err.Error())
 //	}
 //	fmt.Println(genesis.Hash())
-//}
+// }

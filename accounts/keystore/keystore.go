@@ -24,8 +24,8 @@ import (
 	"crypto/ecdsa"
 	crand "crypto/rand"
 	"errors"
-	bn256 "github.com/mapprotocol/atlas/helper/bls"
-	"github.com/mapprotocol/atlas/params"
+	bn256 "github.com/Alexfordev/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/params"
 	"io/ioutil"
 	"math/big"
 	"os"
@@ -40,9 +40,9 @@ import (
 	"github.com/ethereum/go-ethereum/crypto/ecies"
 	"github.com/ethereum/go-ethereum/event"
 
-	"github.com/mapprotocol/atlas/accounts"
-	"github.com/mapprotocol/atlas/core/types"
-	blscrypto "github.com/mapprotocol/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/accounts"
+	"github.com/Alexfordev/atlas/core/types"
+	blscrypto "github.com/Alexfordev/atlas/helper/bls"
 )
 
 var (
@@ -542,16 +542,16 @@ func (ks *KeyStore) SignBLS(a accounts.Account, msg []byte, extraData []byte, us
 		return blscrypto.SerializedSignature{}, err
 	}
 
-	///////////////////////
+	// /////////////////////
 	blskey, err := bn256.DeserializePrivateKey(privateKeyBytes)
 	if err != nil {
 		return blscrypto.SerializedSignature{}, err
 	}
-	//pubkey, err := bn256.PrivateToPublic(privateKeyBytes)
-	//if err != nil {
+	// pubkey, err := bn256.PrivateToPublic(privateKeyBytes)
+	// if err != nil {
 	//	return blscrypto.SerializedSignature{}, err
-	//}
-	//pk, err := bn256.UnmarshalPk(pubkey)
+	// }
+	// pk, err := bn256.UnmarshalPk(pubkey)
 	var sign *bn256.UnsafeSignature
 	if params.IsBN256Fork(fork, cur) {
 		sign, err = bn256.UnsafeSign2(blskey, msg)
@@ -566,23 +566,23 @@ func (ks *KeyStore) SignBLS(a accounts.Account, msg []byte, extraData []byte, us
 	copy(signature[:], sign.Marshal())
 	return signature, nil
 
-	//privateKey, err := bls.DeserializePrivateKey(privateKeyBytes)
-	//if err != nil {
+	// privateKey, err := bls.DeserializePrivateKey(privateKeyBytes)
+	// if err != nil {
 	//	return blscrypto.SerializedSignature{}, err
-	//}
-	//defer privateKey.Destroy()
+	// }
+	// defer privateKey.Destroy()
 
-	//signature, err := privateKey.SignMessage(msg, extraData, useComposite, cip22)
-	//if err != nil {
+	// signature, err := privateKey.SignMessage(msg, extraData, useComposite, cip22)
+	// if err != nil {
 	//	return blscrypto.SerializedSignature{}, err
-	//}
-	//defer signature.Destroy()
-	//signatureBytes, err := signature.Serialize()
-	//if err != nil {
+	// }
+	// defer signature.Destroy()
+	// signatureBytes, err := signature.Serialize()
+	// if err != nil {
 	//	return blscrypto.SerializedSignature{}, err
-	//}
+	// }
 	//
-	//return blscrypto.SerializedSignatureFromBytes(signatureBytes)
+	// return blscrypto.SerializedSignatureFromBytes(signatureBytes)
 }
 
 // GetPublicKey Retrieve the ECDSA public key for a given account.

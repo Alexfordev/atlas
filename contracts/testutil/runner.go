@@ -7,12 +7,12 @@ import (
 	"math/big"
 	"reflect"
 
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/contracts/abis"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/contracts/abis"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
 )
 
 // Check we actually implement EVMRunner
@@ -39,7 +39,7 @@ func (ev *MockEVMRunner) RegisterContract(address common.Address, mock Contract)
 func (ev *MockEVMRunner) Execute(recipient common.Address, input []byte, gas uint64, value *big.Int) (ret []byte, err error) {
 	mock, ok := ev.contracts[recipient]
 	if !ok {
-		/// following evm.go when recipient doesn't exist, we return nil
+		// / following evm.go when recipient doesn't exist, we return nil
 		return nil, nil
 	}
 
@@ -54,7 +54,7 @@ func (ev *MockEVMRunner) ExecuteFrom(sender, recipient common.Address, input []b
 func (ev *MockEVMRunner) Query(recipient common.Address, input []byte, gas uint64) (ret []byte, err error) {
 	mock, ok := ev.contracts[recipient]
 	if !ok {
-		/// following evm.go when recipient doesn't exist, we return nil
+		// / following evm.go when recipient doesn't exist, we return nil
 		return nil, nil
 	}
 

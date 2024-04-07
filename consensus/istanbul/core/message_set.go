@@ -22,11 +22,11 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/mapprotocol/atlas/consensus/istanbul/validator"
+	"github.com/Alexfordev/atlas/consensus/istanbul/validator"
 
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
 )
 
 type MessageSet interface {

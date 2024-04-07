@@ -8,12 +8,12 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/Alexfordev/atlas/accounts/keystore"
+	accountTool "github.com/Alexfordev/atlas/cmd/marker/account"
+	"github.com/Alexfordev/atlas/cmd/utils"
+	atlaschain "github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/helper/fileutils"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/mapprotocol/atlas/accounts/keystore"
-	accountTool "github.com/mapprotocol/atlas/cmd/marker/account"
-	"github.com/mapprotocol/atlas/cmd/utils"
-	atlaschain "github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/helper/fileutils"
 )
 
 func Test_dumpGenesis(t *testing.T) {

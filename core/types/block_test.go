@@ -29,7 +29,7 @@ import (
 	"github.com/ethereum/go-ethereum/rlp"
 	"golang.org/x/crypto/sha3"
 
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // from bcValidBlockTest.json, "SimpleTx"
@@ -175,11 +175,11 @@ func makeBenchBlock() *Block {
 		uncles   = make([]*Header, 3)
 	)
 	header := &Header{
-		Number:     math.BigPow(2, 9),
-		GasLimit:   12345678,
-		GasUsed:    1476322,
-		Time:       9876543,
-		Extra:      []byte("coolest block on chain"),
+		Number:   math.BigPow(2, 9),
+		GasLimit: 12345678,
+		GasUsed:  1476322,
+		Time:     9876543,
+		Extra:    []byte("coolest block on chain"),
 	}
 	for i := range txs {
 		amount := math.BigPow(2, int64(i))
@@ -195,11 +195,11 @@ func makeBenchBlock() *Block {
 	}
 	for i := range uncles {
 		uncles[i] = &Header{
-			Number:     math.BigPow(2, 9),
-			GasLimit:   12345678,
-			GasUsed:    1476322,
-			Time:       9876543,
-			Extra:      []byte("benchmark uncle"),
+			Number:   math.BigPow(2, 9),
+			GasLimit: 12345678,
+			GasUsed:  1476322,
+			Time:     9876543,
+			Extra:    []byte("benchmark uncle"),
 		}
 	}
 	return NewBlock(header, txs, receipts, &Randomness{})

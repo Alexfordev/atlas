@@ -2,13 +2,13 @@ package genesis
 
 import (
 	"fmt"
-	"github.com/mapprotocol/atlas/helper/fileutils"
+	"github.com/Alexfordev/atlas/helper/fileutils"
 	"os"
 	"path"
 
+	"github.com/Alexfordev/atlas/marker/env"
+	"github.com/Alexfordev/atlas/marker/genesis"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/marker/env"
-	"github.com/mapprotocol/atlas/marker/genesis"
 	"gopkg.in/urfave/cli.v1"
 )
 

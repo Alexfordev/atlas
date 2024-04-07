@@ -22,11 +22,11 @@ import (
 	ethparams "github.com/ethereum/go-ethereum/params"
 	"github.com/ethereum/go-ethereum/trie"
 
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // BlockValidator is responsible for validating block headers, uncles and
@@ -59,12 +59,12 @@ func (v *BlockValidator) ValidateBody(block *types.Block) error {
 	}
 	// Header validity is known at this point, check the uncles and transactions
 	header := block.Header()
-	//if err := v.engine.VerifyUncles(v.bc, block); err != nil {
+	// if err := v.engine.VerifyUncles(v.bc, block); err != nil {
 	//	return err
-	//}
-	//if hash := types.CalcUncleHash(block.Uncles()); hash != header.UncleHash {
+	// }
+	// if hash := types.CalcUncleHash(block.Uncles()); hash != header.UncleHash {
 	//	return fmt.Errorf("uncle root hash mismatch: have %x, want %x", hash, header.UncleHash)
-	//}
+	// }
 	if hash := types.DeriveSha(block.Transactions(), trie.NewStackTrie(nil)); hash != header.TxHash {
 		return fmt.Errorf("transaction root hash mismatch: have %x, want %x", hash, header.TxHash)
 	}

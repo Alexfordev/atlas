@@ -22,9 +22,9 @@ import (
 	"io"
 	"sort"
 
-	"github.com/mapprotocol/atlas/cmd/utils"
-	"github.com/mapprotocol/atlas/helper/debug"
-	"github.com/mapprotocol/atlas/helper/flags"
+	"github.com/Alexfordev/atlas/cmd/utils"
+	"github.com/Alexfordev/atlas/helper/debug"
+	"github.com/Alexfordev/atlas/helper/flags"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -169,14 +169,14 @@ var AppHelpFlagGroups = []flags.FlagGroup{
 		Flags: []cli.Flag{
 			utils.MiningEnabledFlag,
 			utils.MinerThreadsFlag,
-			//utils.MinerNotifyFlag,
-			//utils.MinerNotifyFullFlag,
+			// utils.MinerNotifyFlag,
+			// utils.MinerNotifyFullFlag,
 			utils.MinerGasPriceFlag,
-			//utils.MinerGasLimitFlag,
+			// utils.MinerGasLimitFlag,
 			utils.MinerValidatorFlag,
 			utils.MinerExtraDataFlag,
-			//utils.MinerRecommitIntervalFlag,
-			//utils.MinerNoVerifyFlag,
+			// utils.MinerRecommitIntervalFlag,
+			// utils.MinerNoVerifyFlag,
 		},
 	},
 	{

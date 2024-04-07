@@ -19,14 +19,14 @@ package istanbul
 import (
 	"fmt"
 
-	params2 "github.com/mapprotocol/atlas/params"
+	params2 "github.com/Alexfordev/atlas/params"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/p2p/enode"
 )
 
 const (
-	//MinEpochSize represents the minimum permissible epoch size
+	// MinEpochSize represents the minimum permissible epoch size
 	MinEpochSize = 3
 )
 
@@ -103,7 +103,7 @@ var DefaultConfig = &Config{
 	LoadTestCSVFile:                                "", // disable by default
 }
 
-//ApplyParamsChainConfigToConfig applies the istanbul config values from params.chainConfig to the istanbul.Config config
+// ApplyParamsChainConfigToConfig applies the istanbul config values from params.chainConfig to the istanbul.Config config
 func ApplyParamsChainConfigToConfig(chainConfig *params2.ChainConfig, config *Config) error {
 	if chainConfig.Istanbul.Epoch != 0 {
 		if chainConfig.Istanbul.Epoch < MinEpochSize {

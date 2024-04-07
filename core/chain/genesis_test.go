@@ -22,7 +22,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mapprotocol/atlas/consensus"
+	"github.com/Alexfordev/atlas/consensus"
 	"golang.org/x/crypto/sha3"
 	"math/big"
 
@@ -30,10 +30,10 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/trie"
 
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	params2 "github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	params2 "github.com/Alexfordev/atlas/params"
 
 	"io/ioutil"
 	"testing"
@@ -57,7 +57,7 @@ func TestDefaultGenesisBlock(t *testing.T) {
 	}
 }
 
-//func TestSetupGenesis(t *testing.T) {
+// func TestSetupGenesis(t *testing.T) {
 //	var (
 //		customghash = common.HexToHash("0x89c99d90b79719238d2645c7642f2c9295246e80775b38cfd162b696817fbd50")
 //		customg     = Genesis{
@@ -177,7 +177,7 @@ func TestDefaultGenesisBlock(t *testing.T) {
 //			}
 //		}
 //	}
-//}
+// }
 
 // TestGenesisHashes checks the congruity of default genesis data to corresponding hardcoded genesis hash values.
 func TestGenesisHashes(t *testing.T) {
@@ -193,10 +193,10 @@ func TestGenesisHashes(t *testing.T) {
 			genesis: DefaultTestnetGenesisBlock(),
 			hash:    params2.TestnetGenesisHash,
 		},
-		//{
+		// {
 		//	genesis: DevnetGenesisBlock(common.Address{}),
 		//	hash:    params2.DevnetGenesisHash,
-		//},
+		// },
 	}
 	for i, c := range cases {
 		b := c.genesis.MustCommit(rawdb.NewMemoryDatabase())
@@ -250,11 +250,11 @@ func TestReadPoc2Contracts(t *testing.T) {
 		}
 	}
 
-	//////////////////////////////////pro compiled////////////////////////////////////
+	// ////////////////////////////////pro compiled////////////////////////////////////
 	Number := uint64(0)
 	consensus.InitHeaderStore(statedb, new(big.Int).SetUint64(Number))
 	consensus.InitTxVerify(statedb, new(big.Int).SetUint64(Number))
-	////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////
 	root := statedb.IntermediateRoot(false)
 	t.Logf("root %s", root)
 	if root.String() != makaluPoc2Number150Root {
@@ -367,27 +367,27 @@ func TestComparePOC2_3_Genesis(t *testing.T) {
 	if !bytes.Equal(bytePoc2, bytePoc3) {
 		t.Fatalf("poc2 genesis != poc3  genesis err")
 	}
-	//poc2 poc3  chainId、 epoch 、extraData are inconsistent
-	//poc2 One more 000000000000000000000000000000000000ce10 contracts
+	// poc2 poc3  chainId、 epoch 、extraData are inconsistent
+	// poc2 One more 000000000000000000000000000000000000ce10 contracts
 }
 func TestPrintPreContractAddr(t *testing.T) {
 	t.Log(params2.HeaderStoreAddress)
 }
 
 func Test06(t *testing.T) {
-	type txLogs struct{
+	type txLogs struct {
 		PostStateOrStatus []byte
 		CumulativeGasUsed uint
-		Bloom []byte
+		Bloom             []byte
 	}
-	p1,_ := hex.DecodeString("2")
-	b1,_ := hex.DecodeString("1")
+	p1, _ := hex.DecodeString("2")
+	b1, _ := hex.DecodeString("1")
 	tx1 := txLogs{
 		PostStateOrStatus: p1,
 		CumulativeGasUsed: 1,
-		Bloom: b1,
+		Bloom:             b1,
 	}
-	r1,_ := rlp.EncodeToBytes(tx1)
+	r1, _ := rlp.EncodeToBytes(tx1)
 	fmt.Println(hex.EncodeToString(r1))
 	fmt.Println(rlpHash(tx1).String())
 }

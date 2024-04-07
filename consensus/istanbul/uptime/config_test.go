@@ -4,7 +4,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/mapprotocol/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 )
 
 func TestEpochSizeIsConsistentWithSkippedBlock(t *testing.T) {

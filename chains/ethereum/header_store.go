@@ -8,14 +8,14 @@ import (
 	"math/big"
 	"time"
 
+	"github.com/Alexfordev/atlas/chains"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/params"
+	"github.com/Alexfordev/atlas/tools"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rlp"
 	golru "github.com/hashicorp/golang-lru"
-	"github.com/mapprotocol/atlas/chains"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/params"
-	"github.com/mapprotocol/atlas/tools"
 )
 
 const (
@@ -53,7 +53,7 @@ type Cache struct {
 type HeaderStore struct {
 	CurNumber uint64
 	CurHash   common.Hash
-	//CanonicalNumberToHash []*common.Hash
+	// CanonicalNumberToHash []*common.Hash
 }
 
 type LightHeader struct {
@@ -234,7 +234,7 @@ func (hs *HeaderStore) Load(state types.StateDB) (err error) {
 		}
 		h = *cp
 		hs.CurHash, hs.CurNumber = h.CurHash, h.CurNumber
-		//hs.CanonicalNumberToHash = h.CanonicalNumberToHash
+		// hs.CanonicalNumberToHash = h.CanonicalNumberToHash
 		return nil
 	}
 
@@ -249,7 +249,7 @@ func (hs *HeaderStore) Load(state types.StateDB) (err error) {
 	}
 	storeCache.Cache.Add(hash, clone)
 	hs.CurHash, hs.CurNumber = h.CurHash, h.CurNumber
-	//hs.CanonicalNumberToHash = h.CanonicalNumberToHash
+	// hs.CanonicalNumberToHash = h.CanonicalNumberToHash
 	return nil
 }
 
@@ -421,7 +421,7 @@ func (hs *HeaderStore) WriteHeaders(db types.StateDB, ethHeaders []byte) (*heade
 
 		alreadyKnown := parentKnown && hs.HasHeader(hash, number, db)
 		if !alreadyKnown {
-			//hs.WriteTd(hash, number, newTD, header)
+			// hs.WriteTd(hash, number, newTD, header)
 			if err := hs.WriteHeaderAndTd(hash, number, newTD, header, db); err != nil {
 				return nil, err
 			}
@@ -446,7 +446,7 @@ func (hs *HeaderStore) WriteHeaders(db types.StateDB, ethHeaders []byte) (*heade
 		if lastNumber < head {
 			reorg = true
 		} else if lastNumber == head {
-			//reorg = rand.Float64() < 0.5
+			// reorg = rand.Float64() < 0.5
 			reorg = true
 		}
 	}

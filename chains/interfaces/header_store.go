@@ -5,10 +5,10 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/mapprotocol/atlas/chains"
-	"github.com/mapprotocol/atlas/chains/ethereum"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/chains"
+	"github.com/Alexfordev/atlas/chains/ethereum"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/params"
 )
 
 type StoreLoad interface {

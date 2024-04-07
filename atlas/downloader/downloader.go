@@ -34,14 +34,14 @@ import (
 	"github.com/ethereum/go-ethereum/params"
 	"github.com/ethereum/go-ethereum/trie"
 
-	"github.com/mapprotocol/atlas/atlas/protocols/eth"
-	"github.com/mapprotocol/atlas/atlas/protocols/snap"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state/snapshot"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/metrics"
-	params2 "github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/atlas/protocols/eth"
+	"github.com/Alexfordev/atlas/atlas/protocols/snap"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state/snapshot"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/metrics"
+	params2 "github.com/Alexfordev/atlas/params"
 )
 
 var (
@@ -740,9 +740,11 @@ func (d *Downloader) fetchHead(p *peerConnection) (head *types.Header, pivot *ty
 // calculateRequestSpan calculates what headers to request from a peer when trying to determine the
 // common ancestor.
 // It returns parameters to be used for peer.RequestHeadersByNumber:
-//  from - starting block number
-//  count - number of headers to request
-//  skip - number of headers to skip
+//
+//	from - starting block number
+//	count - number of headers to request
+//	skip - number of headers to skip
+//
 // and also returns 'max', the last block which is expected to be returned by the remote peers,
 // given the (from,count,skip)
 func calculateRequestSpan(remoteHeight, localHeight uint64) (int64, int, int, uint64) {
@@ -1063,7 +1065,7 @@ func (d *Downloader) fetchHeaders(p *peerConnection, from uint64) error {
 			go p.peer.RequestHeadersByNumber(from, MaxHeaderFetch, 0, false)
 		}
 	}
-	//getNextPivot := func() {
+	// getNextPivot := func() {
 	//	pivoting = true
 	//	request = time.Now()
 	//
@@ -1076,7 +1078,7 @@ func (d *Downloader) fetchHeaders(p *peerConnection, from uint64) error {
 	//
 	//	p.log.Trace("Fetching next pivot header", "number", pivot+uint64(fsMinFullBlocks))
 	//	go p.peer.RequestHeadersByNumber(pivot+uint64(fsMinFullBlocks), 2, fsMinFullBlocks-9, false) // move +64 when it's 2x64-8 deep
-	//}
+	// }
 	// Start pulling the header chain skeleton until all is done
 	ancestor := from
 	getHeaders(from)
@@ -1220,11 +1222,11 @@ func (d *Downloader) fetchHeaders(p *peerConnection, from uint64) error {
 
 				// If we're still skeleton filling fast sync, check pivot staleness
 				// before continuing to the next skeleton filling
-				//if skeleton && pivot > 0 {
+				// if skeleton && pivot > 0 {
 				//	getNextPivot()
-				//} else {
+				// } else {
 				getHeaders(from)
-				//}
+				// }
 			} else {
 				// No headers delivered, or all of them being delayed, sleep a bit and retry
 				p.log.Trace("All headers delayed, waiting")
@@ -1362,22 +1364,22 @@ func (d *Downloader) fetchReceipts(from uint64) error {
 // various callbacks to handle the slight differences between processing them.
 //
 // The instrumentation parameters:
-//  - errCancel:   error type to return if the fetch operation is cancelled (mostly makes logging nicer)
-//  - deliveryCh:  channel from which to retrieve downloaded data packets (merged from all concurrent peers)
-//  - deliver:     processing callback to deliver data packets into type specific download queues (usually within `queue`)
-//  - wakeCh:      notification channel for waking the fetcher when new tasks are available (or sync completed)
-//  - expire:      task callback method to abort requests that took too long and return the faulty peers (traffic shaping)
-//  - pending:     task callback for the number of requests still needing download (detect completion/non-completability)
-//  - inFlight:    task callback for the number of in-progress requests (wait for all active downloads to finish)
-//  - throttle:    task callback to check if the processing queue is full and activate throttling (bound memory use)
-//  - reserve:     task callback to reserve new download tasks to a particular peer (also signals partial completions)
-//  - fetchHook:   tester callback to notify of new tasks being initiated (allows testing the scheduling logic)
-//  - fetch:       network callback to actually send a particular download request to a physical remote peer
-//  - cancel:      task callback to abort an in-flight download request and allow rescheduling it (in case of lost peer)
-//  - capacity:    network callback to retrieve the estimated type-specific bandwidth capacity of a peer (traffic shaping)
-//  - idle:        network callback to retrieve the currently (type specific) idle peers that can be assigned tasks
-//  - setIdle:     network callback to set a peer back to idle and update its estimated capacity (traffic shaping)
-//  - kind:        textual label of the type being downloaded to display in log messages
+//   - errCancel:   error type to return if the fetch operation is cancelled (mostly makes logging nicer)
+//   - deliveryCh:  channel from which to retrieve downloaded data packets (merged from all concurrent peers)
+//   - deliver:     processing callback to deliver data packets into type specific download queues (usually within `queue`)
+//   - wakeCh:      notification channel for waking the fetcher when new tasks are available (or sync completed)
+//   - expire:      task callback method to abort requests that took too long and return the faulty peers (traffic shaping)
+//   - pending:     task callback for the number of requests still needing download (detect completion/non-completability)
+//   - inFlight:    task callback for the number of in-progress requests (wait for all active downloads to finish)
+//   - throttle:    task callback to check if the processing queue is full and activate throttling (bound memory use)
+//   - reserve:     task callback to reserve new download tasks to a particular peer (also signals partial completions)
+//   - fetchHook:   tester callback to notify of new tasks being initiated (allows testing the scheduling logic)
+//   - fetch:       network callback to actually send a particular download request to a physical remote peer
+//   - cancel:      task callback to abort an in-flight download request and allow rescheduling it (in case of lost peer)
+//   - capacity:    network callback to retrieve the estimated type-specific bandwidth capacity of a peer (traffic shaping)
+//   - idle:        network callback to retrieve the currently (type specific) idle peers that can be assigned tasks
+//   - setIdle:     network callback to set a peer back to idle and update its estimated capacity (traffic shaping)
+//   - kind:        textual label of the type being downloaded to display in log messages
 func (d *Downloader) fetchParts(deliveryCh chan dataPack, deliver func(dataPack) (int, error), wakeCh chan bool,
 	expire func() map[string]int, pending func() int, inFlight func() bool, reserve func(*peerConnection, int) (*fetchRequest, bool, bool),
 	fetchHook func([]*types.Header), fetch func(*peerConnection, *fetchRequest) error, cancel func(*fetchRequest), capacity func(*peerConnection) int,
@@ -1891,7 +1893,7 @@ func (d *Downloader) processFastSyncContent() error {
 			// Note, we have `reorgProtHeaderDelay` number of blocks withheld, Those
 			// need to be taken into account, otherwise we're detecting the pivot move
 			// late and will drop peers due to unavailable state!!!
-			//if height := latest.Number.Uint64(); height >= pivot.Number.Uint64()+2*uint64(fsMinFullBlocks)-uint64(reorgProtHeaderDelay) {
+			// if height := latest.Number.Uint64(); height >= pivot.Number.Uint64()+2*uint64(fsMinFullBlocks)-uint64(reorgProtHeaderDelay) {
 			//	log.Warn("Pivot became stale, moving", "old", pivot.Number.Uint64(), "new", height-uint64(fsMinFullBlocks)+uint64(reorgProtHeaderDelay))
 			//	pivot = results[len(results)-1-fsMinFullBlocks+reorgProtHeaderDelay].Header // must exist as lower old pivot is uncommitted
 			//
@@ -1902,7 +1904,7 @@ func (d *Downloader) processFastSyncContent() error {
 			//	// Write out the pivot into the database so a rollback beyond it will
 			//	// reenable fast sync
 			//	rawdb.WriteLastPivotNumber(d.stateDB, pivot.Number.Uint64())
-			//}
+			// }
 
 			if height := latest.Number.Uint64(); height > pivot.Number.Uint64()+2*max(d.epoch, uint64(fsMinFullBlocks)) {
 				newPivot := d.calcPivot(height)

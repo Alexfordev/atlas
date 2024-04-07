@@ -23,10 +23,10 @@ import (
 	"os"
 	"time"
 
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
 	"github.com/syndtr/goleveldb/leveldb"
 	lvlerrors "github.com/syndtr/goleveldb/leveldb/errors"
 	"github.com/syndtr/goleveldb/leveldb/opt"

@@ -5,14 +5,14 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	bn256 "github.com/mapprotocol/atlas/helper/bls"
+	bn256 "github.com/Alexfordev/atlas/helper/bls"
 	"log"
 
+	"github.com/Alexfordev/atlas/accounts"
+	blscrypto "github.com/Alexfordev/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/marker/hdwallet"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/mapprotocol/atlas/accounts"
-	blscrypto "github.com/mapprotocol/atlas/helper/bls"
-	"github.com/mapprotocol/atlas/marker/hdwallet"
 	"github.com/tyler-smith/go-bip39"
 )
 
@@ -70,14 +70,14 @@ func (a *Account) BLSProofOfPossession() ([]byte, error) {
 		return nil, err
 	}
 
-	//pkbytes, err := blscrypto.CryptoType().PrivateToPublic(privateKey)
-	//if err != nil {
+	// pkbytes, err := blscrypto.CryptoType().PrivateToPublic(privateKey)
+	// if err != nil {
 	//	return nil, err
-	//}
-	//pubkey, err := bn256.UnmarshalPk(pkbytes[:])
-	//if err != nil {
+	// }
+	// pubkey, err := bn256.UnmarshalPk(pkbytes[:])
+	// if err != nil {
 	//	return nil, err
-	//}
+	// }
 	signature, err := bn256.UnsafeSign2(key, a.Address.Bytes())
 	if err != nil {
 		return nil, err

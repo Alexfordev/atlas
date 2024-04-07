@@ -6,8 +6,8 @@ package blst
 
 import (
 	"fmt"
+	"github.com/Alexfordev/atlas/chains/eth2/bls12381/common"
 	lru "github.com/hashicorp/golang-lru"
-	"github.com/mapprotocol/atlas/chains/eth2/bls12381/common"
 	"github.com/pkg/errors"
 )
 
@@ -34,7 +34,7 @@ func PublicKeyFromBytes(pubKey []byte) (common.PublicKey, error) {
 	}
 	var newKey [common.BLSPubkeyLength]byte
 	copy(newKey[:], pubKey)
-	//newKey := (*[common.BLSPubkeyLength]byte)(pubKey)
+	// newKey := (*[common.BLSPubkeyLength]byte)(pubKey)
 	if cv, ok := pubkeyCache.Get(newKey); ok {
 		return cv.(*PublicKey).Copy(), nil
 	}

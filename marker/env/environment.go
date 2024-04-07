@@ -1,11 +1,11 @@
 package env
 
 import (
-	markerutils "github.com/mapprotocol/atlas/helper/fileutils"
+	markerutils "github.com/Alexfordev/atlas/helper/fileutils"
 	"os"
 
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/marker/internal/utils"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/marker/internal/utils"
 )
 
 // Environment represents a marker environment

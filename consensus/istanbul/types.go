@@ -24,13 +24,13 @@ import (
 	"math/big"
 	"time"
 
+	"github.com/Alexfordev/atlas/accounts"
+	"github.com/Alexfordev/atlas/core/types"
+	blscrypto "github.com/Alexfordev/atlas/helper/bls"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/p2p/enode"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mapprotocol/atlas/accounts"
-	"github.com/mapprotocol/atlas/core/types"
-	blscrypto "github.com/mapprotocol/atlas/helper/bls"
 )
 
 // Decrypt is a decrypt callback function to request an ECIES ciphertext to be
@@ -113,9 +113,10 @@ func (v *View) String() string {
 }
 
 // Cmp compares v and y and returns:
-//   -1 if v <  y
-//    0 if v == y
-//   +1 if v >  y
+//
+//	-1 if v <  y
+//	 0 if v == y
+//	+1 if v >  y
 func (v *View) Cmp(y *View) int {
 	if v.Sequence.Cmp(y.Sequence) != 0 {
 		return v.Sequence.Cmp(y.Sequence)

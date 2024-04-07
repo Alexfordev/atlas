@@ -28,18 +28,18 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/mapprotocol/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/chain"
 
+	"github.com/Alexfordev/atlas/atlas/ethconfig"
+	"github.com/Alexfordev/atlas/cmd/node"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/helper/debug"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mapprotocol/atlas/atlas/ethconfig"
-	"github.com/mapprotocol/atlas/cmd/node"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/helper/debug"
 	"gopkg.in/urfave/cli.v1"
 )
 

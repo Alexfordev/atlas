@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/mapprotocol/atlas/atlas/ethconfig"
+	"github.com/Alexfordev/atlas/atlas/ethconfig"
 )
 
 var ShowDeprecated = cli.Command{

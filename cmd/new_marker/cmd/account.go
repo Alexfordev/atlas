@@ -1,11 +1,11 @@
 package cmd
 
 import (
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/cmd/new_marker/define"
+	"github.com/Alexfordev/atlas/cmd/new_marker/mapprotocol"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/cmd/new_marker/define"
-	"github.com/mapprotocol/atlas/cmd/new_marker/mapprotocol"
 	"gopkg.in/urfave/cli.v1"
 	"math/big"
 )
@@ -134,7 +134,7 @@ func (a *Account) CreateAccount(_ *cli.Context, cfg *define.Config) error {
 
 // SignerToAccount : Query the account of a target signer
 func (a *Account) SignerToAccount(_ *cli.Context, cfg *define.Config) error {
-	//----------------------------- signerToAccount ---------------------------------
+	// ----------------------------- signerToAccount ---------------------------------
 	logger := log.New("func", "signerToAccount")
 	var ret common.Address
 	a.handleType3Msg(cfg, &ret, a.to, nil, a.abi, "signerToAccount", cfg.TargetAddress)

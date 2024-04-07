@@ -19,8 +19,8 @@ package core
 import (
 	"errors"
 
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/metrics"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/metrics"
 )
 
 var (

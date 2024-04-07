@@ -17,17 +17,17 @@ package validators
 
 import (
 	"fmt"
+	"github.com/Alexfordev/atlas/helper/bls"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/helper/bls"
 	"math/big"
 
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/contracts"
+	"github.com/Alexfordev/atlas/contracts/abis"
+	"github.com/Alexfordev/atlas/core/vm"
+	blscrypto "github.com/Alexfordev/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/contracts"
-	"github.com/mapprotocol/atlas/contracts/abis"
-	"github.com/mapprotocol/atlas/core/vm"
-	blscrypto "github.com/mapprotocol/atlas/helper/bls"
-	"github.com/mapprotocol/atlas/params"
 )
 
 type ValidatorContractData struct {
@@ -102,7 +102,7 @@ func GetValidatorData(vmRunner vm.EVMRunner, validatorAddresses []common.Address
 		blsKeyFixedSize := bls.SerializedPublicKey{}
 		copy(blsKeyFixedSize[:], blsKey)
 
-		////////////////////////  BlsG1  ////////////////////////
+		// //////////////////////  BlsG1  ////////////////////////
 		var blsG1Key []byte
 		err = getValidatorBlsG1PublicKeyFromSignerMethod.Query(vmRunner, &blsG1Key, addr)
 		if err != nil {
@@ -114,7 +114,7 @@ func GetValidatorData(vmRunner vm.EVMRunner, validatorAddresses []common.Address
 		}
 		blsG1KeyFixedSize := bls.SerializedG1PublicKey{}
 		copy(blsG1KeyFixedSize[:], blsG1Key)
-		/////////////////////////////////////////////////////////
+		// ///////////////////////////////////////////////////////
 
 		validator := istanbul.ValidatorData{
 			Address:        addr,
@@ -150,18 +150,18 @@ func GetPledgeMultiplierInReward(vmRunner vm.EVMRunner) (*big.Int, error) {
 }
 
 func DeRegisterValidatorsInPending(vmRunner vm.EVMRunner) (*[]common.Address, error) {
-	//var Address0 []common.Address
-	//getDeRegisteredValidatorsTMethod.Query(vmRunner, &Address0)
-	//log.Info("delete ", "Address0", Address0)
+	// var Address0 []common.Address
+	// getDeRegisteredValidatorsTMethod.Query(vmRunner, &Address0)
+	// log.Info("delete ", "Address0", Address0)
 	var Address []common.Address
 	err := deRegisterValidatorsInPendingMethod.Execute(vmRunner, &Address, common.Big0)
 	log.Info("new ", "Address", Address)
 	return &Address, err
 }
 func DeRegisterValidatorsInPending2(vmRunner vm.EVMRunner) (*[]common.Address, error) {
-	//var Address0 []common.Address
-	//getDeRegisteredValidatorsTMethod.Query(vmRunner, &Address0)
-	//log.Info("delete ", "Address0", Address0)
+	// var Address0 []common.Address
+	// getDeRegisteredValidatorsTMethod.Query(vmRunner, &Address0)
+	// log.Info("delete ", "Address0", Address0)
 	var Address []common.Address
 	err := deRegisterValidatorsInPendingMethod2.Execute(vmRunner, &Address, common.Big0)
 	log.Info("new ", "Address", Address)

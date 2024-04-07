@@ -3,11 +3,11 @@ package define
 import (
 	"crypto/ecdsa"
 	"fmt"
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/cmd/new_marker/mapprotocol"
+	blscrypto "github.com/Alexfordev/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/cmd/new_marker/mapprotocol"
-	blscrypto "github.com/mapprotocol/atlas/helper/bls"
-	"github.com/mapprotocol/atlas/params"
 	"golang.org/x/term"
 	"gopkg.in/urfave/cli.v1"
 	"math/big"
@@ -64,7 +64,7 @@ type Config struct {
 	TargetAddress         common.Address
 	ContractAddress       common.Address
 	SignerPriv            string
-	AccountAddress        common.Address //validator
+	AccountAddress        common.Address // validator
 	SignerAddress         common.Address
 	Signature             string
 	Proof                 string
@@ -84,16 +84,16 @@ type Config struct {
 
 func AssemblyConfig(ctx *cli.Context) (*Config, error) {
 	config := Config{}
-	//------------------ pre set --------------------------
+	// ------------------ pre set --------------------------
 	path := ""
 	config.VoteNum = big.NewInt(int64(0))
 	config.TargetAddress = params.ZeroAddress
-	config.Commission = 1000000 //default 1  be relative to 1000,000
+	config.Commission = 1000000 // default 1  be relative to 1000,000
 	config.Verbosity = "3"
 	config.Name = "validator"
 	config.From = common.HexToAddress("0x0000000000000000000000000000000000000000") //  default
 
-	//-----------------------------------------------------
+	// -----------------------------------------------------
 	if ctx.IsSet(KeyStoreFlag.Name) {
 		path = ctx.String(KeyStoreFlag.Name)
 	}

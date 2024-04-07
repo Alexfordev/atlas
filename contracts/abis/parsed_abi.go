@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/params"
 )
 
 var (

@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/mapprotocol/atlas/metrics"
+	"github.com/Alexfordev/atlas/metrics"
 )
 
 // a regexp for extracting the unit from time.Duration.String

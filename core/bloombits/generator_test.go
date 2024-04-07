@@ -21,7 +21,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/mapprotocol/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/types"
 )
 
 // Tests that batched bloom bits are correctly rotated from the input bloom

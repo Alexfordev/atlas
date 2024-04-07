@@ -25,7 +25,7 @@ import (
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rlp"
 
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // ReadDatabaseVersion retrieves the version number of the database.

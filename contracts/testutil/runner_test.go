@@ -4,7 +4,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/mapprotocol/atlas/contracts/blockchain_parameters"
+	"github.com/Alexfordev/atlas/contracts/blockchain_parameters"
 	. "github.com/onsi/gomega"
 )
 

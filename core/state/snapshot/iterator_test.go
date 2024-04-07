@@ -23,9 +23,9 @@ import (
 	"math/rand"
 	"testing"
 
+	"github.com/Alexfordev/atlas/core/rawdb"
 	"github.com/VictoriaMetrics/fastcache"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/core/rawdb"
 )
 
 // TestAccountIteratorBasics tests some simple single-layer(diff and disk) iteration
@@ -582,7 +582,7 @@ func TestAccountIteratorFlattening(t *testing.T) {
 	if err := snaps.Cap(common.HexToHash("0x04"), 1); err != nil {
 		t.Fatalf("failed to flatten snapshot stack: %v", err)
 	}
-	//verifyIterator(t, 7, it)
+	// verifyIterator(t, 7, it)
 }
 
 func TestAccountIteratorSeek(t *testing.T) {

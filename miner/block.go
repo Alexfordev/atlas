@@ -7,21 +7,21 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/mapprotocol/atlas/consensus/misc"
-	"github.com/mapprotocol/atlas/core/vm"
+	"github.com/Alexfordev/atlas/consensus/misc"
+	"github.com/Alexfordev/atlas/core/vm"
 
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/contracts/blockchain_parameters"
+	"github.com/Alexfordev/atlas/contracts/random"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/chain"
+	ethChain "github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/params"
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/contracts/blockchain_parameters"
-	"github.com/mapprotocol/atlas/contracts/random"
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/chain"
-	ethChain "github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
 )
 
 // blockState is the collection of modified state that is used to assemble a block
@@ -44,7 +44,7 @@ func getGasLimitByWork(w *worker, parent *types.Block, header *types.Header, vmR
 	gaslimit := uint64(0)
 	if w.chainConfig.IsCalc(header.Number) {
 		ceil := blockchain_parameters.GetBlockGasLimitOrDefault(vmRunner, true)
-		//fmt.Println("===getGasLimitByWork2", "parent", parent.GasLimit(), "ceil", ceil)
+		// fmt.Println("===getGasLimitByWork2", "parent", parent.GasLimit(), "ceil", ceil)
 		gaslimit = chain.CalcGasLimit(parent.GasLimit(), ceil)
 	} else {
 		// fmt.Println("******* not here **********")
@@ -171,10 +171,10 @@ func (b *blockState) selectAndApplyTransactions(ctx context.Context, w *worker) 
 	pending := w.eth.TxPool().Pending(false)
 
 	// TODO: should this be a fatal error?
-	//if err != nil {
+	// if err != nil {
 	//	log.Error("Failed to fetch pending transactions", "err", err)
 	//	return nil
-	//}
+	// }
 
 	// Short circuit if there is no available pending transactions.
 	if len(pending) == 0 {
@@ -189,7 +189,7 @@ func (b *blockState) selectAndApplyTransactions(ctx context.Context, w *worker) 
 		}
 	}
 
-	//txComparator := createTxCmp(w.chain, b.header, b.state)
+	// txComparator := createTxCmp(w.chain, b.header, b.state)
 	if len(localTxs) > 0 {
 		txs := types.NewTransactionsByPriceAndNonce(b.signer, localTxs, b.header.BaseFee)
 		if err := b.commitTransactions(ctx, w, txs, b.txFeeRecipient); err != nil {
@@ -310,7 +310,7 @@ loop:
 // commitTransaction attempts to appply a single transaction. If the transaction fails, it's modifications are reverted.
 func (b *blockState) commitTransaction(w *worker, tx *types.Transaction, txFeeRecipient common.Address) ([]*types.Log, error) {
 	snap := b.state.Snapshot()
-	//vmRunner := w.chain.NewEVMRunner(b.header, b.state)
+	// vmRunner := w.chain.NewEVMRunner(b.header, b.state)
 
 	receipt, err := chain.ApplyTransaction(
 		w.chainConfig,
@@ -322,7 +322,7 @@ func (b *blockState) commitTransaction(w *worker, tx *types.Transaction, txFeeRe
 		tx,
 		&b.header.GasUsed,
 		*w.chain.GetVMConfig(),
-		//vmRunner
+		// vmRunner
 	)
 	if err != nil {
 		b.state.RevertToSnapshot(snap)
@@ -339,7 +339,7 @@ func (b *blockState) finalizeAndAssemble(w *worker) (*types.Block, error) {
 	// Need to copy the state here otherwise block production stalls. Not sure why.
 	b.state = b.state.Copy()
 
-	//block, err := w.engine.FinalizeAndAssemble(w.chain, b.header, b.state, b.txs, b.receipts, b.randomness)
+	// block, err := w.engine.FinalizeAndAssemble(w.chain, b.header, b.state, b.txs, b.receipts, b.randomness)
 	block, err := w.engine.FinalizeAndAssemble(w.chain, b.header, b.state, b.txs, b.receipts, b.randomness)
 	if err != nil {
 		return nil, fmt.Errorf("error in FinalizeAndAssemble: %w", err)
@@ -358,14 +358,14 @@ func (b *blockState) finalizeAndAssemble(w *worker) (*types.Block, error) {
 }
 
 // createTxCmp creates a Transaction comparator
-//func createTxCmp(chain *chain.BlockChain, header *types.Header, state *state.StateDB) func(tx1 *types.Transaction, tx2 *types.Transaction) int {
+// func createTxCmp(chain *chain.BlockChain, header *types.Header, state *state.StateDB) func(tx1 *types.Transaction, tx2 *types.Transaction) int {
 //	vmRunner := chain.NewEVMRunner(header, state)
 //	currencyManager := currency.NewManager(vmRunner)
 //
 //	return func(tx1 *types.Transaction, tx2 *types.Transaction) int {
 //		return currencyManager.CmpValues(tx1.GasPrice(), tx1.FeeCurrency(), tx2.GasPrice(), tx2.FeeCurrency())
 //	}
-//}
+// }
 
 // totalFees computes total consumed fees in ETH. Block transactions and receipts have to have the same order.
 func totalFees(block *types.Block, receipts []*types.Receipt) *big.Float {

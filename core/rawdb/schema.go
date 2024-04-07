@@ -23,7 +23,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/mapprotocol/atlas/metrics"
+	"github.com/Alexfordev/atlas/metrics"
 )
 
 // The fields below define the low level database schema prefixing.
@@ -234,60 +234,60 @@ func configKey(hash common.Hash) []byte {
 	return append(configPrefix, hash.Bytes()...)
 }
 
-//--------------- mark ---------
-//type ChainType uint64
+// --------------- mark ---------
+// type ChainType uint64
 //
-//func (t ChainType) toByte() []byte {
+// func (t ChainType) toByte() []byte {
 //	b := make([]byte, 8)
 //	binary.BigEndian.PutUint64(b, uint64(t))
 //	return b
-//}
-//func (t ChainType) len() int {
+// }
+// func (t ChainType) len() int {
 //	return 8
-//}
+// }
 //
-//// change the visit Number by append chain mark   mark + number
-//func (t ChainType) setTypeNumber(n uint64) []byte {
+// // change the visit Number by append chain mark   mark + number
+// func (t ChainType) setTypeNumber(n uint64) []byte {
 //	return append(t.toByte(), encodeBlockNumber(n)...)
-//}
+// }
 //
-////change the visit key by append chain mark      key  + mark
-//func (t ChainType) setTypeKey(b []byte) []byte {
+// //change the visit key by append chain mark      key  + mark
+// func (t ChainType) setTypeKey(b []byte) []byte {
 //	return append(b, t.toByte()...)
-//}
+// }
 //
-////  key  + mark + number
-//func (t ChainType) setTypeKeyNum(b []byte, n uint64) []byte {
+// //  key  + mark + number
+// func (t ChainType) setTypeKeyNum(b []byte, n uint64) []byte {
 //	return append(append(b, t.toByte()...), encodeBlockNumber(n)...)
-//}
+// }
 //
-////--------------- chains ---------
-//// headerKey = headerPrefix + num (uint64 big endian) + hash
-//func headerKeyChains(t ChainType, number uint64, hash common.Hash) []byte {
+// //--------------- chains ---------
+// // headerKey = headerPrefix + num (uint64 big endian) + hash
+// func headerKeyChains(t ChainType, number uint64, hash common.Hash) []byte {
 //	return append(append(headerPrefix, t.setTypeNumber(number)...), hash.Bytes()...)
-//}
+// }
 //
-//// headerTDKey = headerPrefix + num (uint64 big endian) + hash + headerTDSuffix
-//func headerTDKeyChains(t ChainType, number uint64, hash common.Hash) []byte {
+// // headerTDKey = headerPrefix + num (uint64 big endian) + hash + headerTDSuffix
+// func headerTDKeyChains(t ChainType, number uint64, hash common.Hash) []byte {
 //	return append(headerKeyChains(t, number, hash), headerTDSuffix...)
-//}
+// }
 //
-//// headerHashKey = headerPrefix + num (uint64 big endian) + headerHashSuffix
-//func headerHashKeyChains(t ChainType, number uint64) []byte {
+// // headerHashKey = headerPrefix + num (uint64 big endian) + headerHashSuffix
+// func headerHashKeyChains(t ChainType, number uint64) []byte {
 //	return append(append(headerPrefix, t.setTypeNumber(number)...), headerHashSuffix...)
-//}
+// }
 //
-//// headerNumberKey = headerNumberPrefix + hash
-//func headerNumberKeyChains(t ChainType, hash common.Hash) []byte {
+// // headerNumberKey = headerNumberPrefix + hash
+// func headerNumberKeyChains(t ChainType, hash common.Hash) []byte {
 //	return append(t.setTypeKey(headerNumberPrefix), hash.Bytes()...)
-//}
+// }
 
 // blockBodyKey = blockBodyPrefix + num (uint64 big endian) + hash
-//func blockBodyKeyChains(t ChainType, number uint64, hash common.Hash) []byte {
+// func blockBodyKeyChains(t ChainType, number uint64, hash common.Hash) []byte {
 //	return append(append(blockBodyPrefix, t.setTypeNumber(number)...), hash.Bytes()...)
-//}
+// }
 //
-//// blockReceiptsKey = blockReceiptsPrefix + num (uint64 big endian) + hash
-//func blockReceiptsKeyChains(t ChainType, number uint64, hash common.Hash) []byte {
+// // blockReceiptsKey = blockReceiptsPrefix + num (uint64 big endian) + hash
+// func blockReceiptsKeyChains(t ChainType, number uint64, hash common.Hash) []byte {
 //	return append(append(blockReceiptsPrefix, t.setTypeNumber(number)...), hash.Bytes()...)
-//}
+// }

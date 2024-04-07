@@ -4,8 +4,8 @@ import (
 	"math/big"
 	"math/rand"
 
-	"github.com/mapprotocol/atlas/marker/env"
-	"github.com/mapprotocol/atlas/marker/genesis"
+	"github.com/Alexfordev/atlas/marker/env"
+	"github.com/Alexfordev/atlas/marker/genesis"
 )
 
 const (

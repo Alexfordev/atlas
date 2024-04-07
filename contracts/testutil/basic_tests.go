@@ -5,8 +5,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/params"
 	. "github.com/onsi/gomega"
 )
 

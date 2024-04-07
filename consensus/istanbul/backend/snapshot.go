@@ -19,12 +19,12 @@ package backend
 import (
 	"encoding/json"
 
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/consensus/istanbul/validator"
+	"github.com/Alexfordev/atlas/core/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/consensus/istanbul/validator"
-	"github.com/mapprotocol/atlas/core/types"
 )
 
 const (

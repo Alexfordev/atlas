@@ -6,13 +6,13 @@ import (
 	"math/big"
 	"time"
 
+	"github.com/Alexfordev/atlas/atlas/downloader"
+	"github.com/Alexfordev/atlas/atlas/gasprice"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/miner"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/params"
-	"github.com/mapprotocol/atlas/atlas/downloader"
-	"github.com/mapprotocol/atlas/atlas/gasprice"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/miner"
 )
 
 // MarshalTOML marshals as TOML.
@@ -25,7 +25,7 @@ func (c Config) MarshalTOML() (interface{}, error) {
 		SnapDiscoveryURLs       []string
 		NoPruning               bool
 		NoPrefetch              bool
-		VerifyCheckPoint 		bool 				`toml:",omitempty"`
+		VerifyCheckPoint        bool                   `toml:",omitempty"`
 		TxLookupLimit           uint64                 `toml:",omitempty"`
 		Whitelist               map[uint64]common.Hash `toml:"-"`
 		LightServ               int                    `toml:",omitempty"`

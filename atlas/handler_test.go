@@ -17,23 +17,23 @@
 package atlas
 
 import (
-	"github.com/mapprotocol/atlas/consensus/consensustest"
-	chain2 "github.com/mapprotocol/atlas/core/chain"
+	"github.com/Alexfordev/atlas/consensus/consensustest"
+	chain2 "github.com/Alexfordev/atlas/core/chain"
 	"math/big"
 	"sort"
 	"sync"
 
+	"github.com/Alexfordev/atlas/atlas/downloader"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/ethereum/go-ethereum/event"
-	"github.com/mapprotocol/atlas/atlas/downloader"
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
-	//"github.com/ethereum/go-ethereum/params"
-	"github.com/mapprotocol/atlas/params"
+	// "github.com/ethereum/go-ethereum/params"
+	"github.com/Alexfordev/atlas/params"
 )
 
 var (

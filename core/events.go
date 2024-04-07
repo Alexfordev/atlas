@@ -17,8 +17,8 @@
 package core
 
 import (
+	"github.com/Alexfordev/atlas/core/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/core/types"
 )
 
 // NewTxsEvent is posted when a batch of transactions enter the transaction pool.

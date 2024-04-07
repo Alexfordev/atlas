@@ -18,20 +18,20 @@ package chain
 
 import (
 	"fmt"
-	"github.com/mapprotocol/atlas/core/abstract"
+	"github.com/Alexfordev/atlas/core/abstract"
 	"math/big"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethdb"
 	ethparams "github.com/ethereum/go-ethereum/params"
 
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/consensus/misc"
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/consensus/misc"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // BlockGen creates blocks for testing.
@@ -178,8 +178,8 @@ func (b *BlockGen) OffsetTime(seconds int64) {
 	if b.header.Time <= b.parent.Header().Time {
 		panic("block time out of range")
 	}
-	//chainreader := &FakeChainReader{config: b.config}
-	//b.header.Difficulty = b.engine.CalcDifficulty(chainreader, b.header.Time, b.parent.Header())
+	// chainreader := &FakeChainReader{config: b.config}
+	// b.header.Difficulty = b.engine.CalcDifficulty(chainreader, b.header.Time, b.parent.Header())
 }
 
 // GenerateChain creates a chain of n blocks. The first block's
@@ -223,7 +223,7 @@ func GenerateChain(config *params.ChainConfig, parent *types.Block, engine conse
 		if b.engine != nil {
 			// Finalize and seal the block
 			block, _ := b.engine.FinalizeAndAssemble(chainreader, b.header, statedb, b.txs, b.receipts, nil)
-			//block, _ := b.engine.FinalizeAndAssemble(chainreader, b.header, statedb, b.txs, b.uncles, b.receipts)
+			// block, _ := b.engine.FinalizeAndAssemble(chainreader, b.header, statedb, b.txs, b.uncles, b.receipts)
 
 			// Write state changes to db
 			root, err := statedb.Commit(config.IsEIP158(b.header.Number))
@@ -261,9 +261,9 @@ func makeHeader(chain consensus.ChainReader, parent *types.Block, state *state.S
 		Root:       state.IntermediateRoot(chain.Config().IsEIP158(parent.Number())),
 		ParentHash: parent.Hash(),
 		Coinbase:   parent.Coinbase(),
-		GasLimit: parent.GasLimit(),
-		Number:   new(big.Int).Add(parent.Number(), common.Big1),
-		Time:     time,
+		GasLimit:   parent.GasLimit(),
+		Number:     new(big.Int).Add(parent.Number(), common.Big1),
+		Time:       time,
 	}
 	if chain.Config().IsLondon(header.Number) {
 		header.BaseFee = misc.CalcBaseFee(chain.Config(), parent.Header())

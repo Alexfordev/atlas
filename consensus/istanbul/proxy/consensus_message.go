@@ -17,8 +17,8 @@
 package proxy
 
 import (
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 )
 
 // handleConsensusMsg is invoked by the proxy to forward valid consensus messages to

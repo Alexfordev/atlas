@@ -20,20 +20,20 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"github.com/mapprotocol/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/chain"
 	"io/ioutil"
 	"os"
 	"strings"
 	"testing"
 	"time"
 
+	"github.com/Alexfordev/atlas/apis/jsre"
+	"github.com/Alexfordev/atlas/atlas"
+	"github.com/Alexfordev/atlas/atlas/ethconfig"
+	"github.com/Alexfordev/atlas/cmd/node"
+	"github.com/Alexfordev/atlas/miner"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/console/prompt"
-	"github.com/mapprotocol/atlas/apis/jsre"
-	"github.com/mapprotocol/atlas/atlas"
-	"github.com/mapprotocol/atlas/atlas/ethconfig"
-	"github.com/mapprotocol/atlas/cmd/node"
-	"github.com/mapprotocol/atlas/miner"
 )
 
 const (

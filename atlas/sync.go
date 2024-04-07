@@ -21,12 +21,12 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/Alexfordev/atlas/atlas/downloader"
+	"github.com/Alexfordev/atlas/atlas/protocols/eth"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/atlas/downloader"
-	"github.com/mapprotocol/atlas/atlas/protocols/eth"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/types"
 )
 
 const (
@@ -61,7 +61,7 @@ func (h *handler) syncTransactions(p *eth.Peer) {
 }
 
 // todo ibft
-//func (h *handler) txsyncLoop64() {}
+// func (h *handler) txsyncLoop64() {}
 
 // chainSyncer coordinates blockchain sync components.
 type chainSyncer struct {

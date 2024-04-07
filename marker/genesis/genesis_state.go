@@ -5,16 +5,16 @@ import (
 	"fmt"
 	"math/big"
 
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/core/vm/runtime"
+	"github.com/Alexfordev/atlas/marker/contract"
+	"github.com/Alexfordev/atlas/marker/env"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/core/vm/runtime"
-	"github.com/mapprotocol/atlas/marker/contract"
-	"github.com/mapprotocol/atlas/marker/env"
-	"github.com/mapprotocol/atlas/params"
 )
 
 var (
@@ -187,7 +187,7 @@ func (ctx *deployContext) deployProxiedContract(name string, initialize func(con
 	ctx.statedb.SetCode(proxyAddress, proxyByteCode)
 	ctx.statedb.SetState(proxyAddress, params.ProxyOwnerStorageLocation, AdminAddr.Hash())
 
-	//fmt.Println("AdminAddr.Hash()",AdminAddr.Hash())
+	// fmt.Println("AdminAddr.Hash()",AdminAddr.Hash())
 
 	logger.Info("Deploy Implementation")
 	ctx.statedb.SetCode(implAddress, bytecode)
@@ -253,9 +253,9 @@ func (ctx *deployContext) deployGoldToken() error {
 		return err
 	}
 
-	//for _, bal := range ctx.genesisConfig.GoldToken.InitialBalances {
+	// for _, bal := range ctx.genesisConfig.GoldToken.InitialBalances {
 	//	ctx.statedb.SetBalance(bal.Account, bal.Amount)
-	//}
+	// }
 
 	return nil
 }
@@ -347,7 +347,7 @@ func (ctx *deployContext) createAccounts(accs []AccoutInfo, namePrefix string) e
 			return err
 		}
 		if !bytes.Equal(acc.getAddress().Bytes(), acc.SignerAddress_().Bytes()) {
-			//get r v s
+			// get r v s
 			r, v, s := acc.ECDSASignature_()
 			// set Signer Address
 			if err := accounts.SimpleCallFrom(acc.getAddress(), "authorizeValidatorSigner", acc.SignerAddress_(), r, v, s); err != nil {
@@ -394,12 +394,12 @@ func (ctx *deployContext) registerValidators() error {
 		}
 		// remove the 0x04 prefix from the pub key (we need the 64 bytes variant)
 		pubKey := validator.PublicKey()[1:]
-		//err = validators.SimpleCallFrom(address, "registerValidatorPre", blsPub[:], blsG1Pub[:], validator.MustBLSProofOfPossession(), pubKey)
-		//if err != nil {
+		// err = validators.SimpleCallFrom(address, "registerValidatorPre", blsPub[:], blsG1Pub[:], validator.MustBLSProofOfPossession(), pubKey)
+		// if err != nil {
 		//	return err
-		//}
+		// }
 		validatorParams := [4][]byte{blsPub[:], blsG1Pub[:], validator.MustBLSProofOfPossession()[:], pubKey[:]}
-		//err = validators.SimpleCallFrom(address, "registerValidator", commission, params.ZeroAddress, prevValidatorAddress, blsPub[:], blsG1Pub[:], validator.MustBLSProofOfPossession(), pubKey)
+		// err = validators.SimpleCallFrom(address, "registerValidator", commission, params.ZeroAddress, prevValidatorAddress, blsPub[:], blsG1Pub[:], validator.MustBLSProofOfPossession(), pubKey)
 		err = validators.SimpleCallFrom(address, "registerValidator", commission, params.ZeroAddress, prevValidatorAddress, validatorParams)
 		if err != nil {
 			return err
@@ -408,7 +408,7 @@ func (ctx *deployContext) registerValidators() error {
 	return nil
 }
 
-//each validator votes for themselves.
+// each validator votes for themselves.
 func (ctx *deployContext) voteForValidators() error {
 	election := ctx.contract("Election")
 

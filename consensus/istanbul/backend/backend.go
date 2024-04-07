@@ -34,24 +34,24 @@ import (
 	"github.com/ethereum/go-ethereum/trie"
 	lru "github.com/hashicorp/golang-lru"
 
-	"github.com/mapprotocol/atlas/accounts"
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/consensus/istanbul/backend/internal/enodes"
-	"github.com/mapprotocol/atlas/consensus/istanbul/backend/internal/replica"
-	istanbulCore "github.com/mapprotocol/atlas/consensus/istanbul/core"
-	"github.com/mapprotocol/atlas/consensus/istanbul/proxy"
-	"github.com/mapprotocol/atlas/consensus/istanbul/validator"
-	"github.com/mapprotocol/atlas/contracts"
-	"github.com/mapprotocol/atlas/contracts/election"
-	"github.com/mapprotocol/atlas/contracts/random"
-	"github.com/mapprotocol/atlas/contracts/validators"
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	blscrypto "github.com/mapprotocol/atlas/helper/bls"
-	"github.com/mapprotocol/atlas/metrics"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/accounts"
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/consensus/istanbul/backend/internal/enodes"
+	"github.com/Alexfordev/atlas/consensus/istanbul/backend/internal/replica"
+	istanbulCore "github.com/Alexfordev/atlas/consensus/istanbul/core"
+	"github.com/Alexfordev/atlas/consensus/istanbul/proxy"
+	"github.com/Alexfordev/atlas/consensus/istanbul/validator"
+	"github.com/Alexfordev/atlas/contracts"
+	"github.com/Alexfordev/atlas/contracts/election"
+	"github.com/Alexfordev/atlas/contracts/random"
+	"github.com/Alexfordev/atlas/contracts/validators"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	blscrypto "github.com/Alexfordev/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/metrics"
+	"github.com/Alexfordev/atlas/params"
 )
 
 var (
@@ -156,14 +156,14 @@ func New(config *istanbul.Config, db ethdb.Database) consensus.Istanbul {
 
 	backend.core = istanbulCore.New(backend, backend.config)
 
-	//backend.logger = istanbul.NewIstLogger(
+	// backend.logger = istanbul.NewIstLogger(
 	//	func() *big.Int {
 	//		if backend.core != nil && backend.core.CurrentView() != nil {
 	//			return backend.core.CurrentView().Round
 	//		}
 	//		return common.Big0
 	//	},
-	//)
+	// )
 
 	if config.Validator {
 		rs, err := replica.NewState(config.Replica, config.ReplicaStateDBPath, backend.StartValidating, backend.StopValidating)
@@ -212,9 +212,9 @@ func New(config *istanbul.Config, db ethdb.Database) consensus.Istanbul {
 	return backend
 }
 
-//Cannot use 'backend' (type *Backend) as the type consensus.Istanbul Type does not implement 'consensus.Istanbul'
-//need the method: FinalizeAndAssemble(chain ChainHeaderReader, header *types.Header, state *state.StateDB, txs []*types.Transaction, receipts []*types.Receipt) (*types.Block, error)
-//have the method: FinalizeAndAssemble(chain ChainHeaderReader, header *types.Header, state *state.StateDB, txs []*types.Transaction, receipts []*types.Receipt, randomness *types.Randomness) (*types.Block, error)
+// Cannot use 'backend' (type *Backend) as the type consensus.Istanbul Type does not implement 'consensus.Istanbul'
+// need the method: FinalizeAndAssemble(chain ChainHeaderReader, header *types.Header, state *state.StateDB, txs []*types.Transaction, receipts []*types.Receipt) (*types.Block, error)
+// have the method: FinalizeAndAssemble(chain ChainHeaderReader, header *types.Header, state *state.StateDB, txs []*types.Transaction, receipts []*types.Receipt, randomness *types.Randomness) (*types.Block, error)
 
 // ----------------------------------------------------------------------------
 type Backend struct {
@@ -351,7 +351,7 @@ type Backend struct {
 
 func (sb *Backend) VerifyUncles(chain consensus.ChainReader, block *types.Block) error {
 	return nil
-	//panic("implement me")
+	// panic("implement me")
 }
 
 func (sb *Backend) SealHash(header *types.Header) common.Hash {

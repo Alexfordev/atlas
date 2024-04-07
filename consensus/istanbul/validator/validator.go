@@ -17,10 +17,10 @@
 package validator
 
 import (
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	blscrypto "github.com/Alexfordev/atlas/helper/bls"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	blscrypto "github.com/mapprotocol/atlas/helper/bls"
 )
 
 func New(addr common.Address, blsPublicKey blscrypto.SerializedPublicKey) istanbul.Validator {

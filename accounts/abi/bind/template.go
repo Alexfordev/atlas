@@ -16,7 +16,7 @@
 
 package bind
 
-import "github.com/mapprotocol/atlas/accounts/abi"
+import "github.com/Alexfordev/atlas/accounts/abi"
 
 // tmplData is the data structure required to fill the binding template.
 type tmplData struct {

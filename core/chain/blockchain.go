@@ -38,20 +38,20 @@ import (
 	"github.com/ethereum/go-ethereum/trie"
 	lru "github.com/hashicorp/golang-lru"
 
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/consensus/istanbul/uptime"
-	"github.com/mapprotocol/atlas/consensus/istanbul/uptime/store"
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/abstract"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/state/snapshot"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/core/vm/vmcontext"
-	"github.com/mapprotocol/atlas/internal/syncx"
-	"github.com/mapprotocol/atlas/metrics"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/consensus/istanbul/uptime"
+	"github.com/Alexfordev/atlas/consensus/istanbul/uptime/store"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/abstract"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/state/snapshot"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/core/vm/vmcontext"
+	"github.com/Alexfordev/atlas/internal/syncx"
+	"github.com/Alexfordev/atlas/metrics"
+	"github.com/Alexfordev/atlas/params"
 )
 
 var (
@@ -989,14 +989,14 @@ func (bc *BlockChain) GetBlocksFromHash(hash common.Hash, n int) (blocks []*type
 
 // GetUnclesInChain retrieves all the uncles from a given block backwards until
 // a specific distance is reached.
-//func (bc *BlockChain) GetUnclesInChain(block *types.Block, length int) []*types.Header {
+// func (bc *BlockChain) GetUnclesInChain(block *types.Block, length int) []*types.Header {
 //	uncles := []*types.Header{}
 //	for i := 0; block != nil && i < length; i++ {
 //		uncles = append(uncles, block.Uncles()...)
 //		block = bc.GetBlock(block.ParentHash(), block.NumberU64()-1)
 //	}
 //	return uncles
-//}
+// }
 
 // TrieNode retrieves a blob of data associated with a trie node
 // either from ephemeral in-memory cache, or from persistent storage.
@@ -1517,7 +1517,7 @@ func (bc *BlockChain) writeBlockWithState(block *types.Block, receipts []*types.
 	currentBlock := bc.CurrentBlock()
 	localTd := bc.GetTd(currentBlock.Hash(), currentBlock.NumberU64())
 	// todo ibft
-	//externTd := new(big.Int).Add(block.Difficulty(), ptd)
+	// externTd := new(big.Int).Add(block.Difficulty(), ptd)
 	externTd := big.NewInt(int64(block.NumberU64() + 1))
 
 	// Irrelevant of the canonical status, write the block itself to the database.
@@ -1771,7 +1771,7 @@ func (bc *BlockChain) insertChain(chain types.Blocks, verifySeals bool) (int, er
 		)
 		for block != nil && err == core.ErrKnownBlock {
 			// todo ibft
-			//externTd = new(big.Int).Add(externTd, block.Difficulty())
+			// externTd = new(big.Int).Add(externTd, block.Difficulty())
 			externTd = new(big.Int).Add(externTd, big.NewInt(1))
 			if localTd.Cmp(externTd) < 0 {
 				break
@@ -2069,7 +2069,7 @@ func (bc *BlockChain) insertSideChain(block *types.Block, it *insertIterator) (i
 			externTd = bc.GetTd(block.ParentHash(), block.NumberU64()-1)
 		}
 		// todo ibft
-		//externTd = new(big.Int).Add(externTd, block.Difficulty())
+		// externTd = new(big.Int).Add(externTd, block.Difficulty())
 		externTd = new(big.Int).Add(externTd, big.NewInt(1))
 		if !bc.HasBlock(block.Hash(), block.NumberU64()) {
 			start := time.Now()
@@ -2626,6 +2626,6 @@ func (bc *BlockChain) RecoverRandomnessCache(commitment common.Hash, commitmentB
 // HasBadBlock returns whether the block with the hash is a bad block
 func (bc *BlockChain) HasBadBlock(hash common.Hash) bool {
 
-	//bc.badBlocks.Contains(hash)
+	// bc.badBlocks.Contains(hash)
 	return false
 }

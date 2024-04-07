@@ -3,9 +3,9 @@ package contract
 import (
 	"strings"
 
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/core/vm/runtime"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/core/vm/runtime"
 )
 
 func mustParseABI(abiStr string) *abi.ABI {

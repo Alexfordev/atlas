@@ -7,8 +7,8 @@ package blst
 import (
 	"crypto/subtle"
 	"fmt"
-	common2 "github.com/mapprotocol/atlas/chains/eth2/bls12381/common"
-	"github.com/mapprotocol/atlas/chains/eth2/rand"
+	common2 "github.com/Alexfordev/atlas/chains/eth2/bls12381/common"
+	"github.com/Alexfordev/atlas/chains/eth2/rand"
 
 	blst "github.com/supranational/blst/bindings/go"
 )
@@ -70,7 +70,8 @@ func IsZero(sKey []byte) bool {
 //
 // In IETF draft BLS specification:
 // Sign(SK, message) -> signature: a signing algorithm that generates
-//      a deterministic signature given a secret key SK and a message.
+//
+//	a deterministic signature given a secret key SK and a message.
 //
 // In Ethereum proof of stake specification:
 // def Sign(SK: int, message: Bytes) -> BLSSignature

@@ -21,12 +21,12 @@ package eth
 
 import (
 	"crypto/rand"
+	"github.com/Alexfordev/atlas/consensus"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/p2p/enode"
-	"github.com/mapprotocol/atlas/consensus"
 
-	//"github.com/ethereum/go-ethereum/p2p"
-	"github.com/mapprotocol/atlas/p2p"
+	// "github.com/ethereum/go-ethereum/p2p"
+	"github.com/Alexfordev/atlas/p2p"
 	"testing"
 )
 

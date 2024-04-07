@@ -22,16 +22,17 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
-	"github.com/mapprotocol/atlas/chains/eth2"
-	"github.com/mapprotocol/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/chains/eth2"
+	"github.com/Alexfordev/atlas/helper/bls"
 
+	"github.com/Alexfordev/atlas/core/types"
+	blscrypto "github.com/Alexfordev/atlas/helper/bls"
+	params2 "github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mapprotocol/atlas/core/types"
-	blscrypto "github.com/mapprotocol/atlas/helper/bls"
-	params2 "github.com/mapprotocol/atlas/params"
 	"math/big"
 
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/math"
 	"github.com/ethereum/go-ethereum/crypto"
@@ -40,7 +41,6 @@ import (
 	"github.com/ethereum/go-ethereum/crypto/bn256"
 	"github.com/ethereum/go-ethereum/log"
 	ethparams "github.com/ethereum/go-ethereum/params"
-	"github.com/mapprotocol/atlas/params"
 	//lint:ignore SA1019 Needed for precompile
 	"golang.org/x/crypto/ripemd160"
 )
@@ -172,7 +172,7 @@ var PrecompiledContractsBerlin = map[common.Address]PrecompiledContract{
 	common.BytesToAddress([]byte{9}): &blake2F{},
 	params.HeaderStoreAddress:        &store{},
 	params.TxVerifyAddress:           &verify{},
-	///////////////////////////////
+	// /////////////////////////////
 	// bls Precompiled Contracts
 	common.BytesToAddress([]byte{10}): &bls12381G1Add{},
 	common.BytesToAddress([]byte{11}): &bls12381G1Mul{},
@@ -183,7 +183,7 @@ var PrecompiledContractsBerlin = map[common.Address]PrecompiledContract{
 	common.BytesToAddress([]byte{16}): &bls12381Pairing{},
 	common.BytesToAddress([]byte{17}): &bls12381MapG1{},
 	common.BytesToAddress([]byte{18}): &bls12381MapG2{},
-	///////////////////////////////
+	// /////////////////////////////
 	// Atlas Precompiled Contracts
 	transferAddress:              &transfer{},
 	fractionMulExpAddress:        &fractionMulExp{},
@@ -215,7 +215,7 @@ var PrecompiledContractsBLS = map[common.Address]PrecompiledContract{
 	common.BytesToAddress([]byte{18}): &bls12381MapG2{},
 	params.HeaderStoreAddress:         &store{},
 	params.TxVerifyAddress:            &verify{},
-	////////////////////////////////////
+	// //////////////////////////////////
 	// Atlas Precompiled Contracts
 	transferAddress:              &transfer{},
 	fractionMulExpAddress:        &fractionMulExp{},
@@ -463,7 +463,7 @@ func (c *bigModExp) RequiredGas(input []byte) uint64 {
 		// def mult_complexity(x):
 		//    ceiling(x/8)^2
 		//
-		//where is x is max(length_of_MODULUS, length_of_BASE)
+		// where is x is max(length_of_MODULUS, length_of_BASE)
 		gas = gas.Add(gas, big7)
 		gas = gas.Div(gas, big8)
 		gas.Mul(gas, gas)
@@ -1222,7 +1222,7 @@ func (tv *verify) Run(evm *EVM, contract *Contract, input []byte) (ret []byte, e
 	return RunTxVerify(evm, contract, input)
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Native transfer contract to make Atlas Gold ERC20 compatible.
 type transfer struct{}
@@ -1374,7 +1374,7 @@ func (c *fractionMulExp) Run(evm *EVM, contract *Contract, input []byte) ([]byte
 	numeratorExp := new(big.Int).Mul(aNumerator, new(big.Int).Exp(bNumerator, exponent, nil))
 	denominatorExp := new(big.Int).Mul(aDenominator, new(big.Int).Exp(bDenominator, exponent, nil))
 
-	decimalAdjustment := new(big.Int).Exp(big.NewInt(10), decimals, nil) //10^18
+	decimalAdjustment := new(big.Int).Exp(big.NewInt(10), decimals, nil) // 10^18
 
 	numeratorDecimalAdjusted := new(big.Int).Div(new(big.Int).Mul(numeratorExp, decimalAdjustment), denominatorExp).Bytes()
 	denominatorDecimalAdjusted := decimalAdjustment.Bytes()
@@ -1409,7 +1409,7 @@ func (c *proofOfPossession) Run(evm *EVM, contract *Contract, input []byte) ([]b
 		return nil, err
 	}
 
-	//apk := bls.NewApk(publicKey)
+	// apk := bls.NewApk(publicKey)
 	signatureBytes := input[common.AddressLength+blscrypto.PUBLICKEYBYTES+blscrypto.G1PUBLICKEYBYTES : common.AddressLength+blscrypto.PUBLICKEYBYTES+blscrypto.G1PUBLICKEYBYTES+blscrypto.SIGNATUREBYTES]
 	signature := bls.UnsafeSignature{}
 	err = signature.Unmarshal(signatureBytes)

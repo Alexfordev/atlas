@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/mapprotocol/atlas/helper/fileutils"
+	"github.com/Alexfordev/atlas/helper/fileutils"
 	"io/ioutil"
 	"log"
 	"math/big"
@@ -13,14 +13,14 @@ import (
 	"os/exec"
 	"path"
 
+	"github.com/Alexfordev/atlas/marker/env"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/p2p/enode"
-	"github.com/mapprotocol/atlas/marker/env"
 	"strconv"
 	"strings"
 
+	"github.com/Alexfordev/atlas/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/accounts/keystore"
 )
 
 // NodeConfig represents the configuration of a atlas-blockchain node runner

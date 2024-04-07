@@ -1,7 +1,7 @@
 package ssz
 
 import (
-	"github.com/mapprotocol/atlas/chains/eth2/hash/htr"
+	"github.com/Alexfordev/atlas/chains/eth2/hash/htr"
 )
 
 // Merkleize.go is mostly a directly copy of the same filename from

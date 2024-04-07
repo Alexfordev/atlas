@@ -21,8 +21,8 @@ import (
 	"reflect"
 	"time"
 
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
 )
 
 func (c *core) sendPrepare() {

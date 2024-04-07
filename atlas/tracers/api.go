@@ -22,7 +22,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/mapprotocol/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/chain"
 	"io/ioutil"
 	"os"
 	"runtime"
@@ -36,15 +36,15 @@ import (
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/ethereum/go-ethereum/rpc"
 
-	"github.com/mapprotocol/atlas/apis/atlasapi"
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/abstract"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/apis/atlasapi"
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/abstract"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/params"
 )
 
 const (

@@ -19,7 +19,7 @@ package atlasapi
 
 import (
 	"context"
-	"github.com/mapprotocol/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/chain"
 	"math/big"
 	"time"
 
@@ -29,14 +29,14 @@ import (
 	"github.com/ethereum/go-ethereum/event"
 	"github.com/ethereum/go-ethereum/rpc"
 
-	"github.com/mapprotocol/atlas/accounts"
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/bloombits"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/accounts"
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/bloombits"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // Backend interface provides the common API services (that are provided by

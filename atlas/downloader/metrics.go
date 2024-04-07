@@ -19,7 +19,7 @@
 package downloader
 
 import (
-	"github.com/mapprotocol/atlas/metrics"
+	"github.com/Alexfordev/atlas/metrics"
 )
 
 var (

@@ -19,15 +19,15 @@ package bind_test
 import (
 	"context"
 	"errors"
-	"github.com/mapprotocol/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/chain"
 	"math/big"
 	"testing"
 	"time"
 
-	"github.com/mapprotocol/atlas/accounts/abi/bind"
-	"github.com/mapprotocol/atlas/accounts/abi/bind/backends"
+	"github.com/Alexfordev/atlas/accounts/abi/bind"
+	"github.com/Alexfordev/atlas/accounts/abi/bind/backends"
+	"github.com/Alexfordev/atlas/core/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 )
 

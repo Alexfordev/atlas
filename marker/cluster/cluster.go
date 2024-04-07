@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/mapprotocol/atlas/marker/env"
-	"github.com/mapprotocol/atlas/marker/internal/console"
+	"github.com/Alexfordev/atlas/marker/env"
+	"github.com/Alexfordev/atlas/marker/internal/console"
 	"golang.org/x/sync/errgroup"
 )
 

@@ -25,7 +25,7 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/stretchr/testify/require"
 
-	"github.com/mapprotocol/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 )
 
 func testPreprepare(t *testing.T) {

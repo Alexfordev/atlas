@@ -34,14 +34,14 @@ import (
 	ethparams "github.com/ethereum/go-ethereum/params"
 	"github.com/ethereum/go-ethereum/trie"
 
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/consensus/consensustest"
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/consensus/consensustest"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // So we can deterministically seed different blockchains
@@ -1870,9 +1870,9 @@ func testSideImport(t *testing.T, numCanonBlocksInSidechain, blocksBetweenCommon
 // [ Cn, Cn+1, Cc, Sn+3 ... Sm]
 //   ^    ^    ^  pruned
 func TestPrunedImportSide(t *testing.T) {
-	//glogger := log.NewGlogHandler(log.StreamHandler(os.Stdout, log.TerminalFormat(false)))
-	//glogger.Verbosity(3)
-	//log.Root().SetHandler(log.Handler(glogger))
+	// glogger := log.NewGlogHandler(log.StreamHandler(os.Stdout, log.TerminalFormat(false)))
+	// glogger.Verbosity(3)
+	// log.Root().SetHandler(log.Handler(glogger))
 	testSideImport(t, 3, 3)
 	testSideImport(t, 3, -3)
 	testSideImport(t, 10, 0)
@@ -2945,8 +2945,8 @@ func TestDeleteRecreateSlotsAcrossManyBlocks(t *testing.T) {
 	diskdb := rawdb.NewMemoryDatabase()
 	gspec.MustCommit(diskdb)
 	chain, err := NewBlockChain(diskdb, nil, params.TestChainConfig, engine, vm.Config{
-		//Debug:  true,
-		//Tracer: vm.NewJSONLogger(nil, os.Stdout),
+		// Debug:  true,
+		// Tracer: vm.NewJSONLogger(nil, os.Stdout),
 	}, nil, nil)
 	if err != nil {
 		t.Fatalf("failed to create tester chain: %v", err)
@@ -3079,8 +3079,8 @@ func TestInitThenFailCreateContract(t *testing.T) {
 	diskdb := rawdb.NewMemoryDatabase()
 	gspec.MustCommit(diskdb)
 	chain, err := NewBlockChain(diskdb, nil, params.TestChainConfig, engine, vm.Config{
-		//Debug:  true,
-		//Tracer: vm.NewJSONLogger(nil, os.Stdout),
+		// Debug:  true,
+		// Tracer: vm.NewJSONLogger(nil, os.Stdout),
 	}, nil, nil)
 	if err != nil {
 		t.Fatalf("failed to create tester chain: %v", err)

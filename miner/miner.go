@@ -22,20 +22,20 @@ import (
 	"math/big"
 	"time"
 
+	"github.com/Alexfordev/atlas/atlas/downloader"
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/contracts/random"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	params2 "github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/ethereum/go-ethereum/event"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/params"
-	"github.com/mapprotocol/atlas/atlas/downloader"
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/contracts/random"
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	params2 "github.com/mapprotocol/atlas/params"
 )
 
 // Backend wraps all methods required for mining.
@@ -47,14 +47,14 @@ type Backend interface {
 // Config is the configuration parameters of mining.
 type Config struct {
 	Etherbase common.Address `toml:",omitempty"` // Public address for block mining rewards (default = first account)
-	//Notify     []string       `toml:",omitempty"` // HTTP URL list to be notified of new work packages (only useful in ethash).
-	//NotifyFull bool           `toml:",omitempty"` // Notify with pending block headers instead of work packages
+	// Notify     []string       `toml:",omitempty"` // HTTP URL list to be notified of new work packages (only useful in ethash).
+	// NotifyFull bool           `toml:",omitempty"` // Notify with pending block headers instead of work packages
 	ExtraData hexutil.Bytes `toml:",omitempty"` // Block extra data set by the miner
 	GasFloor  uint64        // Target gas floor for mined blocks.
 	GasCeil   uint64        // Target gas ceiling for mined blocks.
 	GasPrice  *big.Int      // Minimum gas price for mining a transaction
 	Recommit  time.Duration // The time interval for miner to re-create mining work.
-	//Noverify   bool           // Disable remote mining solution verification(only useful in ethash).
+	// Noverify   bool           // Disable remote mining solution verification(only useful in ethash).
 }
 
 // Miner creates blocks and searches for proof-of-work values.
@@ -207,12 +207,12 @@ func (miner *Miner) Mining() bool {
 	return miner.worker.isRunning()
 }
 
-//func (miner *Miner) Hashrate() uint64 {
+// func (miner *Miner) Hashrate() uint64 {
 //	if pow, ok := miner.engine.(consensus.PoW); ok {
 //		return uint64(pow.Hashrate())
 //	}
 //	return 0
-//}
+// }
 
 func (miner *Miner) SetExtra(extra []byte) error {
 	if uint64(len(extra)) > params.MaximumExtraDataSize {
@@ -223,9 +223,9 @@ func (miner *Miner) SetExtra(extra []byte) error {
 }
 
 // SetRecommitInterval sets the interval for sealing work resubmitting.
-//func (miner *Miner) SetRecommitInterval(interval time.Duration) {
+// func (miner *Miner) SetRecommitInterval(interval time.Duration) {
 //	miner.worker.setRecommitInterval(interval)
-//}
+// }
 
 // Pending returns the currently pending block and associated state.
 func (miner *Miner) Pending() (*types.Block, *state.StateDB) {
@@ -250,18 +250,18 @@ func (miner *Miner) SetValidator(addr common.Address) {
 // Note this function shouldn't be exposed to API, it's unnecessary for users
 // (miners) to actually know the underlying detail. It's only for outside project
 // which uses this library.
-//func (miner *Miner) EnablePreseal() {
+// func (miner *Miner) EnablePreseal() {
 //	miner.worker.enablePreseal()
-//}
+// }
 
 // DisablePreseal turns off the preseal mining feature. It's necessary for some
 // fake consensus engine which can seal blocks instantaneously.
 // Note this function shouldn't be exposed to API, it's unnecessary for users
 // (miners) to actually know the underlying detail. It's only for outside project
 // which uses this library.
-//func (miner *Miner) DisablePreseal() {
+// func (miner *Miner) DisablePreseal() {
 //	miner.worker.disablePreseal()
-//}
+// }
 
 // SetTxFeeRecipient sets the address where the miner and worker will receive fees
 func (miner *Miner) SetTxFeeRecipient(addr common.Address) {

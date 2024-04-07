@@ -7,9 +7,9 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/metrics"
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/metrics"
 )
 
 var (
@@ -40,14 +40,14 @@ func resolveAddressForCall(caller vm.EVMRunner, registryId common.Hash, method s
 	contractAddress, err := GetRegisteredAddress(caller, registryId)
 
 	if err != nil {
-		//hexRegistryId := hexutil.Encode(registryId[:])
-		//if err == ErrSmartContractNotDeployed {
+		// hexRegistryId := hexutil.Encode(registryId[:])
+		// if err == ErrSmartContractNotDeployed {
 		//	log.Debug("Contract not yet registered", "function", method, "registryId", hexRegistryId)
-		//} else if err == ErrRegistryContractNotDeployed {
+		// } else if err == ErrRegistryContractNotDeployed {
 		//	log.Debug("Registry contract not yet deployed", "function", method, "registryId", hexRegistryId)
-		//} else {
+		// } else {
 		//	log.Error("Error in getting registered address", "function", method, "registryId", hexRegistryId, "err", err)
-		//}
+		// }
 		return common.BytesToAddress([]byte{}), err
 	}
 	return contractAddress, nil

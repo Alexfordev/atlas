@@ -19,9 +19,9 @@ package core
 import (
 	"time"
 
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
 )
 
 func (c *core) sendPreprepare(request *istanbul.Request, roundChangeCertificate istanbul.RoundChangeCertificate) {

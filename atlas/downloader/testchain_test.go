@@ -25,11 +25,11 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	ethparams "github.com/ethereum/go-ethereum/params"
 
-	"github.com/mapprotocol/atlas/consensus/consensustest"
-	atlaschain "github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/consensus/consensustest"
+	atlaschain "github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // Test chain parameters.
@@ -130,11 +130,11 @@ func (tc *testChain) generate(n int, seed byte, parent *types.Block, heavy bool)
 		if parent == tc.genesis && i%22 == 0 {
 			signer := types.MakeSigner(params.TestChainConfig, block.Number())
 			tx, err := types.SignTx(types.NewTransaction(block.TxNonce(testAddress), common.Address{seed},
-			big.NewInt(10), ethparams.TxGas, big.NewInt(100000000000), nil), signer, testKey)
+				big.NewInt(10), ethparams.TxGas, big.NewInt(100000000000), nil), signer, testKey)
 			if err != nil {
 				panic(err)
 			}
-			//fmt.Println("*****",testAddress.String(),block.GetBalance(testAddress))
+			// fmt.Println("*****",testAddress.String(),block.GetBalance(testAddress))
 			block.AddTx(tx)
 		}
 		// if the block number is a multiple of 5, add a bonus uncle to the block

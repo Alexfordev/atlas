@@ -1,8 +1,8 @@
 package ssz_test
 
 import (
-	"github.com/mapprotocol/atlas/chains/eth2/hash"
-	"github.com/mapprotocol/atlas/chains/eth2/ssz"
+	"github.com/Alexfordev/atlas/chains/eth2/hash"
+	"github.com/Alexfordev/atlas/chains/eth2/ssz"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

@@ -20,7 +20,7 @@ import (
 	"crypto/ecdsa"
 	"crypto/rand"
 	"encoding/json"
-	"github.com/mapprotocol/atlas/core/vm/vmcontext"
+	"github.com/Alexfordev/atlas/core/vm/vmcontext"
 
 	"io/ioutil"
 	"math/big"
@@ -36,14 +36,14 @@ import (
 	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/ethereum/go-ethereum/rlp"
 
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/state/snapshot"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/state/snapshot"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // To generate a new callTracer test, copy paste the makeTest method below into
@@ -306,9 +306,9 @@ func testCallTracer(tracer string, dirPath string, t *testing.T) {
 
 			if !jsonEqual(ret, test.Result) {
 				// uncomment this for easier debugging
-				//have, _ := json.MarshalIndent(ret, "", " ")
-				//want, _ := json.MarshalIndent(test.Result, "", " ")
-				//t.Fatalf("trace mismatch: \nhave %+v\nwant %+v", string(have), string(want))
+				// have, _ := json.MarshalIndent(ret, "", " ")
+				// want, _ := json.MarshalIndent(test.Result, "", " ")
+				// t.Fatalf("trace mismatch: \nhave %+v\nwant %+v", string(have), string(want))
 				t.Fatalf("trace mismatch: \nhave %+v\nwant %+v", ret, test.Result)
 			}
 		})
@@ -388,9 +388,9 @@ func BenchmarkTransactionTrace(b *testing.B) {
 	// Create the tracer, the EVM environment and run it
 	tracer := vm.NewStructLogger(&vm.LogConfig{
 		Debug: false,
-		//DisableStorage: true,
-		//EnableMemory: false,
-		//EnableReturnData: false,
+		// DisableStorage: true,
+		// EnableMemory: false,
+		// EnableReturnData: false,
 	})
 	evm := vm.NewEVM(context, txContext, statedb, params.AllEthashProtocolChanges, vm.Config{Debug: true, Tracer: tracer})
 	msg, err := tx.AsMessage(signer, nil)

@@ -1,16 +1,16 @@
 package vmcontext
 
 import (
+	"github.com/Alexfordev/atlas/cmd/marker/mapprotocol"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/cmd/marker/mapprotocol"
 	"math/big"
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // VMAddress is the address the VM uses to make internal calls to contracts

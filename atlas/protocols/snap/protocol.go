@@ -20,9 +20,9 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/Alexfordev/atlas/core/state/snapshot"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mapprotocol/atlas/core/state/snapshot"
 )
 
 // Constants to match up protocol versions and messages

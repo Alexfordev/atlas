@@ -22,9 +22,9 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/helper/bls"
 )
 
 func TestHandleCommit(t *testing.T) {
@@ -205,10 +205,10 @@ OUTER:
 		for i, v := range test.system.backends {
 			validator := r0.current.ValidatorSet().GetByIndex(uint64(i))
 			privateKey, _ := bls.DeserializePrivateKey(test.system.validatorsKeys[i])
-			//defer privateKey.Destroy()
+			// defer privateKey.Destroy()
 
 			hash := PrepareCommittedSeal(v.engine.(*core).current.Proposal().Hash(), v.engine.(*core).current.Round())
-			//signature, _ := privateKey.SignMessage(hash, []byte{}, false, false)
+			// signature, _ := privateKey.SignMessage(hash, []byte{}, false, false)
 			pubkey := privateKey.ToPublic()
 			signature, _ := bls.Sign(privateKey, pubkey, hash)
 			signatureBytes := signature.Marshal()
@@ -306,12 +306,12 @@ func BenchmarkHandleCommit(b *testing.B) {
 	for i, v := range sys.backends {
 		validator := r0.current.ValidatorSet().GetByIndex(uint64(i))
 		privateKey, _ := bls.DeserializePrivateKey(sys.validatorsKeys[i])
-		//defer privateKey.Destroy()
+		// defer privateKey.Destroy()
 
 		hash := PrepareCommittedSeal(v.engine.(*core).current.Proposal().Hash(), v.engine.(*core).current.Round())
-		//signature, _ := privateKey.SignMessage(hash, []byte{}, false, false)
-		//defer signature.Destroy()
-		//signatureBytes, _ := signature.Serialize()
+		// signature, _ := privateKey.SignMessage(hash, []byte{}, false, false)
+		// defer signature.Destroy()
+		// signatureBytes, _ := signature.Serialize()
 		pubkey := privateKey.ToPublic()
 		signature, _ := bls.Sign(privateKey, pubkey, hash)
 		signatureBytes := signature.Marshal()

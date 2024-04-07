@@ -45,25 +45,25 @@ import (
 	gopsutil "github.com/shirou/gopsutil/mem"
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/mapprotocol/atlas/accounts"
-	"github.com/mapprotocol/atlas/accounts/keystore"
-	"github.com/mapprotocol/atlas/apis/atlasapi"
-	"github.com/mapprotocol/atlas/atlas"
-	"github.com/mapprotocol/atlas/atlas/downloader"
-	"github.com/mapprotocol/atlas/atlas/ethconfig"
-	"github.com/mapprotocol/atlas/atlas/gasprice"
-	"github.com/mapprotocol/atlas/atlas/tracers"
-	"github.com/mapprotocol/atlas/cmd/node"
-	"github.com/mapprotocol/atlas/consensus"
-	atlaschain "github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/helper/flags"
-	"github.com/mapprotocol/atlas/metrics"
-	"github.com/mapprotocol/atlas/metrics/exp"
-	"github.com/mapprotocol/atlas/metrics/influxdb"
-	"github.com/mapprotocol/atlas/miner"
-	"github.com/mapprotocol/atlas/p2p"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/accounts"
+	"github.com/Alexfordev/atlas/accounts/keystore"
+	"github.com/Alexfordev/atlas/apis/atlasapi"
+	"github.com/Alexfordev/atlas/atlas"
+	"github.com/Alexfordev/atlas/atlas/downloader"
+	"github.com/Alexfordev/atlas/atlas/ethconfig"
+	"github.com/Alexfordev/atlas/atlas/gasprice"
+	"github.com/Alexfordev/atlas/atlas/tracers"
+	"github.com/Alexfordev/atlas/cmd/node"
+	"github.com/Alexfordev/atlas/consensus"
+	atlaschain "github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/helper/flags"
+	"github.com/Alexfordev/atlas/metrics"
+	"github.com/Alexfordev/atlas/metrics/exp"
+	"github.com/Alexfordev/atlas/metrics/influxdb"
+	"github.com/Alexfordev/atlas/miner"
+	"github.com/Alexfordev/atlas/p2p"
+	"github.com/Alexfordev/atlas/params"
 )
 
 func init() {
@@ -1132,9 +1132,9 @@ func SetNodeConfig(ctx *cli.Context, cfg *node.Config) {
 	if ctx.GlobalIsSet(KeyStoreDirFlag.Name) {
 		cfg.KeyStoreDir = ctx.GlobalString(KeyStoreDirFlag.Name)
 	}
-	//if ctx.GlobalIsSet(DeveloperFlag.Name) {
+	// if ctx.GlobalIsSet(DeveloperFlag.Name) {
 	//	cfg.UseLightweightKDF = true
-	//}
+	// }
 	if ctx.GlobalIsSet(LightKDFFlag.Name) {
 		cfg.UseLightweightKDF = ctx.GlobalBool(LightKDFFlag.Name)
 	}
@@ -1253,28 +1253,28 @@ func setTxPool(ctx *cli.Context, cfg *atlaschain.TxPoolConfig) {
 }
 
 func setMiner(ctx *cli.Context, cfg *miner.Config) {
-	//if ctx.GlobalIsSet(MinerNotifyFlag.Name) {
+	// if ctx.GlobalIsSet(MinerNotifyFlag.Name) {
 	//	cfg.Notify = strings.Split(ctx.GlobalString(MinerNotifyFlag.Name), ",")
-	//}
-	//cfg.NotifyFull = ctx.GlobalBool(MinerNotifyFullFlag.Name)
+	// }
+	// cfg.NotifyFull = ctx.GlobalBool(MinerNotifyFullFlag.Name)
 	if ctx.GlobalIsSet(MinerExtraDataFlag.Name) {
 		cfg.ExtraData = []byte(ctx.GlobalString(MinerExtraDataFlag.Name))
 	}
-	//if ctx.GlobalIsSet(MinerGasTargetFlag.Name) {
+	// if ctx.GlobalIsSet(MinerGasTargetFlag.Name) {
 	//	cfg.GasFloor = ctx.GlobalUint64(MinerGasTargetFlag.Name)
-	//}
-	//if ctx.GlobalIsSet(MinerGasLimitFlag.Name) {
+	// }
+	// if ctx.GlobalIsSet(MinerGasLimitFlag.Name) {
 	//	cfg.GasCeil = ctx.GlobalUint64(MinerGasLimitFlag.Name)
-	//}
+	// }
 	if ctx.GlobalIsSet(MinerGasPriceFlag.Name) {
 		cfg.GasPrice = GlobalBig(ctx, MinerGasPriceFlag.Name)
 	}
-	//if ctx.GlobalIsSet(MinerRecommitIntervalFlag.Name) {
+	// if ctx.GlobalIsSet(MinerRecommitIntervalFlag.Name) {
 	//	cfg.Recommit = ctx.GlobalDuration(MinerRecommitIntervalFlag.Name)
-	//}
-	//if ctx.GlobalIsSet(MinerNoVerfiyFlag.Name) {
+	// }
+	// if ctx.GlobalIsSet(MinerNoVerfiyFlag.Name) {
 	//	cfg.Noverify = ctx.GlobalBool(MinerNoVerfiyFlag.Name)
-	//}
+	// }
 }
 
 func setWhitelist(ctx *cli.Context, cfg *ethconfig.Config) {
@@ -1362,7 +1362,7 @@ func SetEthConfig(ctx *cli.Context, stack *node.Node, cfg *ethconfig.Config) {
 	setGPO(ctx, &cfg.GPO, ctx.GlobalString(SyncModeFlag.Name) == "light")
 	setTxPool(ctx, &cfg.TxPool)
 	setTxFeeRecipient(ctx, ks, cfg)
-	//setEthash(ctx, cfg)
+	// setEthash(ctx, cfg)
 	setMiner(ctx, &cfg.Miner)
 	setWhitelist(ctx, cfg)
 	setLes(ctx, cfg)
@@ -1570,35 +1570,35 @@ func SetDNSDiscoveryDefaults(cfg *ethconfig.Config, genesis common.Hash) {
 // The second return value is the full node instance, which may be nil if the
 // node is running as a light client.
 func RegisterEthService(stack *node.Node, cfg *ethconfig.Config) (atlasapi.Backend, *atlas.Ethereum) {
-	//if cfg.SyncMode == downloader.LightSync {
+	// if cfg.SyncMode == downloader.LightSync {
 	//	backend, err := les.New(stack, cfg)
 	//	if err != nil {
 	//		Fatalf("Failed to register the Ethereum service: %v", err)
 	//	}
 	//	stack.RegisterAPIs(tracers.APIs(backend.ApiBackend))
 	//	return backend.ApiBackend, nil
-	//}
+	// }
 	backend, err := atlas.New(stack, cfg)
 	if err != nil {
 		Fatalf("Failed to register the Ethereum service: %v", err)
 	}
-	//if cfg.LightServ > 0 {
+	// if cfg.LightServ > 0 {
 	//	_, err := les.NewLesServer(stack, backend, cfg)
 	//	if err != nil {
 	//		Fatalf("Failed to create the LES server: %v", err)
 	//	}
-	//}
+	// }
 	stack.RegisterAPIs(tracers.APIs(backend.APIBackend))
 	return backend.APIBackend, backend
 }
 
 // RegisterEthStatsService configures the Ethereum Stats daemon and adds it to
 // the given node.
-//func RegisterEthStatsService(stack *node.Node, backend atlasapi.Backend, url string) {
+// func RegisterEthStatsService(stack *node.Node, backend atlasapi.Backend, url string) {
 //	if err := ethstats.New(stack, backend, backend.Engine(), url); err != nil {
 //		Fatalf("Failed to register the Ethereum Stats service: %v", err)
 //	}
-//}
+// }
 
 func SetupMetrics(ctx *cli.Context) {
 	if metrics.Enabled {

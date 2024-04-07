@@ -24,12 +24,12 @@ import (
 	"strings"
 	"time"
 
+	"github.com/Alexfordev/atlas/accounts/scwallet"
+	"github.com/Alexfordev/atlas/apis/jsre"
 	"github.com/dop251/goja"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/console/prompt"
 	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/mapprotocol/atlas/accounts/scwallet"
-	"github.com/mapprotocol/atlas/apis/jsre"
 )
 
 // bridge is a collection of JavaScript utility methods to bride the .js runtime

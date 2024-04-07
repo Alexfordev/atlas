@@ -17,7 +17,7 @@
 package istanbul
 
 import (
-	"github.com/mapprotocol/atlas/p2p"
+	"github.com/Alexfordev/atlas/p2p"
 )
 
 // Message codes for istanbul related messages

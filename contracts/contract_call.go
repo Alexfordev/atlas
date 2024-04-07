@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"math/big"
 
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/core/vm"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/core/vm"
 )
 
 // Method represents a contract's method
@@ -96,7 +96,7 @@ func (bm *BoundMethod) run(vmRunner vm.EVMRunner, result interface{}, readOnly b
 
 	input, err := bm.encodeCall(args...)
 	if err != nil {
-		//logger.Error("Error invoking evm function: can't encode method arguments", "args", args, "err", err)
+		// logger.Error("Error invoking evm function: can't encode method arguments", "args", args, "err", err)
 		return err
 	}
 
@@ -119,7 +119,7 @@ func (bm *BoundMethod) run(vmRunner vm.EVMRunner, result interface{}, readOnly b
 	}
 
 	if err := bm.decodeResult(result, output); err != nil {
-		//logger.Error("Error invoking evm function: can't unpack result", "err", err, "maxgas", bm.maxGas)
+		// logger.Error("Error invoking evm function: can't unpack result", "err", err, "maxgas", bm.maxGas)
 		return err
 	}
 

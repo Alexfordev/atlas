@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/Alexfordev/atlas/contracts"
+	"github.com/Alexfordev/atlas/contracts/testutil"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/contracts"
-	"github.com/mapprotocol/atlas/contracts/testutil"
-	"github.com/mapprotocol/atlas/params"
 	. "github.com/onsi/gomega"
 )
 
@@ -32,7 +32,7 @@ func TestGetCarbonOffsettingPartnerAddress(t *testing.T) {
 	})
 }
 func Test_01(t *testing.T) {
-	//fn := GetMgrMaintainerAddress
+	// fn := GetMgrMaintainerAddress
 	runner := testutil.NewSingleMethodRunner(
 		params.EpochRewardsRegistryId,
 		"carbonOffsettingPartner",

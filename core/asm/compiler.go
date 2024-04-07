@@ -22,8 +22,8 @@ import (
 	"os"
 	"strings"
 
+	"github.com/Alexfordev/atlas/core/vm"
 	"github.com/ethereum/go-ethereum/common/math"
-	"github.com/mapprotocol/atlas/core/vm"
 )
 
 // Compiler contains information about the parsed source

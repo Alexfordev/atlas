@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/mapprotocol/atlas/consensus/istanbul/backend"
-	"github.com/mapprotocol/atlas/consensus/istanbul/backend/backendtest"
+	"github.com/Alexfordev/atlas/consensus/istanbul/backend"
+	"github.com/Alexfordev/atlas/consensus/istanbul/backend/backendtest"
 )
 
 func TestMain(m *testing.M) {

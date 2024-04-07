@@ -21,13 +21,13 @@ import (
 	"math/big"
 	"time"
 
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/vm"
+	params2 "github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/params"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/vm"
-	params2 "github.com/mapprotocol/atlas/params"
 )
 
 // Config is a basic type specifying certain configuration flags for running

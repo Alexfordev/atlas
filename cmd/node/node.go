@@ -26,16 +26,15 @@ import (
 	"strings"
 	"sync"
 
-
 	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/ethereum/go-ethereum/event"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/prometheus/tsdb/fileutil"
 
-	"github.com/mapprotocol/atlas/accounts"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/p2p"
+	"github.com/Alexfordev/atlas/accounts"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/p2p"
 )
 
 // Node is a container on which services can be registered.

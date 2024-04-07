@@ -6,14 +6,14 @@ import (
 	"math/big"
 	"strings"
 
+	"github.com/Alexfordev/atlas/chains"
+	"github.com/Alexfordev/atlas/chains/interfaces"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mapprotocol/atlas/chains"
-	"github.com/mapprotocol/atlas/chains/interfaces"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/params"
 )
 
 const (

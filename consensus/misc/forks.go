@@ -19,8 +19,8 @@ package misc
 import (
 	"fmt"
 
+	"github.com/Alexfordev/atlas/core/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/core/types"
 	"github.com/ethereum/go-ethereum/params"
 )
 

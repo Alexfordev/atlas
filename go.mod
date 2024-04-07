@@ -1,4 +1,4 @@
-module github.com/mapprotocol/atlas
+module github.com/Alexfordev/atlas
 
 go 1.19
 
@@ -102,6 +102,7 @@ require (
 	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
 	github.com/kr/pretty v0.3.1 // indirect
 	github.com/kr/text v0.2.0 // indirect
+	github.com/mapprotocol/atlas v1.2.1 // indirect
 	github.com/mattn/go-runewidth v0.0.10 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
 	github.com/mitchellh/mapstructure v1.4.3 // indirect
@@ -122,5 +123,3 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
-
-replace github.com/ethereum/go-ethereum v1.10.10 => github.com/mapprotocol/go-ethereum v1.10.10-patch1 // indirect

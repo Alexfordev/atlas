@@ -25,9 +25,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/types"
 )
 
 // Runs multiple tests with randomized parameters.
@@ -222,7 +222,7 @@ func (b *testChainIndexBackend) Process(ctx context.Context, header *types.Heade
 	if b.headerCnt > b.indexer.sectionSize {
 		b.t.Error("Processing too many headers")
 	}
-	//t.processCh <- header.Number.Uint64()
+	// t.processCh <- header.Number.Uint64()
 	select {
 	case <-time.After(10 * time.Second):
 		b.t.Error("Unexpected call to Process")

@@ -1,8 +1,8 @@
 package cmd
 
 import (
+	"github.com/Alexfordev/atlas/cmd/new_marker/define"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/cmd/new_marker/define"
 	"gopkg.in/urfave/cli.v1"
 	"os"
 	"strconv"

@@ -31,7 +31,7 @@ import (
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/golang/snappy"
 
-	"github.com/mapprotocol/atlas/metrics"
+	"github.com/Alexfordev/atlas/metrics"
 )
 
 var (

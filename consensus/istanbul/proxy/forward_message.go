@@ -17,10 +17,10 @@
 package proxy
 
 import (
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/core/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/core/types"
 )
 
 func (pv *proxiedValidatorEngine) sendForwardMsg(ps *proxySet, destAddresses []common.Address, ethMsgCode uint64, payload []byte) error {

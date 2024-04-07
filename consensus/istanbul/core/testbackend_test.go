@@ -32,13 +32,13 @@ import (
 	elog "github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/p2p/enode"
 
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/consensus/istanbul/validator"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/helper/bls"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/consensus/istanbul/validator"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // ErrorReporter is the intersection of the testing.B and testing.T interfaces.
@@ -124,7 +124,7 @@ func (self *testSystemBackend) IsPrimaryForSeq(seq *big.Int) bool {
 }
 
 func (self *testSystemBackend) NextBlockValidators(proposal istanbul.Proposal) (istanbul.ValidatorSet, error) {
-	//This doesn't really return the next block validators
+	// This doesn't really return the next block validators
 	return self.peers, nil
 }
 

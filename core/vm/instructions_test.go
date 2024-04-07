@@ -27,7 +27,7 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/holiman/uint256"
 
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/params"
 )
 
 type TwoOperandTestcase struct {

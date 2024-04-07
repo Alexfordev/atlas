@@ -34,18 +34,18 @@ import (
 	ethparams "github.com/ethereum/go-ethereum/params"
 	"github.com/ethereum/go-ethereum/rpc"
 
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/accounts/abi/bind"
-	"github.com/mapprotocol/atlas/atlas/filters"
-	"github.com/mapprotocol/atlas/consensus/consensustest"
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/bloombits"
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/accounts/abi/bind"
+	"github.com/Alexfordev/atlas/atlas/filters"
+	"github.com/Alexfordev/atlas/consensus/consensustest"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/bloombits"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // This nil assignment ensures at compile time that SimulatedBackend implements bind.ContractBackend.
@@ -793,7 +793,7 @@ func (b *SimulatedBackend) Blockchain() *chain.BlockChain {
 
 // callMsg implements core.Message to allow passing it as a transaction simulator.
 type callMsg struct {
-	//ethereum.CallMsg
+	// ethereum.CallMsg
 	types.CallMsg
 }
 

@@ -29,10 +29,10 @@ import (
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rlp"
 
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/consensus/istanbul/uptime"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/consensus/istanbul/uptime"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // ReadCanonicalHash retrieves the hash assigned to a canonical block number.
@@ -797,9 +797,9 @@ func WriteAncientBlocks(db ethdb.AncientWriter, blocks []*types.Block, receipts 
 				stReceipts = append(stReceipts, (*types.ReceiptForStorage)(receipt))
 			}
 			header := block.Header()
-			//if i > 0 {
+			// if i > 0 {
 			//	tdSum.Add(tdSum, block.TotalDifficulty())
-			//}
+			// }
 			tdSum = new(big.Int).Set(block.TotalDifficulty())
 			if err := writeAncientBlock(op, block, header, stReceipts, tdSum); err != nil {
 				return err
@@ -995,150 +995,150 @@ func ReadHeadBlock(db ethdb.Reader) *types.Block {
 	return ReadBlock(db, headBlockHash, *headBlockNumber)
 }
 
-//---------------------------chains----------------------------------
+// ---------------------------chains----------------------------------
 // ReadCanonicalHashChains retrieves the hash assigned to a canonical block number.
-//func ReadCanonicalHashChains(db DatabaseReader, number uint64, m ChainType) common.Hash {
+// func ReadCanonicalHashChains(db DatabaseReader, number uint64, m ChainType) common.Hash {
 //	data, _ := db.Get(headerHashKeyChains(m, number))
 //	if len(data) == 0 {
 //		return common.Hash{}
 //	}
 //	return common.BytesToHash(data)
-//}
+// }
 //
-//// ReadFirstCanonicalHashChains
-//func ReadFirstCanonicalHashChains(db DatabaseReader, m ChainType) common.Hash {
+// // ReadFirstCanonicalHashChains
+// func ReadFirstCanonicalHashChains(db DatabaseReader, m ChainType) common.Hash {
 //	data, _ := db.Get(headerHashKeyChains(m, uint64(0)))
 //	if len(data) == 0 {
 //		return common.Hash{}
 //	}
 //	return common.BytesToHash(data)
-//}
+// }
 //
-//// WriteCanonicalHashChains stores the hash assigned to a canonical block number.
-//func WriteCanonicalHashChains(db DatabaseWriter, hash common.Hash, number uint64, m ChainType) {
+// // WriteCanonicalHashChains stores the hash assigned to a canonical block number.
+// func WriteCanonicalHashChains(db DatabaseWriter, hash common.Hash, number uint64, m ChainType) {
 //	if err := db.Put(headerHashKeyChains(m, number), hash.Bytes()); err != nil {
 //		log.Crit("Failed to store number to hash mapping", "err", err)
 //	}
-//}
+// }
 //
-//// DeleteCanonicalHashChains removes the number to hash canonical mapping.
-//func DeleteCanonicalHashChains(db DatabaseDeleter, number uint64, m ChainType) {
+// // DeleteCanonicalHashChains removes the number to hash canonical mapping.
+// func DeleteCanonicalHashChains(db DatabaseDeleter, number uint64, m ChainType) {
 //	if err := db.Delete(headerHashKeyChains(m, number)); err != nil {
 //		log.Crit("Failed to delete number to hash mapping", "err", err)
 //	}
-//}
+// }
 //
-//// ReadHeaderNumberChains returns the header number assigned to a hash.
-//func ReadHeaderNumberChains(db DatabaseReader, hash common.Hash, m ChainType) *uint64 {
+// // ReadHeaderNumberChains returns the header number assigned to a hash.
+// func ReadHeaderNumberChains(db DatabaseReader, hash common.Hash, m ChainType) *uint64 {
 //	data, _ := db.Get(headerNumberKeyChains(m, hash))
 //	if len(data) != 8 {
 //		return nil
 //	}
 //	number := binary.BigEndian.Uint64(data)
 //	return &number
-//}
+// }
 //
-//// ReadHeadHeaderHashChains retrieves the hash of the current canonical head header.
-//func ReadHeadHeaderHashChains(db DatabaseReader, m ChainType) common.Hash {
+// // ReadHeadHeaderHashChains retrieves the hash of the current canonical head header.
+// func ReadHeadHeaderHashChains(db DatabaseReader, m ChainType) common.Hash {
 //	data, _ := db.Get(m.setTypeKey(headHeaderKey))
 //	if len(data) == 0 {
 //		return common.Hash{}
 //	}
 //	return common.BytesToHash(data)
-//}
+// }
 //
-//// WriteHeadHeaderHashChains stores the hash of the current canonical head header.
-//func WriteHeadHeaderHashChains(db DatabaseWriter, hash common.Hash, m ChainType) {
+// // WriteHeadHeaderHashChains stores the hash of the current canonical head header.
+// func WriteHeadHeaderHashChains(db DatabaseWriter, hash common.Hash, m ChainType) {
 //	if err := db.Put(m.setTypeKey(headHeaderKey), hash.Bytes()); err != nil {
 //		log.Crit("Failed to store last header's hash", "err", err)
 //	}
-//}
+// }
 //
-//// ReadHeadBlockHashChains retrieves the hash of the current canonical head block.
-//func ReadHeadBlockHashChains(db DatabaseReader, m ChainType) common.Hash {
+// // ReadHeadBlockHashChains retrieves the hash of the current canonical head block.
+// func ReadHeadBlockHashChains(db DatabaseReader, m ChainType) common.Hash {
 //	data, _ := db.Get(m.setTypeKey(headBlockKey))
 //	if len(data) == 0 {
 //		return common.Hash{}
 //	}
 //	return common.BytesToHash(data)
-//}
+// }
 //
-//// WriteHeadBlockHashChains stores the head block's hash.
-//func WriteHeadBlockHashChains(db DatabaseWriter, hash common.Hash, m ChainType) {
+// // WriteHeadBlockHashChains stores the head block's hash.
+// func WriteHeadBlockHashChains(db DatabaseWriter, hash common.Hash, m ChainType) {
 //	if err := db.Put(m.setTypeKey(headBlockKey), hash.Bytes()); err != nil {
 //		log.Crit("Failed to store last block's hash", "err", err)
 //	}
-//}
+// }
 //
-//// ReadLastBlockHashChains retrieves the hash of the current canonical head block.
-//func ReadLastBlockHashChains(db DatabaseReader, m ChainType) common.Hash {
+// // ReadLastBlockHashChains retrieves the hash of the current canonical head block.
+// func ReadLastBlockHashChains(db DatabaseReader, m ChainType) common.Hash {
 //	data, _ := db.Get(m.setTypeKey(lastBlockKey))
 //	if len(data) == 0 {
 //		return common.Hash{}
 //	}
 //	return common.BytesToHash(data)
-//}
+// }
 //
-//// WriteLastBlockHashChains stores the head block's hash.
-//func WriteLastBlockHashChains(db DatabaseWriter, hash common.Hash, m ChainType) {
+// // WriteLastBlockHashChains stores the head block's hash.
+// func WriteLastBlockHashChains(db DatabaseWriter, hash common.Hash, m ChainType) {
 //	if err := db.Put(m.setTypeKey(lastBlockKey), hash.Bytes()); err != nil {
 //		log.Crit("Failed to store last block's hash", "err", err)
 //	}
-//}
+// }
 //
-//// ReadHeadFastBlockHashChains retrieves the hash of the current fast-sync head block.
-//func ReadHeadFastBlockHashChains(db DatabaseReader, m ChainType) common.Hash {
+// // ReadHeadFastBlockHashChains retrieves the hash of the current fast-sync head block.
+// func ReadHeadFastBlockHashChains(db DatabaseReader, m ChainType) common.Hash {
 //	data, _ := db.Get(m.setTypeKey(headFastBlockKey))
 //	if len(data) == 0 {
 //		return common.Hash{}
 //	}
 //	return common.BytesToHash(data)
-//}
+// }
 //
-//// WriteHeadFastBlockHashChains stores the hash of the current fast-sync head block.
-//func WriteHeadFastBlockHashChains(db DatabaseWriter, hash common.Hash, m ChainType) {
+// // WriteHeadFastBlockHashChains stores the hash of the current fast-sync head block.
+// func WriteHeadFastBlockHashChains(db DatabaseWriter, hash common.Hash, m ChainType) {
 //	if err := db.Put(m.setTypeKey(headFastBlockKey), hash.Bytes()); err != nil {
 //		log.Crit("Failed to store last fast block's hash", "err", err)
 //	}
-//}
+// }
 //
-//// ReadFastTrieProgressChains retrieves the number of tries nodes fast synced to allow
-//// reporting correct numbers across restarts.
-//func ReadFastTrieProgressChains(db DatabaseReader, m ChainType) uint64 {
+// // ReadFastTrieProgressChains retrieves the number of tries nodes fast synced to allow
+// // reporting correct numbers across restarts.
+// func ReadFastTrieProgressChains(db DatabaseReader, m ChainType) uint64 {
 //	data, _ := db.Get(m.setTypeKey(fastTrieProgressKey))
 //	if len(data) == 0 {
 //		return 0
 //	}
 //	return new(big.Int).SetBytes(data).Uint64()
-//}
+// }
 //
-//// WriteFastTrieProgressChains stores the fast sync trie process counter to support
-//// retrieving it across restarts.
-//func WriteFastTrieProgressChains(db DatabaseWriter, count uint64, m ChainType) {
+// // WriteFastTrieProgressChains stores the fast sync trie process counter to support
+// // retrieving it across restarts.
+// func WriteFastTrieProgressChains(db DatabaseWriter, count uint64, m ChainType) {
 //	if err := db.Put(m.setTypeKey(fastTrieProgressKey), new(big.Int).SetUint64(count).Bytes()); err != nil {
 //		log.Crit("Failed to store fast sync trie progress", "err", err)
 //	}
-//}
+// }
 //
-//// ReadHeaderRLPChains retrieves a block header in its raw RLP database encoding.
-//func ReadHeaderRLPChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) rlp.RawValue {
+// // ReadHeaderRLPChains retrieves a block header in its raw RLP database encoding.
+// func ReadHeaderRLPChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) rlp.RawValue {
 //	data, err := db.Get(headerKeyChains(m, number, hash))
 //	if err != nil {
 //		return rlp.RawValue{}
 //	}
 //	return data
-//}
+// }
 //
-//// HasHeaderChains verifies the existence of a block header corresponding to the hash.
-//func HasHeaderChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) bool {
+// // HasHeaderChains verifies the existence of a block header corresponding to the hash.
+// func HasHeaderChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) bool {
 //	if has, err := db.Has(headerKeyChains(m, number, hash)); !has || err != nil {
 //		return false
 //	}
 //	return true
-//}
+// }
 //
-//// ReadHeaderChains retrieves the block header corresponding to the hash.
-//func ReadHeaderChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) *ethereum.Header {
+// // ReadHeaderChains retrieves the block header corresponding to the hash.
+// func ReadHeaderChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) *ethereum.Header {
 //	data := ReadHeaderRLPChains(db, hash, number, m)
 //	if len(data) == 0 {
 //		return nil
@@ -1149,11 +1149,11 @@ func ReadHeadBlock(db ethdb.Reader) *types.Block {
 //		return nil
 //	}
 //	return header
-//}
+// }
 //
-//// WriteHeaderChains stores a block header into the database and also stores the hash-
-//// to-number mapping.
-//func WriteHeaderChains(db DatabaseWriter, header *ethereum.Header, m ChainType) {
+// // WriteHeaderChains stores a block header into the database and also stores the hash-
+// // to-number mapping.
+// func WriteHeaderChains(db DatabaseWriter, header *ethereum.Header, m ChainType) {
 //	// Write the hash -> number mapping
 //	var (
 //		hash    = header.Hash()
@@ -1174,41 +1174,41 @@ func ReadHeadBlock(db ethdb.Reader) *types.Block {
 //	if err := db.Put(key, data); err != nil {
 //		log.Crit("Failed to store header", "err", err)
 //	}
-//}
+// }
 //
-//// DeleteHeaderChains removes all block header data associated with a hash.
-//func DeleteHeaderChains(db DatabaseDeleter, hash common.Hash, number uint64, m ChainType) {
+// // DeleteHeaderChains removes all block header data associated with a hash.
+// func DeleteHeaderChains(db DatabaseDeleter, hash common.Hash, number uint64, m ChainType) {
 //	if err := db.Delete(headerKeyChains(m, number, hash)); err != nil {
 //		log.Crit("Failed to delete header", "err", err)
 //	}
 //	if err := db.Delete(headerNumberKeyChains(m, hash)); err != nil {
 //		log.Crit("Failed to delete hash to number mapping", "err", err)
 //	}
-//}
+// }
 //
-//// ReadBodyRLPChains retrieves the block body (transactions and uncles) in RLP encoding.
-//func ReadBodyRLPChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) rlp.RawValue {
+// // ReadBodyRLPChains retrieves the block body (transactions and uncles) in RLP encoding.
+// func ReadBodyRLPChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) rlp.RawValue {
 //	data, _ := db.Get(blockBodyKeyChains(m, number, hash))
 //	return data
-//}
+// }
 //
-//// WriteBodyRLPChains stores an RLP encoded block body into the database.
-//func WriteBodyRLPChains(db DatabaseWriter, hash common.Hash, number uint64, rlp rlp.RawValue, m ChainType) {
+// // WriteBodyRLPChains stores an RLP encoded block body into the database.
+// func WriteBodyRLPChains(db DatabaseWriter, hash common.Hash, number uint64, rlp rlp.RawValue, m ChainType) {
 //	if err := db.Put(blockBodyKeyChains(m, number, hash), rlp); err != nil {
 //		log.Crit("Failed to store block body", "err", err)
 //	}
-//}
+// }
 //
-//// HasBodyChains verifies the existence of a block body corresponding to the hash.
-//func HasBodyChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) bool {
+// // HasBodyChains verifies the existence of a block body corresponding to the hash.
+// func HasBodyChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) bool {
 //	if has, err := db.Has(blockBodyKeyChains(m, number, hash)); !has || err != nil {
 //		return false
 //	}
 //	return true
-//}
+// }
 //
-//// ReadBodyChains retrieves the block body corresponding to the hash.
-//func ReadBodyChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) *types.Body {
+// // ReadBodyChains retrieves the block body corresponding to the hash.
+// func ReadBodyChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) *types.Body {
 //	data := ReadBodyRLPChains(db, hash, number, m)
 //	if len(data) == 0 {
 //		return nil
@@ -1219,26 +1219,26 @@ func ReadHeadBlock(db ethdb.Reader) *types.Block {
 //		return nil
 //	}
 //	return body
-//}
+// }
 //
-//// WriteBodyChains storea a block body into the database.
-//func WriteBodyChains(db DatabaseWriter, hash common.Hash, number uint64, body *types.Body, m ChainType) {
+// // WriteBodyChains storea a block body into the database.
+// func WriteBodyChains(db DatabaseWriter, hash common.Hash, number uint64, body *types.Body, m ChainType) {
 //	data, err := rlp.EncodeToBytes(body)
 //	if err != nil {
 //		log.Crit("Failed to RLP encode body", "err", err)
 //	}
 //	WriteBodyRLPChains(db, hash, number, data, m)
-//}
+// }
 //
-//// DeleteBodyChains removes all block body data associated with a hash.
-//func DeleteBodyChains(db DatabaseDeleter, hash common.Hash, number uint64, m ChainType) {
+// // DeleteBodyChains removes all block body data associated with a hash.
+// func DeleteBodyChains(db DatabaseDeleter, hash common.Hash, number uint64, m ChainType) {
 //	if err := db.Delete(blockBodyKeyChains(m, number, hash)); err != nil {
 //		log.Crit("Failed to delete block body", "err", err)
 //	}
-//}
+// }
 //
-//// ReadTdChains retrieves a block's total difficulty corresponding to the hash.
-//func ReadTdChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) *big.Int {
+// // ReadTdChains retrieves a block's total difficulty corresponding to the hash.
+// func ReadTdChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) *big.Int {
 //	data, _ := db.Get(headerTDKeyChains(m, number, hash))
 //	if len(data) == 0 {
 //		return nil
@@ -1249,10 +1249,10 @@ func ReadHeadBlock(db ethdb.Reader) *types.Block {
 //		return nil
 //	}
 //	return td
-//}
+// }
 //
-//// WriteTdChains stores the total difficulty of a block into the database.
-//func WriteTdChains(db DatabaseWriter, hash common.Hash, number uint64, td *big.Int, m ChainType) {
+// // WriteTdChains stores the total difficulty of a block into the database.
+// func WriteTdChains(db DatabaseWriter, hash common.Hash, number uint64, td *big.Int, m ChainType) {
 //	data, err := rlp.EncodeToBytes(td)
 //	if err != nil {
 //		log.Crit("Failed to RLP encode block total difficulty", "err", err)
@@ -1260,19 +1260,19 @@ func ReadHeadBlock(db ethdb.Reader) *types.Block {
 //	if err := db.Put(headerTDKeyChains(m, number, hash), data); err != nil {
 //		log.Crit("Failed to store block total difficulty", "err", err)
 //	}
-//}
+// }
 //
-//// HasReceiptsChains verifies the existence of all the transaction receipts belonging
-//// to a block.
-//func HasReceiptsChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) bool {
+// // HasReceiptsChains verifies the existence of all the transaction receipts belonging
+// // to a block.
+// func HasReceiptsChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) bool {
 //	if has, err := db.Has(blockReceiptsKeyChains(m, number, hash)); !has || err != nil {
 //		return false
 //	}
 //	return true
-//}
+// }
 //
-//// ReadReceiptsChains retrieves all the transaction receipts belonging to a block.
-//func ReadReceiptsChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) types.Receipts {
+// // ReadReceiptsChains retrieves all the transaction receipts belonging to a block.
+// func ReadReceiptsChains(db DatabaseReader, hash common.Hash, number uint64, m ChainType) types.Receipts {
 //	// Retrieve the flattened receipt slice
 //	data, _ := db.Get(blockReceiptsKeyChains(m, number, hash))
 //	if len(data) == 0 {
@@ -1302,10 +1302,10 @@ func ReadHeadBlock(db ethdb.Reader) *types.Block {
 //		receipts[i].TransactionIndex = uint(i)
 //	}
 //	return receipts
-//}
+// }
 //
-//// WriteReceiptsChains stores all the transaction receipts belonging to a block.
-//func WriteReceiptsChains(db DatabaseWriter, hash common.Hash, number uint64, receipts types.Receipts, m ChainType) {
+// // WriteReceiptsChains stores all the transaction receipts belonging to a block.
+// func WriteReceiptsChains(db DatabaseWriter, hash common.Hash, number uint64, receipts types.Receipts, m ChainType) {
 //	// Convert the receipts into their storage form and serialize them
 //	storageReceipts := make([]*types.ReceiptForStorage, len(receipts))
 //	for i, receipt := range receipts {
@@ -1318,17 +1318,17 @@ func ReadHeadBlock(db ethdb.Reader) *types.Block {
 //	if err := db.Put(blockReceiptsKeyChains(m, number, hash), bytes); err != nil {
 //		log.Crit("Failed to store block receipts", "err", err)
 //	}
-//}
+// }
 //
-//// DeleteReceiptsChains removes all receipt data associated with a block hash.
-//func DeleteReceiptsChains(db DatabaseDeleter, hash common.Hash, number uint64, m ChainType) {
+// // DeleteReceiptsChains removes all receipt data associated with a block hash.
+// func DeleteReceiptsChains(db DatabaseDeleter, hash common.Hash, number uint64, m ChainType) {
 //	if err := db.Delete(blockReceiptsKeyChains(m, number, hash)); err != nil {
 //		log.Crit("Failed to delete block receipts", "err", err)
 //	}
-//}
+// }
 //
-//// WriteChainConfigChains writes the chain config settings to the database.
-//func WriteChainConfigChains(db DatabaseWriter, hash common.Hash, cfg *params.ChainConfig, m ChainType) {
+// // WriteChainConfigChains writes the chain config settings to the database.
+// func WriteChainConfigChains(db DatabaseWriter, hash common.Hash, cfg *params.ChainConfig, m ChainType) {
 //	if cfg == nil {
 //		return
 //	}
@@ -1339,12 +1339,12 @@ func ReadHeadBlock(db ethdb.Reader) *types.Block {
 //	if err := db.Put(configKeyChains(hash, m), data); err != nil {
 //		log.Crit("Failed to store chain config", "err", err)
 //	}
-//}
+// }
 //
-//// configKey = configPrefix + hash
-//func configKeyChains(hash common.Hash, m ChainType) []byte {
+// // configKey = configPrefix + hash
+// func configKeyChains(hash common.Hash, m ChainType) []byte {
 //	return append(m.setTypeKey(configPrefix), hash.Bytes()...)
-//}
+// }
 
 // WriteRandomCommitmentCache will write a random beacon commitment's associated block parent hash
 // (which is used to calculate the commitmented random number).

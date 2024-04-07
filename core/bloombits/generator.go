@@ -19,7 +19,7 @@ package bloombits
 import (
 	"errors"
 
-	"github.com/mapprotocol/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/types"
 )
 
 var (

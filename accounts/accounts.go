@@ -27,8 +27,8 @@ import (
 	"github.com/ethereum/go-ethereum/event"
 	"golang.org/x/crypto/sha3"
 
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/helper/bls"
 )
 
 // Account represents an Ethereum account located at a specific location defined
@@ -194,7 +194,8 @@ type Backend interface {
 // safely used to calculate a signature from.
 //
 // The hash is calulcated as
-//   keccak256("\x19Ethereum Signed Message:\n"${message length}${message}).
+//
+//	keccak256("\x19Ethereum Signed Message:\n"${message length}${message}).
 //
 // This gives context to the signed message and prevents signing of transactions.
 func TextHash(data []byte) []byte {
@@ -206,7 +207,8 @@ func TextHash(data []byte) []byte {
 // safely used to calculate a signature from.
 //
 // The hash is calulcated as
-//   keccak256("\x19Ethereum Signed Message:\n"${message length}${message}).
+//
+//	keccak256("\x19Ethereum Signed Message:\n"${message length}${message}).
 //
 // This gives context to the signed message and prevents signing of transactions.
 func TextAndHash(data []byte) ([]byte, string) {

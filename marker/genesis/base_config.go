@@ -1,9 +1,9 @@
 package genesis
 
 import (
+	"github.com/Alexfordev/atlas/helper/decimal/fixed"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/helper/decimal/fixed"
-	"github.com/mapprotocol/atlas/params"
 	"math/big"
 )
 
@@ -22,7 +22,7 @@ func BaseConfig() *Config {
 		Validators: ValidatorsParameters{
 
 			ValidatorLockedGoldRequirements: LockedGoldRequirements{
-				Value: bigIntStr("1000000000000000000000000"), //1000,000e18
+				Value: bigIntStr("1000000000000000000000000"), // 1000,000e18
 				// MUST BE KEPT IN SYNC WITH MEMBERSHIP HISTORY LENGTH
 				Duration: 60 * Day,
 			},
@@ -35,7 +35,7 @@ func BaseConfig() *Config {
 
 			DowntimeGracePeriod: 0,
 
-			//Commission: fixed("0.1"),
+			// Commission: fixed("0.1"),
 			Commission: bigInt(100000), // 0.1 be relative to 1000000
 		},
 		Election: ElectionParameters{
@@ -45,11 +45,11 @@ func BaseConfig() *Config {
 			ElectabilityThreshold:  fixed("0.001"),
 		},
 		EpochRewards: EpochRewardsParameters{
-			//a epoch award 1,500,000map = 300,000,000(one year award)/6000,000(number a year) *30000(one epoch number)
-			//MaxValidatorEpochPayment = 1,500,000map *(2/3)
-			//MaxRelayerEpochPayment   = 1,500,000map *(1/3)
-			//MaxEpochPayment: bigIntStr("1500000000000000000000000") , //Validator Relayer
-			MaxEpochPayment: perEpochReward, //Validator Relayer
+			// a epoch award 1,500,000map = 300,000,000(one year award)/6000,000(number a year) *30000(one epoch number)
+			// MaxValidatorEpochPayment = 1,500,000map *(2/3)
+			// MaxRelayerEpochPayment   = 1,500,000map *(1/3)
+			// MaxEpochPayment: bigIntStr("1500000000000000000000000") , //Validator Relayer
+			MaxEpochPayment: perEpochReward, // Validator Relayer
 
 			CommunityRewardFraction:        fixed("0"),
 			CommunityPartner:               params.ZeroAddress,
@@ -57,7 +57,7 @@ func BaseConfig() *Config {
 			MgrMaintainerAddress:           common.HexToAddress("0x1"),
 		},
 		LockedGold: LockedGoldParameters{
-			UnlockingPeriod: 1296000, //15 day
+			UnlockingPeriod: 1296000, // 15 day
 		},
 		Random: RandomParameters{
 			RandomnessBlockRetentionWindow: 720,

@@ -10,8 +10,8 @@ import (
 
 	"github.com/ethereum/go-ethereum/log"
 
-	"github.com/mapprotocol/atlas/cmd/marker/config"
-	"github.com/mapprotocol/atlas/cmd/marker/genesis"
+	"github.com/Alexfordev/atlas/cmd/marker/config"
+	"github.com/Alexfordev/atlas/cmd/marker/genesis"
 )
 
 var (
@@ -60,7 +60,7 @@ func init() {
 	}
 	// Add subcommands.
 	app.Commands = []cli.Command{
-		//------ validator -----
+		// ------ validator -----
 		registerValidatorCommand,
 		generateSignerProofCommand,
 		registerValidatorByProofCommand,
@@ -72,7 +72,7 @@ func init() {
 		makeECDSASignatureFromSignerCommand,
 		makeBLSProofOfPossessionFromSignerCommand,
 		deregisterValidatorCommand,
-		//------ voter -----
+		// ------ voter -----
 		voteValidatorCommand,
 		quicklyVoteValidatorCommand,
 		activateCommand,
@@ -122,10 +122,10 @@ func init() {
 		setAccountMetadataURLCommand,
 		getAccountNameCommand,
 		setAccountNameCommand,
-		//---------- CreateGenesis --------
+		// ---------- CreateGenesis --------
 		genesis.CreateGenesisCommand,
 
-		//---------------------------------
+		// ---------------------------------
 		voterMonitorCommand,
 	}
 	app.Flags = Flags

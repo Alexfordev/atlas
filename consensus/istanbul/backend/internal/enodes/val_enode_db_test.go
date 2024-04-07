@@ -3,10 +3,10 @@ package enodes
 import (
 	"testing"
 
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/p2p/enode"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
 	"github.com/syndtr/goleveldb/leveldb"
 )
 

@@ -2,8 +2,8 @@ package eth2
 
 import (
 	"fmt"
+	"github.com/Alexfordev/atlas/chains/eth2/bls12381"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/chains/eth2/bls12381"
 	ssz "github.com/prysmaticlabs/fastssz"
 )
 

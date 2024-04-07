@@ -29,9 +29,9 @@ import (
 	"github.com/ethereum/go-ethereum/rpc"
 	lru "github.com/hashicorp/golang-lru"
 
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/params"
 )
 
 const sampleNumber = 3 // Number of transactions sampled in a block

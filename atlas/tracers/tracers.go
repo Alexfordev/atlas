@@ -21,7 +21,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/mapprotocol/atlas/atlas/tracers/internal/tracers"
+	"github.com/Alexfordev/atlas/atlas/tracers/internal/tracers"
 )
 
 // all contains all the built in JavaScript tracers by name.

@@ -19,10 +19,10 @@ package proxy
 import (
 	"encoding/hex"
 
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 	"github.com/ethereum/go-ethereum/p2p/enode"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
 )
 
 // handleEnodeCertificateMsgFromRemoteVal will handle an enode certificate sent from

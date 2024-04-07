@@ -36,8 +36,8 @@ import (
 	"github.com/ethereum/go-ethereum/rlp"
 	"golang.org/x/crypto/sha3"
 
+	"github.com/Alexfordev/atlas/core/rawdb"
 	"github.com/ethereum/go-ethereum/trie"
-	"github.com/mapprotocol/atlas/core/rawdb"
 )
 
 func TestHashing(t *testing.T) {
@@ -155,8 +155,8 @@ func newTestPeer(id string, t *testing.T, term func()) *testPeer {
 		codeRequestHandler:    defaultCodeRequestHandler,
 		term:                  term,
 	}
-	//stderrHandler := log.StreamHandler(os.Stderr, log.TerminalFormat(true))
-	//peer.logger.SetHandler(stderrHandler)
+	// stderrHandler := log.StreamHandler(os.Stderr, log.TerminalFormat(true))
+	// peer.logger.SetHandler(stderrHandler)
 	return peer
 }
 
@@ -368,7 +368,8 @@ func createStorageRequestResponse(t *testPeer, root common.Hash, accounts []comm
 	return hashes, slots, proofs
 }
 
-//  the createStorageRequestResponseAlwaysProve tests a cornercase, where it always
+//	the createStorageRequestResponseAlwaysProve tests a cornercase, where it always
+//
 // supplies the proof for the last account, even if it is 'complete'.h
 func createStorageRequestResponseAlwaysProve(t *testPeer, root common.Hash, accounts []common.Hash, bOrigin, bLimit []byte, max uint64) (hashes [][]common.Hash, slots [][][]byte, proofs [][]byte) {
 	var size uint64
@@ -464,11 +465,11 @@ func proofHappyStorageRequestHandler(t *testPeer, requestId uint64, root common.
 	return nil
 }
 
-//func emptyCodeRequestHandler(t *testPeer, id uint64, hashes []common.Hash, max uint64) error {
+// func emptyCodeRequestHandler(t *testPeer, id uint64, hashes []common.Hash, max uint64) error {
 //	var bytecodes [][]byte
 //	t.remote.OnByteCodes(t, id, bytecodes)
 //	return nil
-//}
+// }
 
 func corruptCodeRequestHandler(t *testPeer, id uint64, hashes []common.Hash, max uint64) error {
 	var bytecodes [][]byte
@@ -506,9 +507,9 @@ func starvingAccountRequestHandler(t *testPeer, requestId uint64, root common.Ha
 	return defaultAccountRequestHandler(t, requestId, root, origin, limit, 500)
 }
 
-//func misdeliveringAccountRequestHandler(t *testPeer, requestId uint64, root common.Hash, origin common.Hash, cap uint64) error {
+// func misdeliveringAccountRequestHandler(t *testPeer, requestId uint64, root common.Hash, origin common.Hash, cap uint64) error {
 //	return defaultAccountRequestHandler(t, requestId-1, root, origin, 500)
-//}
+// }
 
 func corruptAccountRequestHandler(t *testPeer, requestId uint64, root common.Hash, origin common.Hash, limit common.Hash, cap uint64) error {
 	hashes, accounts, proofs := createAccountRequestResponse(t, root, origin, limit, cap)
@@ -848,7 +849,7 @@ func TestMultiSyncManyUselessWithLowTimeout(t *testing.T) {
 
 // TestMultiSyncManyUnresponsive contains one good peer, and many which doesn't respond at all
 func TestMultiSyncManyUnresponsive(t *testing.T) {
-var (
+	var (
 		once   sync.Once
 		cancel = make(chan struct{})
 		term   = func() {

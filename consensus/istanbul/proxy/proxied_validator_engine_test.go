@@ -24,9 +24,9 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 
-	"github.com/mapprotocol/atlas/consensus/consensustest"
-	"github.com/mapprotocol/atlas/consensus/istanbul/backend/backendtest"
-	"github.com/mapprotocol/atlas/p2p"
+	"github.com/Alexfordev/atlas/consensus/consensustest"
+	"github.com/Alexfordev/atlas/consensus/istanbul/backend/backendtest"
+	"github.com/Alexfordev/atlas/p2p"
 )
 
 func TestAddProxy(t *testing.T) {

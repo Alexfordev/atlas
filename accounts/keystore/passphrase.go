@@ -38,7 +38,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/mapprotocol/atlas/accounts"
+	"github.com/Alexfordev/atlas/accounts"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/math"
 	"github.com/ethereum/go-ethereum/crypto"

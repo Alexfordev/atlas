@@ -7,10 +7,10 @@ import (
 
 	"math/big"
 
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/params"
 )
 
 // Store provides a persistent storage for uptime entries
@@ -91,7 +91,7 @@ func (um *Monitor) ComputeValidatorsUptime(epoch uint64, valSetSize int) ([]*big
 			uptimes = append(uptimes, params.Fixidity1)
 			continue
 		}
-		//new_score = uptime ** exponent * adjustmentSpeed + old_score * (1 - adjustmentSpeed)
+		// new_score = uptime ** exponent * adjustmentSpeed + old_score * (1 - adjustmentSpeed)
 		numerator := big.NewInt(0).Mul(big.NewInt(int64(entry.UpBlocks)), params.Fixidity1)
 		uptimes = append(uptimes, big.NewInt(0).Div(numerator, big.NewInt(int64(totalMonitoredBlocks))))
 	}
@@ -184,7 +184,7 @@ func updateUptime(uptime *Uptime, blockNumber uint64, bitmap *big.Int, lookbackW
 	currentLookbackWindow := newWindowEndingAt(blockNumber, lookbackWindowSize)
 
 	for i := 0; i < len(uptime.Entries); i++ {
-		if bitmap.Bit(i) == 1 { //exist
+		if bitmap.Bit(i) == 1 { // exist
 			// validator signature present => update their latest signed block
 			uptime.Entries[i].LastSignedBlock = blockNumber
 		}
@@ -210,13 +210,13 @@ func bitCount(n *big.Int) int {
 // Straight and simple C to Go translation from https://en.wikipedia.org/wiki/Hamming_weight
 func popcount(x uint64) int {
 	const (
-		m1  = 0x5555555555555555 //binary: 0101...
-		m2  = 0x3333333333333333 //binary: 00110011..
-		m4  = 0x0f0f0f0f0f0f0f0f //binary:  4 zeros,  4 ones ...
-		h01 = 0x0101010101010101 //the sum of 256 to the power of 0,1,2,3...
+		m1  = 0x5555555555555555 // binary: 0101...
+		m2  = 0x3333333333333333 // binary: 00110011..
+		m4  = 0x0f0f0f0f0f0f0f0f // binary:  4 zeros,  4 ones ...
+		h01 = 0x0101010101010101 // the sum of 256 to the power of 0,1,2,3...
 	)
-	x -= (x >> 1) & m1             //put count of each 2 bits into those 2 bits
-	x = (x & m2) + ((x >> 2) & m2) //put count of each 4 bits into those 4 bits
-	x = (x + (x >> 4)) & m4        //put count of each 8 bits into those 8 bits
-	return int((x * h01) >> 56)    //returns left 8 bits of x + (x<<8) + (x<<16) + (x<<24) + ...
+	x -= (x >> 1) & m1             // put count of each 2 bits into those 2 bits
+	x = (x & m2) + ((x >> 2) & m2) // put count of each 4 bits into those 4 bits
+	x = (x + (x >> 4)) & m4        // put count of each 8 bits into those 8 bits
+	return int((x * h01) >> 56)    // returns left 8 bits of x + (x<<8) + (x<<16) + (x<<24) + ...
 }

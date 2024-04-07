@@ -1,9 +1,9 @@
 package interfaces
 
 import (
-	"github.com/mapprotocol/atlas/chains"
-	"github.com/mapprotocol/atlas/chains/ethereum"
-	"github.com/mapprotocol/atlas/core/types"
+	"github.com/Alexfordev/atlas/chains"
+	"github.com/Alexfordev/atlas/chains/ethereum"
+	"github.com/Alexfordev/atlas/core/types"
 )
 
 type IValidate interface {
@@ -18,7 +18,5 @@ func ValidateFactory(group chains.ChainGroup) (IValidate, error) {
 	return nil, chains.ErrNotSupportChain
 }
 
-
 type Validate interface {
-    
 }

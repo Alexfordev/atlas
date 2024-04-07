@@ -18,18 +18,18 @@
 package ethconfig
 
 import (
-	"github.com/mapprotocol/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 	"math/big"
 	"time"
 
 	"github.com/ethereum/go-ethereum/common"
 	ethparams "github.com/ethereum/go-ethereum/params"
 
-	"github.com/mapprotocol/atlas/atlas/downloader"
-	"github.com/mapprotocol/atlas/atlas/gasprice"
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/miner"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/atlas/downloader"
+	"github.com/Alexfordev/atlas/atlas/gasprice"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/miner"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // FullNodeGPO contains default gasprice oracle settings for full node.
@@ -82,7 +82,7 @@ var Defaults = Config{
 	Istanbul:      *istanbul.DefaultConfig,
 }
 
-//func init() {
+// func init() {
 //	home := os.Getenv("HOME")
 //	if home == "" {
 //		if user, err := user.Current(); err == nil {
@@ -101,7 +101,7 @@ var Defaults = Config{
 //	} else {
 //		Defaults.Ethash.DatasetDir = filepath.Join(home, ".ethash")
 //	}
-//}
+// }
 
 //go:generate gencodec -type Config -formats toml -out gen_config.go
 
@@ -119,7 +119,7 @@ type Config struct {
 	// for nodes to connect to.
 	EthDiscoveryURLs  []string
 	SnapDiscoveryURLs []string
-	//DiscoveryURLs     []string
+	// DiscoveryURLs     []string
 
 	NoPruning        bool // Whether to disable pruning and flush everything to disk
 	NoPrefetch       bool // Whether to disable prefetching and only load state on demand
@@ -137,8 +137,8 @@ type Config struct {
 	LightPeers   int  `toml:",omitempty"` // Maximum number of LES client peers
 	LightNoPrune bool `toml:",omitempty"` // Whether to disable light chain pruning
 
-	//LightNoSyncServe   bool `toml:",omitempty"` // Whether to serve light clients before syncing
-	//SyncFromCheckpoint bool `toml:",omitempty"` // Whether to sync the header chain from the configured checkpoint
+	// LightNoSyncServe   bool `toml:",omitempty"` // Whether to serve light clients before syncing
+	// SyncFromCheckpoint bool `toml:",omitempty"` // Whether to sync the header chain from the configured checkpoint
 	// Minimum gateway fee value to serve a transaction from a light client
 	GatewayFee *big.Int `toml:",omitempty"`
 	// Validator is the address used to sign consensus messages. Also the address for block transaction rewards.
@@ -164,13 +164,13 @@ type Config struct {
 	TrieDirtyCache          int
 	TrieTimeout             time.Duration
 	SnapshotCache           int
-	//Preimages               bool
+	// Preimages               bool
 
 	// Mining options
 	Miner miner.Config
 
 	// Ethash options
-	//Ethash ethash.Config
+	// Ethash ethash.Config
 
 	// Transaction pool options
 	TxPool chain.TxPoolConfig

@@ -18,7 +18,7 @@ package core
 
 import (
 	"fmt"
-	"github.com/mapprotocol/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/helper/bls"
 	"math/big"
 	"reflect"
 	"testing"
@@ -28,8 +28,8 @@ import (
 	"github.com/ethereum/go-ethereum/event"
 	elog "github.com/ethereum/go-ethereum/log"
 
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/consensus/istanbul/validator"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/consensus/istanbul/validator"
 )
 
 func TestCheckMessage(t *testing.T) {

@@ -1,7 +1,7 @@
 package bigintstr
 
 import (
-	"github.com/mapprotocol/atlas/helper/decimal"
+	"github.com/Alexfordev/atlas/helper/decimal"
 	"math/big"
 )
 

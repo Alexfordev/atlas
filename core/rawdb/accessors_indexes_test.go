@@ -27,7 +27,7 @@ import (
 	"github.com/ethereum/go-ethereum/params"
 	"github.com/ethereum/go-ethereum/rlp"
 
-	"github.com/mapprotocol/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/types"
 	"golang.org/x/crypto/sha3"
 )
 

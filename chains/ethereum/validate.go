@@ -13,9 +13,9 @@ import (
 	ethparams "github.com/ethereum/go-ethereum/params"
 	"github.com/ethereum/go-ethereum/rlp"
 
-	"github.com/mapprotocol/atlas/chains"
-	"github.com/mapprotocol/atlas/consensus/misc"
-	"github.com/mapprotocol/atlas/core/types"
+	"github.com/Alexfordev/atlas/chains"
+	"github.com/Alexfordev/atlas/consensus/misc"
+	"github.com/Alexfordev/atlas/core/types"
 )
 
 const (
@@ -61,12 +61,12 @@ func (v *Validate) ValidateHeaderChain(db types.StateDB, headers []byte, chainTy
 	if err := hs.Load(db); err != nil {
 		return 0, err
 	}
-	////log.Info("validate header stroe", "header", len(hs.HeaderNumber))
-	//for _, h := range hs.HeaderNumber {
+	// //log.Info("validate header stroe", "header", len(hs.HeaderNumber))
+	// for _, h := range hs.HeaderNumber {
 	//	if _, err := hs.LoadHeader(h.Uint64(), db); err != nil {
 	//		return 0, err
 	//	}
-	//}
+	// }
 	currentNumber := hs.CurrentNumber()
 	firstNumber := chain[0].Number
 
@@ -172,10 +172,10 @@ func (v *Validate) verifyHeader(header, parent *Header, uncle bool, unixNow int6
 		return errOlderBlockTime
 	}
 	// Verify the block's difficulty based on its timestamp and parent's difficulty
-	//expected := v.CalcDifficulty(chain, header.Time, parent)
-	//if expected.Cmp(header.Difficulty) != 0 {
+	// expected := v.CalcDifficulty(chain, header.Time, parent)
+	// if expected.Cmp(header.Difficulty) != 0 {
 	//	return fmt.Errorf("invalid difficulty: have %v, want %v", header.Difficulty, expected)
-	//}
+	// }
 
 	// Verify that the gas limit is <= 2^63-1
 	maxGas := uint64(0x7fffffffffffffff)

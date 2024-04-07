@@ -24,14 +24,14 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/Alexfordev/atlas/cmd/utils"
+	"github.com/Alexfordev/atlas/core/rawdb"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/console/prompt"
 	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/trie"
-	"github.com/mapprotocol/atlas/cmd/utils"
-	"github.com/mapprotocol/atlas/core/rawdb"
 	"gopkg.in/urfave/cli.v1"
 )
 

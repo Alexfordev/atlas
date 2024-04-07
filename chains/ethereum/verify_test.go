@@ -4,12 +4,12 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"github.com/mapprotocol/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/rawdb"
 	"log"
 	"math/big"
 	"testing"
 
-	//sm "github.com/cch123/supermonkey"
+	// sm "github.com/cch123/supermonkey"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
@@ -18,7 +18,7 @@ import (
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/ethereum/go-ethereum/trie"
 
-	"github.com/mapprotocol/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/state"
 )
 
 var ReceiptsJSON = `[
@@ -112,9 +112,9 @@ func GetReceiptsFromJSON(receiptsJSON string) []*types.Receipt {
 func getTxProve(blockNumber uint64, txIndex uint, receiptsJSON string) []byte {
 
 	// get receipts from eth node
-	//conn := dialConn()
-	//txsHash := getTransactionsHashByBlockNumber(conn, blockNumber)
-	//receipts := getReceiptsByTxsHash(conn, txsHash)
+	// conn := dialConn()
+	// txsHash := getTransactionsHashByBlockNumber(conn, blockNumber)
+	// receipts := getReceiptsByTxsHash(conn, txsHash)
 
 	// get receipts from json
 	receipts := GetReceiptsFromJSON(receiptsJSON)
@@ -194,13 +194,13 @@ func TestVerify_Verify(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			//patch := sm.PatchByFullSymbolName("github.com/mapprotocol/atlas/chains/txverify/ethereum.(*Verify).getReceiptsRoot", func(chain rawdb.ChainType, blockNumber uint64) (common.Hash, error) {
+			// patch := sm.PatchByFullSymbolName("github.com/Alexfordev/atlas/chains/txverify/ethereum.(*Verify).getReceiptsRoot", func(chain rawdb.ChainType, blockNumber uint64) (common.Hash, error) {
 			//	return tt.wantReceiptHash, nil
-			//})
-			//defer patch.Unpatch()
+			// })
+			// defer patch.Unpatch()
 
-			//set := flag.NewFlagSet("test", 0)
-			//chainsdb.NewStoreDb(cli.NewContext(nil, set, nil), 10, 2)
+			// set := flag.NewFlagSet("test", 0)
+			// chainsdb.NewStoreDb(cli.NewContext(nil, set, nil), 10, 2)
 			txProve := getTxProve(tt.args.blockNumber, tt.args.txIndex, tt.args.receiptsJSON)
 			if _, err := new(Verify).Verify(tt.args.statedb, tt.args.router, txProve); (err != nil) != tt.wantErr {
 				t.Errorf("Verify() error = %v, wantErr %v", err, tt.wantErr)

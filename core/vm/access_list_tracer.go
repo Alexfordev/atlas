@@ -20,8 +20,8 @@ import (
 	"math/big"
 	"time"
 
+	"github.com/Alexfordev/atlas/core/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/core/types"
 )
 
 // accessList is an accumulator for the set of accounts and storage slots an EVM

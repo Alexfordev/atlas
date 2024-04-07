@@ -19,13 +19,13 @@ package proxy
 import (
 	"encoding/hex"
 	"errors"
-	"github.com/mapprotocol/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/types"
 
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/p2p/enode"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
 )
 
 func (pv *proxiedValidatorEngine) generateValEnodesShareMsg(remoteValidators []common.Address) (*istanbul.Message, error) {

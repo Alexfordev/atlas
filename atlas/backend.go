@@ -26,6 +26,7 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/Alexfordev/atlas/chains/ethereum"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/ethdb"
@@ -36,37 +37,36 @@ import (
 	ethparams "github.com/ethereum/go-ethereum/params"
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/mapprotocol/atlas/chains/ethereum"
 
-	"github.com/mapprotocol/atlas/accounts"
-	"github.com/mapprotocol/atlas/apis/atlasapi"
-	"github.com/mapprotocol/atlas/atlas/downloader"
-	"github.com/mapprotocol/atlas/atlas/ethconfig"
-	"github.com/mapprotocol/atlas/atlas/filters"
-	"github.com/mapprotocol/atlas/atlas/gasprice"
-	"github.com/mapprotocol/atlas/atlas/protocols/eth"
-	"github.com/mapprotocol/atlas/atlas/protocols/snap"
-	"github.com/mapprotocol/atlas/cmd/node"
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/consensus/consensustest"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	istanbulBackend "github.com/mapprotocol/atlas/consensus/istanbul/backend"
-	"github.com/mapprotocol/atlas/core/bloombits"
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/indexer"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/state/pruner"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/miner"
-	"github.com/mapprotocol/atlas/p2p"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/accounts"
+	"github.com/Alexfordev/atlas/apis/atlasapi"
+	"github.com/Alexfordev/atlas/atlas/downloader"
+	"github.com/Alexfordev/atlas/atlas/ethconfig"
+	"github.com/Alexfordev/atlas/atlas/filters"
+	"github.com/Alexfordev/atlas/atlas/gasprice"
+	"github.com/Alexfordev/atlas/atlas/protocols/eth"
+	"github.com/Alexfordev/atlas/atlas/protocols/snap"
+	"github.com/Alexfordev/atlas/cmd/node"
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/consensus/consensustest"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	istanbulBackend "github.com/Alexfordev/atlas/consensus/istanbul/backend"
+	"github.com/Alexfordev/atlas/core/bloombits"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/indexer"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/state/pruner"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/miner"
+	"github.com/Alexfordev/atlas/p2p"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // Config contains the configuration options of the ETH protocol.
 // Deprecated: use ethconfig.Config instead.
-//type Config = ethconfig.Config
+// type Config = ethconfig.Config
 
 // Ethereum implements the Ethereum full node service.
 type Ethereum struct {
@@ -156,7 +156,7 @@ func New(stack *node.Node, config *ethconfig.Config) (*Ethereum, error) {
 		engine:            CreateConsensusEngine(stack, chainConfig, config, chainDb),
 		closeBloomHandler: make(chan struct{}),
 		networkID:         config.NetworkId,
-		//gasPrice:          config.Miner.GasPrice,
+		// gasPrice:          config.Miner.GasPrice,
 		etherbase:      config.Miner.Etherbase,
 		txFeeRecipient: config.TxFeeRecipient,
 		bloomRequests:  make(chan chan *bloombits.Retrieval),
@@ -231,7 +231,7 @@ func New(stack *node.Node, config *ethconfig.Config) (*Ethereum, error) {
 		EventMux:   eth.eventMux,
 		Checkpoint: checkpoint,
 		Whitelist:  config.Whitelist,
-		//Engine:      eth.engine,
+		// Engine:      eth.engine,
 		Server:      stack.Server(),
 		ProxyServer: nil,
 	}); err != nil {
@@ -475,9 +475,9 @@ func (s *Ethereum) shouldPreserve(block *types.Block) bool {
 	// is A, F and G sign the block of round5 and reject the block of opponents
 	// and in the round6, the last available signer B is offline, the whole
 	// network is stuck.
-	//if _, ok := s.engine.(*clique.Clique); ok {
+	// if _, ok := s.engine.(*clique.Clique); ok {
 	//	return false
-	//}
+	// }
 	return s.isLocalBlock(block)
 }
 

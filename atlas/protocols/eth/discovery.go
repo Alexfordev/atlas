@@ -20,9 +20,9 @@ import (
 	"github.com/ethereum/go-ethereum/p2p/enode"
 	"github.com/ethereum/go-ethereum/rlp"
 
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/forkid"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/forkid"
 )
 
 // enrEntry is the ENR entry which advertises `eth` protocol on the discovery.

@@ -2,20 +2,20 @@ package main
 
 import (
 	"fmt"
+	"github.com/Alexfordev/atlas/accounts"
+	"github.com/Alexfordev/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/helper/fileutils"
+	"github.com/Alexfordev/atlas/marker/genesis"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/mapprotocol/atlas/accounts"
-	"github.com/mapprotocol/atlas/helper/bls"
-	"github.com/mapprotocol/atlas/helper/fileutils"
-	"github.com/mapprotocol/atlas/marker/genesis"
 
-	"github.com/mapprotocol/atlas/accounts/keystore"
-	"github.com/mapprotocol/atlas/atlas"
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/marker/env"
+	"github.com/Alexfordev/atlas/accounts/keystore"
+	"github.com/Alexfordev/atlas/atlas"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/marker/env"
 	"io/ioutil"
 	"math/big"
 	"testing"
@@ -32,7 +32,7 @@ func Test_dumpStateDb(t *testing.T) {
 	for i := 0; i < 100; i++ {
 		t.Log("index", i)
 		var IteratorDump state.IteratorDump
-		//blockNrOrHash rpc.BlockNumberOrHash, start []byte, maxResults int, nocode, nostorage, incompletes bool
+		// blockNrOrHash rpc.BlockNumberOrHash, start []byte, maxResults int, nocode, nostorage, incompletes bool
 		if err = client.Call(&IteratorDump, "debug_accountRange",
 			number, start, uint64(atlas.AccountRangeMaxResults), false, false, false); err != nil {
 			t.Log("err==>", err)
@@ -77,7 +77,7 @@ func Test_proxy(t *testing.T) {
 		fmt.Println(err)
 	}
 	var ret interface{}
-	//blockNrOrHash rpc.BlockNumberOrHash, start []byte, maxResults int, nocode, nostorage, incompletes bool
+	// blockNrOrHash rpc.BlockNumberOrHash, start []byte, maxResults int, nocode, nostorage, incompletes bool
 	if err = client.Call(&ret, "istanbul_addProxy"); err != nil {
 		t.Log("err==>", err)
 	}
@@ -88,7 +88,7 @@ func Test_ProxiedValidator(t *testing.T) {
 		fmt.Println(err)
 	}
 	var ret interface{}
-	//blockNrOrHash rpc.BlockNumberOrHash, start []byte, maxResults int, nocode, nostorage, incompletes bool
+	// blockNrOrHash rpc.BlockNumberOrHash, start []byte, maxResults int, nocode, nostorage, incompletes bool
 	url := "enode://290ef09419dc28a367a93a4266c646e379ba4dd0bd2fae7f86277d3d4c330179ee2d70b282de4a5d0d8cc1130c36a88b8fe61baa1726dc41f16e192a3d6af8e4@127.0.0.1:31004"
 	externalUrl := "enode://99ea9aab0498007f662ca5122e39e7353db3f69b9f1aebd96fcd33bd1a098c4cdb41b97c479d7eecd9d5def59ce7e9f0c6534ccca95811b480e39db37f424215@127.0.0.1:31005"
 	if err = client.Call(&ret, "istanbul_addProxy", url, externalUrl); err != nil {
@@ -98,7 +98,7 @@ func Test_ProxiedValidator(t *testing.T) {
 }
 
 // simulation Account new
-//0x1a7559d3ca2e6d4ee76bf97e816c21319e31a8ff58368c747fd8909bf37b48db0fc69bc7c6fffc0665ff1801fb17afe79ae31042411d3eb600ab73bb02f3e8b32fb4218ab8a7018b6300ea6500ef438817eed6c986901eb212d4c6de093ef63020b20eb8e1ed4365d33519cdc1c290ae7a386ff9743c57b1b420be20b94698b7
+// 0x1a7559d3ca2e6d4ee76bf97e816c21319e31a8ff58368c747fd8909bf37b48db0fc69bc7c6fffc0665ff1801fb17afe79ae31042411d3eb600ab73bb02f3e8b32fb4218ab8a7018b6300ea6500ef438817eed6c986901eb212d4c6de093ef63020b20eb8e1ed4365d33519cdc1c290ae7a386ff9743c57b1b420be20b94698b7
 func Test_autoGenerateMarkerCfg(t *testing.T) {
 	var (
 		adminAddress = "0x6324b2227013a7F2fe4958545A6e08c6E4305A60"
@@ -139,7 +139,7 @@ func Test_autoGenerateMarkerCfg(t *testing.T) {
 		if err != nil {
 			t.Error("Failed to create account: ", err)
 		}
-		//blsProofOfPossession := singerAccount.MustBLSProofOfPossession()
+		// blsProofOfPossession := singerAccount.MustBLSProofOfPossession()
 		singerBlsPubKey, err := singerAccount.BLSPublicKey()
 		if err != nil {
 			t.Error("Failed to create account: ", err)
@@ -194,7 +194,7 @@ func Test_autoGenerateMarkerCfg(t *testing.T) {
 		if err != nil {
 			t.Fatal(err.Error())
 		}
-		//test
+		// test
 		if err := bls.VerifyUnsafe2(pk, common.HexToAddress(account[i]).Bytes(), signature); err != nil {
 			panic(err)
 		}

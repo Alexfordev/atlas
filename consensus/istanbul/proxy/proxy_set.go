@@ -17,20 +17,21 @@
 package proxy
 
 import (
-	"github.com/mapprotocol/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/types"
 	"time"
 
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/p2p/enode"
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
 )
 
 // proxySet defines the set of proxies that the validator is aware of and
 // validator/proxy assignments.
 // WARNING:  None of this object's functions are threadsafe, so it's
-//           the user's responsibility to ensure that.
+//
+//	the user's responsibility to ensure that.
 type proxySet struct {
 	proxiesByID    map[enode.ID]*Proxy // all proxies known by this node, whether or not they are peered
 	valAssignments *valAssignments     // the mappings of proxy<->remote validators

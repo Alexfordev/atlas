@@ -19,7 +19,7 @@ package downloader
 import (
 	"fmt"
 
-	"github.com/mapprotocol/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/types"
 )
 
 // peerDropFn is a callback type for dropping a peer detected as malicious.

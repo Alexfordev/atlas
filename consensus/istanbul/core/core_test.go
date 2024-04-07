@@ -26,10 +26,10 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	elog "github.com/ethereum/go-ethereum/log"
 
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/helper/bls"
 )
 
 func makeBlock(number int64) *types.Block {
@@ -196,16 +196,16 @@ func TestEpochSnarkData(t *testing.T) {
 
 	backendCore := sys.backends[0].engine.(*core)
 	privateKey, _ := bls.DeserializePrivateKey(sys.backends[0].blsKey)
-	//defer privateKey.Destroy()
+	// defer privateKey.Destroy()
 
 	serializedPrivateKey, _ := privateKey.Serialize()
 
 	publicKey, _ := bls.CryptoType().PrivateToPublic(serializedPrivateKey)
 
 	message, extraData, cip22, _ := backendCore.generateEpochValidatorSetData(0, 0, common.Hash{}, sys.backends[0].Validators(backendCore.current.Proposal()))
-	//if cip22 || len(extraData) > 0 {
+	// if cip22 || len(extraData) > 0 {
 	//	t.Errorf("Unexpected cip22 (%t != false) or extraData length (%v > 0)", cip22, len(extraData))
-	//}
+	// }
 	fork, cur := new(big.Int).Set(backendCore.backend.ChainConfig().BN256ForkBlock), big.NewInt(0)
 	epochValidatorSetSeal, _ := backendCore.backend.SignBLS(message, extraData, true, cip22, fork, cur)
 

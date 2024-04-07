@@ -21,12 +21,12 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"io/ioutil"
 
+	"github.com/Alexfordev/atlas/accounts"
+	"github.com/Alexfordev/atlas/accounts/keystore"
+	accountTool "github.com/Alexfordev/atlas/cmd/marker/account"
+	"github.com/Alexfordev/atlas/cmd/utils"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/accounts"
-	"github.com/mapprotocol/atlas/accounts/keystore"
-	accountTool "github.com/mapprotocol/atlas/cmd/marker/account"
-	"github.com/mapprotocol/atlas/cmd/utils"
 	"gopkg.in/urfave/cli.v1"
 )
 

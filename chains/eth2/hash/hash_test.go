@@ -2,7 +2,7 @@ package hash_test
 
 import (
 	"encoding/hex"
-	"github.com/mapprotocol/atlas/chains/eth2/hash"
+	"github.com/Alexfordev/atlas/chains/eth2/hash"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"

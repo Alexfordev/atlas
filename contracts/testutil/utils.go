@@ -3,9 +3,9 @@ package testutil
 import (
 	"strings"
 
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/core/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/core/types"
 )
 
 // decapitalise makes a camel-case string which starts with a lower case character.

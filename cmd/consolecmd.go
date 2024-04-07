@@ -20,10 +20,10 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/Alexfordev/atlas/cmd/node"
+	"github.com/Alexfordev/atlas/cmd/utils"
+	"github.com/Alexfordev/atlas/console"
 	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/mapprotocol/atlas/cmd/node"
-	"github.com/mapprotocol/atlas/cmd/utils"
-	"github.com/mapprotocol/atlas/console"
 	"gopkg.in/urfave/cli.v1"
 )
 

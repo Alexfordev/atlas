@@ -3,12 +3,12 @@ package random
 import (
 	"math/big"
 
+	"github.com/Alexfordev/atlas/contracts"
+	"github.com/Alexfordev/atlas/contracts/abis"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/contracts"
-	"github.com/mapprotocol/atlas/contracts/abis"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/params"
 )
 
 var (
@@ -23,9 +23,9 @@ func IsRunning(vmRunner vm.EVMRunner) bool {
 	randomAddress, err := contracts.GetRegisteredAddress(vmRunner, params.RandomRegistryId)
 
 	if err == contracts.ErrSmartContractNotDeployed || err == contracts.ErrRegistryContractNotDeployed {
-		//log.Debug("Registry address lookup failed", "err", err, "contract", hexutil.Encode(params.RandomRegistryId[:]))
+		// log.Debug("Registry address lookup failed", "err", err, "contract", hexutil.Encode(params.RandomRegistryId[:]))
 	} else if err != nil {
-		//log.Error(err.Error())
+		// log.Error(err.Error())
 	}
 	return err == nil && randomAddress != params.ZeroAddress
 }
@@ -48,7 +48,7 @@ func GetLastCommitment(vmRunner vm.EVMRunner, validator common.Address) (common.
 // ComputeCommitment calulcates the commitment for a given randomness.
 func ComputeCommitment(vmRunner vm.EVMRunner, randomness common.Hash) (common.Hash, error) {
 	commitment := common.Hash{}
-	//TODO(asa): Make an issue to not have to do this via StaticCall
+	// TODO(asa): Make an issue to not have to do this via StaticCall
 	err := computeCommitmentMethod.Query(vmRunner, &commitment, randomness)
 	if err != nil {
 		log.Error("Failed to call computeCommitment()", "err", err)

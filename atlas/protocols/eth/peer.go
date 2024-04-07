@@ -25,9 +25,9 @@ import (
 	mapset "github.com/deckarep/golang-set"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
-	
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/p2p"
+
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/p2p"
 )
 
 const (

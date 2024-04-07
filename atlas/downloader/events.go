@@ -16,7 +16,7 @@
 
 package downloader
 
-import "github.com/mapprotocol/atlas/core/types"
+import "github.com/Alexfordev/atlas/core/types"
 
 type DoneEvent struct {
 	Latest *types.Header

@@ -6,10 +6,10 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/Alexfordev/atlas/tools/utils/btcapi"
 	"github.com/btcsuite/btcd/btcutil"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
 	"github.com/btcsuite/btcd/wire"
-	"github.com/mapprotocol/atlas/tools/utils/btcapi"
 )
 
 type UTXO struct {

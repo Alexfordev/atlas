@@ -18,22 +18,22 @@ package backend
 
 import (
 	"errors"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/consensus/istanbul/uptime"
+	"github.com/Alexfordev/atlas/consensus/istanbul/uptime/store"
+	"github.com/Alexfordev/atlas/contracts"
+	"github.com/Alexfordev/atlas/contracts/accounts"
+	"github.com/Alexfordev/atlas/contracts/election"
+	"github.com/Alexfordev/atlas/contracts/epoch_rewards"
+	"github.com/Alexfordev/atlas/contracts/gold_token"
+	"github.com/Alexfordev/atlas/contracts/validators"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/consensus/istanbul/uptime"
-	"github.com/mapprotocol/atlas/consensus/istanbul/uptime/store"
-	"github.com/mapprotocol/atlas/contracts"
-	"github.com/mapprotocol/atlas/contracts/accounts"
-	"github.com/mapprotocol/atlas/contracts/election"
-	"github.com/mapprotocol/atlas/contracts/epoch_rewards"
-	"github.com/mapprotocol/atlas/contracts/gold_token"
-	"github.com/mapprotocol/atlas/contracts/validators"
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/params"
 	"math/big"
 	"time"
 )
@@ -115,7 +115,7 @@ func (sb *Backend) distributeEpochRewards(header *types.Header, state *state.Sta
 			}
 		}
 	}
-	//----------------------------- deRegister -------------------
+	// ----------------------------- deRegister -------------------
 	if header.Number.Cmp(deregisterBlock) > 0 {
 		deRegisters, err := sb.deRegisterAllValidatorsInPending(vmRunner, true)
 		if err != nil {
@@ -130,7 +130,7 @@ func (sb *Backend) distributeEpochRewards(header *types.Header, state *state.Sta
 		log.Info("deRegister AllValidators InPending", "deRegisters", deRegisters)
 	}
 
-	//----------------------------- Automatic active -------------------
+	// ----------------------------- Automatic active -------------------
 	var b = false
 	if header.Number.Cmp(bn256Block) >= 0 {
 		// active the next epoch validators
@@ -150,7 +150,7 @@ func (sb *Backend) distributeEpochRewards(header *types.Header, state *state.Sta
 	}
 
 	log.Info("Automatic active pending voter", "success", b)
-	//----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 
 	return nil
 }
@@ -234,10 +234,10 @@ func (sb *Backend) setInitialGoldTokenTotalSupplyIfUnset(vmRunner vm.EVMRunner) 
 }
 
 /*
-   @notice calculatePaymentScoreDenominator
-   @params uptimes  update score for validator return
-   @dev     (score + p)/(N*p+s1+s2+s3...)
-   @return (N*p+s1+s2+s3...)
+@notice calculatePaymentScoreDenominator
+@params uptimes  update score for validator return
+@dev     (score + p)/(N*p+s1+s2+s3...)
+@return (N*p+s1+s2+s3...)
 */
 func (sb *Backend) calculatePaymentScoreDenominator(vmRunner vm.EVMRunner, uptimes []*big.Int, ignores []bool) (*big.Int, error) {
 	PledgeMultiplier, err := validators.GetPledgeMultiplierInReward(vmRunner)

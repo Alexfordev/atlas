@@ -5,8 +5,8 @@
 package blst_test
 
 import (
-	"github.com/mapprotocol/atlas/chains/eth2/bls12381/blst"
-	"github.com/mapprotocol/atlas/chains/eth2/bls12381/common"
+	"github.com/Alexfordev/atlas/chains/eth2/bls12381/blst"
+	"github.com/Alexfordev/atlas/chains/eth2/bls12381/common"
 	"github.com/stretchr/testify/require"
 	"testing"
 )

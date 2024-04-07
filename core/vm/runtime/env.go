@@ -17,9 +17,9 @@
 package runtime
 
 import (
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/core/vm/vmcontext"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/core/vm/vmcontext"
 )
 
 func NewEnv(cfg *Config) *vm.EVM {

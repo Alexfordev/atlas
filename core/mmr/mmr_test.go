@@ -5,8 +5,8 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 	"fmt"
+	"github.com/Alexfordev/atlas/core/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/core/types"
 	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/ethereum/go-ethereum/rlp"
 	"golang.org/x/crypto/sha3"
@@ -23,7 +23,7 @@ func IntToBytes(n int) []byte {
 	return bytebuf.Bytes()
 }
 
-/////////////////////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////////
 type testHasher struct {
 	hasher hash.Hash
 }
@@ -48,8 +48,8 @@ func (h *testHasher) Prove(key []byte, fromLevel uint, proofDb ethdb.KeyValueWri
 	return nil
 }
 
-/////////////////////////////////////////////////////////////////////
-//func run_Mmr(count int, proof_pos uint64) {
+// ///////////////////////////////////////////////////////////////////
+// func run_Mmr(count int, proof_pos uint64) {
 //	m := NewMmr()
 //	positions := make([]*Node, 0, 0)
 //
@@ -67,11 +67,11 @@ func (h *testHasher) Prove(key []byte, fromLevel uint, proofDb ethdb.KeyValueWri
 //	// verify proof
 //	result := proof.verify(merkle_root, pos, positions[proof_pos].getHash())
 //	fmt.Println("result:", result)
-//}
-//func Test01(t *testing.T) {
+// }
+// func Test01(t *testing.T) {
 //	run_Mmr(10000, 50)
 //	fmt.Println("finish")
-//}
+// }
 
 func Test02(t *testing.T) {
 	num := uint64(0)

@@ -2,10 +2,10 @@ package main
 
 import (
 	"crypto/ecdsa"
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/cmd/marker/config"
+	"github.com/Alexfordev/atlas/cmd/marker/mapprotocol"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/cmd/marker/config"
-	"github.com/mapprotocol/atlas/cmd/marker/mapprotocol"
 	"math/big"
 )
 
@@ -46,7 +46,7 @@ func NewMessage(messageType string, ch chan<- struct{}, cfg *config.Config, to c
 	}
 }
 
-//NewMessageRet1 need to handle return params
+// NewMessageRet1 need to handle return params
 func NewMessageRet1(messageType string, ch chan<- struct{}, cfg *config.Config, ret interface{}, to common.Address, value *big.Int, abi *abi.ABI, abiMethod string, params ...interface{}) Message {
 	return Message{
 		messageType: messageType,
@@ -63,7 +63,7 @@ func NewMessageRet1(messageType string, ch chan<- struct{}, cfg *config.Config, 
 	}
 }
 
-//NewMessageRet2 need to handle return params
+// NewMessageRet2 need to handle return params
 func NewMessageRet2(messageType string, ch chan<- struct{}, cfg *config.Config, solveResult func([]byte), to common.Address, value *big.Int, abi *abi.ABI, abiMethod string, params ...interface{}) Message {
 	return Message{
 		messageType: messageType,

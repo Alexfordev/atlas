@@ -17,7 +17,7 @@
 package flags
 
 import (
-	params2 "github.com/mapprotocol/atlas/params"
+	params2 "github.com/Alexfordev/atlas/params"
 	"os"
 	"path/filepath"
 

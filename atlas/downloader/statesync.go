@@ -28,8 +28,8 @@ import (
 	"github.com/ethereum/go-ethereum/trie"
 	"golang.org/x/crypto/sha3"
 
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
 )
 
 // stateReq represents a batch of state fetch requests grouped together into

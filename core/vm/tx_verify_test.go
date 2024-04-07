@@ -4,8 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
 	"log"
 	"math/big"
 	"testing"
@@ -20,11 +20,11 @@ import (
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/ethereum/go-ethereum/trie"
 
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/chains"
-	"github.com/mapprotocol/atlas/chains/interfaces"
-	atlastypes "github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/chains"
+	"github.com/Alexfordev/atlas/chains/interfaces"
+	atlastypes "github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/params"
 )
 
 var ReceiptsJSON = `[
@@ -90,7 +90,7 @@ type TxProve struct {
 }
 
 func dialConn() *ethclient.Client {
-	//conn, err := ethclient.Dial("https://ropsten.infura.io/v3/8cce6b470ad44fb5a3621aa34243647f")
+	// conn, err := ethclient.Dial("https://ropsten.infura.io/v3/8cce6b470ad44fb5a3621aa34243647f")
 	conn, err := ethclient.Dial("https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161")
 	if err != nil {
 		log.Fatalf("Failed to connect to the eth: %v", err)
@@ -99,7 +99,7 @@ func dialConn() *ethclient.Client {
 }
 
 func dialAtlasConn() *ethclient.Client {
-	//conn, err := ethclient.Dial("http://159.138.90.210:7445")
+	// conn, err := ethclient.Dial("http://159.138.90.210:7445")
 	conn, err := ethclient.Dial("http://127.0.0.1:7445")
 	if err != nil {
 		log.Fatalf("Failed to connect to the eth: %v", err)
@@ -144,7 +144,7 @@ func getReceiptsByTxsHash(conn *ethclient.Client, txsHash []common.Hash) []*type
 	}
 	return rs
 
-	//return GetReceiptsFromJSON()
+	// return GetReceiptsFromJSON()
 }
 
 func GetReceiptsFromJSON() []*types.Receipt {
@@ -161,7 +161,7 @@ func getTxProve() []byte {
 	txsHash := getTransactionsHashByBlockNumber(conn, blockNumber)
 	receipts := getReceiptsByTxsHash(conn, txsHash)
 	// get receipts from json
-	//receipts := GetReceiptsFromJSON()
+	// receipts := GetReceiptsFromJSON()
 
 	tr, err := trie.New(common.Hash{}, trie.NewDatabase(memorydb.New()))
 	if err != nil {
@@ -199,7 +199,7 @@ func getTxProve() []byte {
 func TestReceiptsRootAndProof(t *testing.T) {
 	var (
 		srcChain = big.NewInt(1)
-		//dstChain = big.NewInt(211)
+		// dstChain = big.NewInt(211)
 		router = common.HexToAddress("0xd6199276959b95a68c1ee30e8569f5fe060903a6")
 	)
 
@@ -208,15 +208,15 @@ func TestReceiptsRootAndProof(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	//set := flag.NewFlagSet("test", 0)
-	//chainsdb.NewStoreDb(cli.NewContext(nil, set, nil), 10, 2)
+	// set := flag.NewFlagSet("test", 0)
+	// chainsdb.NewStoreDb(cli.NewContext(nil, set, nil), 10, 2)
 
 	v, err := interfaces.VerifyFactory(group)
 	if err != nil {
 		t.Fatal(err)
 	}
-	//db := rawdb.NewMemoryDatabase()
-	//sdb, _ := state.New(common.Hash{}, state.NewDatabase(db), nil)
+	// db := rawdb.NewMemoryDatabase()
+	// sdb, _ := state.New(common.Hash{}, state.NewDatabase(db), nil)
 	if _, err := v.Verify(getStateDB(), router, getTxProve()); err != nil {
 		t.Fatal(err)
 	}

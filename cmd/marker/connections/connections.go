@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"gopkg.in/urfave/cli.v1"
 
+	"github.com/Alexfordev/atlas/cmd/marker/config"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/mapprotocol/atlas/cmd/marker/config"
 )
 
 const (

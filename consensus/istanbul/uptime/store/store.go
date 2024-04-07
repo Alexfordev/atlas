@@ -1,9 +1,9 @@
 package store
 
 import (
+	"github.com/Alexfordev/atlas/consensus/istanbul/uptime"
+	"github.com/Alexfordev/atlas/core/rawdb"
 	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/mapprotocol/atlas/consensus/istanbul/uptime"
-	"github.com/mapprotocol/atlas/core/rawdb"
 )
 
 type uptimeStoreImpl struct {

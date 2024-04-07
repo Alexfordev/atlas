@@ -29,8 +29,8 @@ import (
 	"github.com/ethereum/go-ethereum/common/math"
 	"github.com/holiman/uint256"
 
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // Storage represents a contract's storage.

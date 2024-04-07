@@ -19,9 +19,9 @@ package core
 import (
 	"math/big"
 
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
 )
 
 // Start implements core.Engine.Start

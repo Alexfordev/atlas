@@ -1,6 +1,7 @@
 package chainsdb
+
 //
-//import (
+// import (
 //	"encoding/json"
 //	"errors"
 //	"fmt"
@@ -17,32 +18,32 @@ package chainsdb
 //	"github.com/ethereum/go-ethereum/node"
 //	"gopkg.in/urfave/cli.v1"
 //
-//	"github.com/mapprotocol/atlas/chains/ethereum"
-//	"github.com/mapprotocol/atlas/core/rawdb"
-//)
+//	"github.com/Alexfordev/atlas/chains/ethereum"
+//	"github.com/Alexfordev/atlas/core/rawdb"
+// )
 //
-//var storeMgrNilErr = errors.New("store mgr struct nil")
-//var storeMgrChainDbNilErr = errors.New("store mgr chainDb element nil")
-//var storeMgrTdNil = errors.New("store mgr td nil")
-//var (
+// var storeMgrNilErr = errors.New("store mgr struct nil")
+// var storeMgrChainDbNilErr = errors.New("store mgr chainDb element nil")
+// var storeMgrTdNil = errors.New("store mgr td nil")
+// var (
 //	storeMgr *HeaderChainStore
-//)
+// )
 //
-//const (
+// const (
 //	DefaultChainType = rawdb.ChainType(0)
-//)
+// )
 //
-//type HeaderChainStore struct {
+// type HeaderChainStore struct {
 //	chainDb          ethdb.Database
 //	currentChainType rawdb.ChainType
 //	Mu               sync.RWMutex // blockchaindb insertion lock
 //	rand             *mrand.Rand
-//}
+// }
 //
-//func OpenDatabase(file string, cache, handles int) (ethdb.Database, error) {
+// func OpenDatabase(file string, cache, handles int) (ethdb.Database, error) {
 //	return rawdb.NewLevelDBDatabase(file, 10, 10, "", false)
-//}
-//func GetStoreMgr(chainType rawdb.ChainType) (*HeaderChainStore, error) {
+// }
+// func GetStoreMgr(chainType rawdb.ChainType) (*HeaderChainStore, error) {
 //	if storeMgr == nil {
 //		return nil, storeMgrNilErr
 //	}
@@ -51,8 +52,8 @@ package chainsdb
 //	}
 //	storeMgr.currentChainType = chainType
 //	return storeMgr, nil
-//}
-//func NewStoreDb(ctx *cli.Context, DatabaseCache int, DatabaseHandles int) *HeaderChainStore {
+// }
+// func NewStoreDb(ctx *cli.Context, DatabaseCache int, DatabaseHandles int) *HeaderChainStore {
 //	path := node.DefaultDataDir()
 //	if ctx.GlobalIsSet(utils.DataDirFlag.Name) {
 //		path = ctx.GlobalString(utils.DataDirFlag.Name)
@@ -65,8 +66,8 @@ package chainsdb
 //	storeMgr = db
 //	Genesis()
 //	return storeMgr
-//}
-//func (hc *HeaderChainStore) GetStoreMgr(chainType rawdb.ChainType) (*HeaderChainStore, error) {
+// }
+// func (hc *HeaderChainStore) GetStoreMgr(chainType rawdb.ChainType) (*HeaderChainStore, error) {
 //	if storeMgr == nil {
 //		return nil, storeMgrNilErr
 //	}
@@ -75,29 +76,29 @@ package chainsdb
 //	}
 //	storeMgr.currentChainType = chainType
 //	return storeMgr, nil
-//}
+// }
 //
-//func (hc *HeaderChainStore) SetChainType(m rawdb.ChainType) {
+// func (hc *HeaderChainStore) SetChainType(m rawdb.ChainType) {
 //	hc.currentChainType = m
-//}
+// }
 //
-//func (hc *HeaderChainStore) ReadHeader(Hash common.Hash, number uint64) *ethereum.Header {
+// func (hc *HeaderChainStore) ReadHeader(Hash common.Hash, number uint64) *ethereum.Header {
 //	return rawdb.ReadHeaderChains(hc.chainDb, Hash, number, hc.currentChainType)
-//}
+// }
 //
-//func (hc *HeaderChainStore) WriteHeader(header *ethereum.Header) {
+// func (hc *HeaderChainStore) WriteHeader(header *ethereum.Header) {
 //	batch := hc.chainDb.NewBatch()
 //	// Flush all accumulated deletions.
 //	if err := batch.Write(); err != nil {
 //		log.Crit("Failed to rewind block", "error", err)
 //	}
 //	rawdb.WriteHeaderChains(hc.chainDb, header, hc.currentChainType)
-//}
-//func (hc *HeaderChainStore) DeleteHeader(hash common.Hash, number uint64) {
+// }
+// func (hc *HeaderChainStore) DeleteHeader(hash common.Hash, number uint64) {
 //	rawdb.DeleteHeaderChains(hc.chainDb, hash, number, hc.currentChainType)
-//}
+// }
 //
-//func (hc *HeaderChainStore) InsertHeaderChain(chains []*ethereum.Header, start time.Time) (WriteStatus, error) {
+// func (hc *HeaderChainStore) InsertHeaderChain(chains []*ethereum.Header, start time.Time) (WriteStatus, error) {
 //	res, err := hc.writeHeaders(chains)
 //	// Report some public statistics so the user has a clue what's going on
 //	context := []interface{}{
@@ -118,73 +119,73 @@ package chainsdb
 //	}
 //	log.Info("Imported new block headers", context...)
 //	return res.status, err
-//}
+// }
 //
-//// GetBlockNumber retrieves the block number belonging to the given hash
-//// from the cache or database
-//func (hc *HeaderChainStore) GetBlockNumber(hash common.Hash) *uint64 {
+// // GetBlockNumber retrieves the block number belonging to the given hash
+// // from the cache or database
+// func (hc *HeaderChainStore) GetBlockNumber(hash common.Hash) *uint64 {
 //	number := rawdb.ReadHeaderNumberChains(hc.chainDb, hash, hc.currentChainType)
 //	return number
-//}
+// }
 //
-//// WriteStatus status of write
-//type WriteStatus byte
+// // WriteStatus status of write
+// type WriteStatus byte
 //
-//const (
+// const (
 //	NonStatTyState   WriteStatus = iota // the no
 //	CanonStatTyState                    // the Canonical
 //	SideStatTyState                     // the branch
-//)
+// )
 //
-//type headerWriteResultState struct {
+// type headerWriteResultState struct {
 //	status     WriteStatus
 //	ignored    int
 //	imported   int
 //	lastHash   common.Hash
 //	lastHeader *ethereum.Header
-//}
+// }
 //
-//// numberHashInfo is just a container for a number and a hash, to represent a block
-//type numberHashInfo struct {
+// // numberHashInfo is just a container for a number and a hash, to represent a block
+// type numberHashInfo struct {
 //	number uint64
 //	hash   common.Hash
-//}
+// }
 //
-//func (hc *HeaderChainStore) GetTd(hash common.Hash, number uint64) *big.Int {
+// func (hc *HeaderChainStore) GetTd(hash common.Hash, number uint64) *big.Int {
 //	td := rawdb.ReadTdChains(hc.chainDb, hash, number, hc.currentChainType)
 //	if td == nil {
 //		return nil
 //	}
 //	return td
-//}
-//func (hc *HeaderChainStore) HasHeader(hash common.Hash, number uint64) bool {
+// }
+// func (hc *HeaderChainStore) HasHeader(hash common.Hash, number uint64) bool {
 //	return rawdb.HasHeaderChains(hc.chainDb, hash, number, hc.currentChainType)
-//}
-//func (hc *HeaderChainStore) CurrentHeaderNumber() uint64 {
+// }
+// func (hc *HeaderChainStore) CurrentHeaderNumber() uint64 {
 //	currentHeaderHash := hc.CurrentHeaderHash()
 //	currentNum := rawdb.ReadHeaderNumberChains(hc.chainDb, currentHeaderHash, hc.currentChainType)
 //	if currentNum == nil {
 //		return uint64(0)
 //	}
 //	return *(currentNum)
-//}
-//func (hc *HeaderChainStore) CurrentHeaderHash() common.Hash {
+// }
+// func (hc *HeaderChainStore) CurrentHeaderHash() common.Hash {
 //	return rawdb.ReadHeadHeaderHashChains(hc.chainDb, hc.currentChainType)
-//}
-//func (hc *HeaderChainStore) writeCurrentHeaderHash(hash common.Hash) {
+// }
+// func (hc *HeaderChainStore) writeCurrentHeaderHash(hash common.Hash) {
 //	rawdb.WriteHeadHeaderHashChains(hc.chainDb, hash, hc.currentChainType)
-//}
-//func (hc *HeaderChainStore) GetHeader(hash common.Hash, number uint64) *ethereum.Header {
+// }
+// func (hc *HeaderChainStore) GetHeader(hash common.Hash, number uint64) *ethereum.Header {
 //	header := rawdb.ReadHeaderChains(hc.chainDb, hash, number, hc.currentChainType)
 //	if header == nil {
 //		return nil
 //	}
 //	return header
-//}
+// }
 //
-//// CopyHeader creates a deep copy of a block header to prevent side effects from
-//// modifying a header variable.
-//func CopyHeader(h *ethereum.Header) *ethereum.Header {
+// // CopyHeader creates a deep copy of a block header to prevent side effects from
+// // modifying a header variable.
+// func CopyHeader(h *ethereum.Header) *ethereum.Header {
 //	cpy := *h
 //	if cpy.Difficulty = new(big.Int); h.Difficulty != nil {
 //		cpy.Difficulty.Set(h.Difficulty)
@@ -197,9 +198,9 @@ package chainsdb
 //		copy(cpy.Extra, h.Extra)
 //	}
 //	return &cpy
-//}
+// }
 //
-//func (hc *HeaderChainStore) writeHeaders(headers []*ethereum.Header) (result *headerWriteResultState, err error) {
+// func (hc *HeaderChainStore) writeHeaders(headers []*ethereum.Header) (result *headerWriteResultState, err error) {
 //	if len(headers) == 0 {
 //		return &headerWriteResultState{}, nil
 //	}
@@ -336,9 +337,9 @@ package chainsdb
 //		lastHash:   lastHash,
 //		lastHeader: lastHeader,
 //	}, nil
-//}
+// }
 //
-//func (hc *HeaderChainStore) ValidateHeaderChain(chain []*ethereum.Header, checkFreq int) (int, error) {
+// func (hc *HeaderChainStore) ValidateHeaderChain(chain []*ethereum.Header, checkFreq int) (int, error) {
 //	// Do a sanity check that the provided chain is actually ordered and linked
 //	for i := 1; i < len(chain); i++ {
 //		if chain[i].Number.Uint64() != chain[i-1].Number.Uint64()+1 {
@@ -372,11 +373,11 @@ package chainsdb
 //	// todo Validate
 //
 //	return 0, nil
-//}
+// }
 //
-//// GetBlockHashesFromHash retrieves a number of block hashes starting at a given
-//// hash, fetching towards the genesis block.
-//func (hc *HeaderChainStore) GetBlockHashesFromHash(hash common.Hash, max uint64) []common.Hash {
+// // GetBlockHashesFromHash retrieves a number of block hashes starting at a given
+// // hash, fetching towards the genesis block.
+// func (hc *HeaderChainStore) GetBlockHashesFromHash(hash common.Hash, max uint64) []common.Hash {
 //	// Get the origin header from which to fetch
 //	header := hc.GetHeaderByHash(hash)
 //	if header == nil {
@@ -395,47 +396,47 @@ package chainsdb
 //		}
 //	}
 //	return chain
-//}
+// }
 //
-//// GetTdByHash retrieves a block's total difficulty in the canonical chain from the
-//// database by hash, caching it if found.
-//func (hc *HeaderChainStore) GetTdByHash(hash common.Hash) *big.Int {
+// // GetTdByHash retrieves a block's total difficulty in the canonical chain from the
+// // database by hash, caching it if found.
+// func (hc *HeaderChainStore) GetTdByHash(hash common.Hash) *big.Int {
 //	number := hc.GetBlockNumber(hash)
 //	if number == nil {
 //		return nil
 //	}
 //	return hc.GetTd(hash, *number)
-//}
+// }
 //
-//// GetHeaderByHash retrieves a block header from the database by hash, caching it if
-//// found.
-//func (hc *HeaderChainStore) GetHeaderByHash(hash common.Hash) *ethereum.Header {
+// // GetHeaderByHash retrieves a block header from the database by hash, caching it if
+// // found.
+// func (hc *HeaderChainStore) GetHeaderByHash(hash common.Hash) *ethereum.Header {
 //	number := hc.GetBlockNumber(hash)
 //	if number == nil {
 //		return nil
 //	}
 //	return hc.GetHeader(hash, *number)
-//}
+// }
 //
-//// GetHeaderByNumber retrieves a block header from the database by number,
-//// caching it (associated with its hash) if found.
-//func (hc *HeaderChainStore) GetHeaderByNumber(number uint64) *ethereum.Header {
+// // GetHeaderByNumber retrieves a block header from the database by number,
+// // caching it (associated with its hash) if found.
+// func (hc *HeaderChainStore) GetHeaderByNumber(number uint64) *ethereum.Header {
 //	hash := rawdb.ReadCanonicalHashChains(hc.chainDb, number, hc.currentChainType)
 //	if hash == (common.Hash{}) {
 //		return nil
 //	}
 //	return hc.GetHeader(hash, number)
-//}
+// }
 //
-//func (hc *HeaderChainStore) ReadCanonicalHash(number uint64) common.Hash {
+// func (hc *HeaderChainStore) ReadCanonicalHash(number uint64) common.Hash {
 //	return rawdb.ReadCanonicalHashChains(hc.chainDb, number, hc.currentChainType)
-//}
+// }
 //
-//func (hc *HeaderChainStore) ReadFistBlock(number uint64) common.Hash {
+// func (hc *HeaderChainStore) ReadFistBlock(number uint64) common.Hash {
 //	return rawdb.ReadCanonicalHashChains(hc.chainDb, number, hc.currentChainType)
-//}
+// }
 //
-//func Genesis() {
+// func Genesis() {
 //	save := func(chainType rawdb.ChainType, name string) {
 //		data, err := ioutil.ReadFile(fmt.Sprintf("chains/chainsdb/config/%v_config.json", name))
 //		if err != nil {
@@ -469,4 +470,4 @@ package chainsdb
 //		save(config[i].Id, config[i].Name)
 //	}
 //
-//}
+// }

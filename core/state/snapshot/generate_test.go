@@ -23,13 +23,13 @@ import (
 	"testing"
 	"time"
 
+	"github.com/Alexfordev/atlas/core/rawdb"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/ethereum/go-ethereum/ethdb/memorydb"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/ethereum/go-ethereum/trie"
-	"github.com/mapprotocol/atlas/core/rawdb"
 	"golang.org/x/crypto/sha3"
 )
 
@@ -234,10 +234,12 @@ func (t *testHelper) Generate() (common.Hash, *diskLayer) {
 //   - miss in the beginning
 //   - miss in the middle
 //   - miss in the end
+//
 // - the contract(non-empty storage) has wrong storage slots
 //   - wrong slots in the beginning
 //   - wrong slots in the middle
 //   - wrong slots in the end
+//
 // - the contract(non-empty storage) has extra storage slots
 //   - extra slots in the beginning
 //   - extra slots in the middle
@@ -630,7 +632,7 @@ func TestGenerateWithManyExtraAccounts(t *testing.T) {
 	}
 	{ // 100 accounts exist only in snapshot
 		for i := 0; i < 1000; i++ {
-			//acc := &Account{Balance: big.NewInt(int64(i)), Root: stTrie.Hash().Bytes(), CodeHash: emptyCode.Bytes()}
+			// acc := &Account{Balance: big.NewInt(int64(i)), Root: stTrie.Hash().Bytes(), CodeHash: emptyCode.Bytes()}
 			acc := &Account{Balance: big.NewInt(int64(i)), Root: emptyRoot.Bytes(), CodeHash: emptyCode.Bytes()}
 			val, _ := rlp.EncodeToBytes(acc)
 			key := hashData([]byte(fmt.Sprintf("acc-%d", i)))
@@ -758,7 +760,7 @@ func TestGenerateWithMalformedSnapdata(t *testing.T) {
 }
 
 func TestGenerateFromEmptySnap(t *testing.T) {
-	//enableLogging()
+	// enableLogging()
 	accountCheckRange = 10
 	storageCheckRange = 20
 	helper := newHelper()

@@ -4,16 +4,16 @@ import (
 	"context"
 	"encoding/csv"
 	"fmt"
+	"github.com/Alexfordev/atlas/cmd/marker/connections"
+	"github.com/Alexfordev/atlas/cmd/marker/mapprotocol"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/cmd/marker/connections"
-	"github.com/mapprotocol/atlas/cmd/marker/mapprotocol"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/params"
 	"os"
 	"strconv"
 
-	//"strconv"
+	// "strconv"
 
 	"gopkg.in/urfave/cli.v1"
 	"math/big"
@@ -48,7 +48,7 @@ func pollBlocks(ctx *cli.Context, core *listener, key VoterStruct, voterInfo *Vo
 	var f *big.Float
 	var validatorList []common.Address
 	var latestBlock *big.Int
-	//var epochLast uint64
+	// var epochLast uint64
 	latestBlock, err := core.LatestBlock()
 	if err != nil {
 		log.Error("", "", err)
@@ -74,7 +74,7 @@ func pollBlocks(ctx *cli.Context, core *listener, key VoterStruct, voterInfo *Vo
 		if !exist {
 			log.Info(title+" the target validator Not selected ", "current validators", validatorList, "sign", key.Voter.String()+" to "+key.Validator.String())
 		}
-		//epochLast = istanbul.GetEpochLastBlockNumber(epochNum, epochSize)
+		// epochLast = istanbul.GetEpochLastBlockNumber(epochNum, epochSize)
 		if !exist {
 			log.Info(title+"The validator not be Selected ", "validator ", TargetAddress, "sign", key.Voter.String()+" to "+key.Validator.String())
 		}
@@ -121,7 +121,7 @@ func pollBlocks(ctx *cli.Context, core *listener, key VoterStruct, voterInfo *Vo
 				log.Info("=== Reward ===", "Target_Reward", calcuR, "Target_Active_Vote", nextAVote, "sign", key.Voter.String()+" to "+key.Validator.String())
 				f1 := new(big.Float).SetInt(big.NewInt(100))
 				f.Mul(f, f1)
-				//{"Epoch", "BlockNumber", "voter", "validator", "vote", "validatorReward", "targetReward", "target"}
+				// {"Epoch", "BlockNumber", "voter", "validator", "vote", "validatorReward", "targetReward", "target"}
 				writeInfo(epochNum, latestBlock.String(), From.String(), TargetAddress.String(), voterInfo.VPending, voterInfo.VActive, vaInfo.ValidatorReward, f.String(), calcuR, nextAVote, fmt.Sprintf("%v", validatorList))
 
 				query("=== Result ===")
@@ -234,7 +234,7 @@ func initCsv() (*os.File, error) {
 
 // voterInfo.VPending, voterInfo.VActive , vaInfo.ValidatorReward, f.String(), calcuR, nextAVote,
 func writeInfo(epochNum uint64, latestBlock string, From string, TargetAddress string, VPending *big.Int, VActive *big.Int, ValidatorReward *big.Int, f string, calcuR *big.Float, nextAVote *big.Float, validators string) {
-	//wStr := csv.NewWriter(xlsFile)
+	// wStr := csv.NewWriter(xlsFile)
 	f += "%"
 	wStr := csv.NewWriter(xlsFile)
 	go func() {

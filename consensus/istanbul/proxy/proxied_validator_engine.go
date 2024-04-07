@@ -17,16 +17,16 @@
 package proxy
 
 import (
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/p2p"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/p2p"
 	"sync"
 	"time"
 
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/p2p/enode"
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
 )
 
 // BackendForProxiedValidatorEngine provides the Istanbul backend application specific functions for Istanbul proxied validator engine

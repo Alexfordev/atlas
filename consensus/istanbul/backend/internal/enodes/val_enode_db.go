@@ -18,7 +18,7 @@ package enodes
 
 import (
 	"fmt"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/params"
 	"strings"
 	"sync"
 	"time"
@@ -26,14 +26,14 @@ import (
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/syndtr/goleveldb/leveldb/opt"
 
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/consensus/istanbul/backend/internal/db"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/p2p/enode"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/consensus/istanbul/backend/internal/db"
 )
 
 // Keys in the node database.
@@ -389,8 +389,9 @@ func (vet *ValidatorEnodeDB) UpdateQueryEnodeStats(valEnodeEntries []*istanbul.A
 // upsert will update or insert a validator enode entry given that the existing entry
 // is older (determined by the version) than the new one
 // TODO - In addition to modifying the val_enode_db, this function also will disconnect
-//        and/or connect the corresponding validator connenctions.  The validator connections
-//        should be managed be a separate thread
+//
+//	and/or connect the corresponding validator connenctions.  The validator connections
+//	should be managed be a separate thread
 func (vet *ValidatorEnodeDB) upsert(valEnodeEntries []*istanbul.AddressEntry,
 	onNewEntry func(batch *leveldb.Batch, entry db.GenericEntry) error,
 	onUpdatedEntry func(batch *leveldb.Batch, existingEntry db.GenericEntry, newEntry db.GenericEntry) error) error {

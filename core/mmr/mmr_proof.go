@@ -21,8 +21,8 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
+	"github.com/Alexfordev/atlas/core/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/core/types"
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/ethereum/go-ethereum/trie"
 	"math/big"
@@ -61,7 +61,7 @@ func newChainInfoProof() *ChainInfoProof {
 	}
 }
 
-///////////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////////
 
 type ChainAdapter struct {
 	Genesis      common.Hash
@@ -130,6 +130,7 @@ func (o *ChainAdapter) setLeatestHeader(confirm *types.Header, leatest []*types.
 	}
 	o.Latest = tmp
 }
+
 // to make sure the mmr_root in the header
 func (o *ChainAdapter) checkMmrRootForFirst(root common.Hash) error {
 	if len(o.Latest) > 0 {
@@ -144,7 +145,7 @@ func (o *ChainAdapter) checkMmrRootForFirst(root common.Hash) error {
 	return errors.New("not get the first proof")
 }
 
-///////////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////////
 
 type ChainProofs struct {
 	Remote      *ChainAdapter `json:"remote"     rlp:"nil"`
@@ -268,17 +269,17 @@ func (mr *MapProofs) VerifyMapTransaction(txHash common.Hash) (*types.Receipt, e
 		return nil, err
 	}
 
-	//if !reflect.DeepEqual(receipt.Bloom, mr.ReceiptProof.Receipt.Bloom) {
+	// if !reflect.DeepEqual(receipt.Bloom, mr.ReceiptProof.Receipt.Bloom) {
 	//	return nil, errors.New("receipt Bloom proof not match receipt")
-	//}
+	// }
 	//
-	//if !reflect.DeepEqual(receipt.Logs, mr.ReceiptProof.Receipt.Logs) {
+	// if !reflect.DeepEqual(receipt.Logs, mr.ReceiptProof.Receipt.Logs) {
 	//	return nil, errors.New("receipt Logs proof not match receipt")
-	//}
+	// }
 	//
-	//if !reflect.DeepEqual(receipt.CumulativeGasUsed, mr.ReceiptProof.Receipt.CumulativeGasUsed) {
+	// if !reflect.DeepEqual(receipt.CumulativeGasUsed, mr.ReceiptProof.Receipt.CumulativeGasUsed) {
 	//	return nil, errors.New("receipt Logs proof not match receipt")
-	//}
+	// }
 
 	if mr.TxHash != txHash {
 		return nil, errors.New("txHash checkout failed")

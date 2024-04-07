@@ -33,7 +33,7 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/google/uuid"
 
-	"github.com/mapprotocol/atlas/accounts"
+	"github.com/Alexfordev/atlas/accounts"
 )
 
 const (

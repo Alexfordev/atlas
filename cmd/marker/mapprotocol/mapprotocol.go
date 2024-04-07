@@ -1,21 +1,21 @@
 package mapprotocol
 
 import (
+	"github.com/Alexfordev/atlas/accounts/abi"
 	eth "github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/accounts/abi"
 	"math/big"
 )
 
 type EventSig string
 
 const (
-	//event ValidatorEpochPaymentDistributed(address indexed validator, uint256 validatorPayment);
+	// event ValidatorEpochPaymentDistributed(address indexed validator, uint256 validatorPayment);
 	ValidatorEpochPaymentDistributed EventSig = "ValidatorEpochPaymentDistributed(address,uint256)"
 
-	//event EpochRewardsDistributedToVoters(address indexed voterAddress, uint256 value);
+	// event EpochRewardsDistributedToVoters(address indexed voterAddress, uint256 value);
 	EpochRewardsDistributedToVoters EventSig = "EpochRewardsDistributedToVoters(address,uint256)"
 )
 

@@ -16,17 +16,17 @@ import (
 	"github.com/ethereum/go-ethereum/rlp"
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/mapprotocol/atlas/accounts"
-	"github.com/mapprotocol/atlas/cmd/marker/account"
-	"github.com/mapprotocol/atlas/cmd/marker/config"
-	"github.com/mapprotocol/atlas/cmd/marker/connections"
-	"github.com/mapprotocol/atlas/cmd/marker/mapprotocol"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/helper/bls"
-	"github.com/mapprotocol/atlas/helper/decimal"
-	"github.com/mapprotocol/atlas/helper/decimal/fixed"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/accounts"
+	"github.com/Alexfordev/atlas/cmd/marker/account"
+	"github.com/Alexfordev/atlas/cmd/marker/config"
+	"github.com/Alexfordev/atlas/cmd/marker/connections"
+	"github.com/Alexfordev/atlas/cmd/marker/mapprotocol"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/helper/decimal"
+	"github.com/Alexfordev/atlas/helper/decimal/fixed"
+	"github.com/Alexfordev/atlas/params"
 )
 
 var (
@@ -75,7 +75,7 @@ func (l *listener) waitUntilMsgHandled(counter int) {
 	}
 }
 
-//---------- validator -----------------
+// ---------- validator -----------------
 var registerValidatorCommand = cli.Command{
 	Name:   "register",
 	Usage:  "register validator",
@@ -179,7 +179,7 @@ var withdrawCommand = cli.Command{
 	Flags:  Flags,
 }
 
-//---------- voter -----------------
+// ---------- voter -----------------
 var voteValidatorCommand = cli.Command{
 	Name:   "vote",
 	Usage:  "vote validator ",
@@ -211,7 +211,7 @@ var revokeActiveCommand = cli.Command{
 	Flags:  Flags,
 }
 
-//---------- query -----------------
+// ---------- query -----------------
 var queryRegisteredValidatorSignersCommand = cli.Command{
 	Name:   "getRegisteredValidatorSigners",
 	Usage:  "get Registered Validator Signers",
@@ -344,7 +344,7 @@ var getPendingWithdrawalsCommand = cli.Command{
 	Flags:  Flags,
 }
 
-//-------------- owner --------------------
+// -------------- owner --------------------
 var setValidatorLockedGoldRequirementsCommand = cli.Command{
 	Name:   "setValidatorLockedGoldRequirements",
 	Usage:  "Updates the Locked Gold requirements for Validators.",
@@ -462,7 +462,7 @@ var setAccountNameCommand = cli.Command{
 	Flags:  Flags,
 }
 
-//---------- validator -----------------
+// ---------- validator -----------------
 func registerValidator(ctx *cli.Context, core *listener) error {
 	log.Info("=== Register validator ===")
 	commision := big.NewInt(0).SetUint64(core.cfg.Commission)
@@ -493,8 +493,8 @@ func registerValidator(ctx *cli.Context, core *listener) error {
 		core.cfg.BlsPub = blsPub
 		core.cfg.BlsG1Pub = blsG1Pub
 		core.cfg.BLSProof = _account.MustBLSProofOfPossession()
-		//BLSProofOfPossession := makeBLSProofOfPossessionFromsigner_(core.cfg.From, core)
-		//core.cfg.BLSProof = BLSProofOfPossession.Marshal()
+		// BLSProofOfPossession := makeBLSProofOfPossessionFromsigner_(core.cfg.From, core)
+		// core.cfg.BLSProof = BLSProofOfPossession.Marshal()
 		core.cfg.BLSProof = makeBLSProofOfPossessionFromSigner_(core.cfg.From, core.cfg.SignerPriv).Marshal()
 	}
 	validatorParams := [4][]byte{core.cfg.BlsPub[:], core.cfg.BlsG1Pub[:], core.cfg.BLSProof, core.cfg.PublicKey[1:]}
@@ -575,7 +575,7 @@ func registerValidatorByProof(_ *cli.Context, core *listener) error {
 }
 
 func isPendingDeRegisterValidator(core *listener) bool {
-	//----------------------------- isPendingDeRegisterValidator ---------------------------------
+	// ----------------------------- isPendingDeRegisterValidator ---------------------------------
 	ValidatorAddress := core.cfg.ValidatorParameters.ValidatorAddress
 	abiValidators := core.cfg.ValidatorParameters.ValidatorABI
 	var ret bool
@@ -632,7 +632,7 @@ func TestPoc2_getNonce(_ *cli.Context, core *listener) error {
 }
 
 /*
-   note : by account not signer
+note : by account not signer
 */
 func updateBlsPublicKey(ctx *cli.Context, core *listener) error {
 	log.Info("=== updateBlsPublicKey ===")
@@ -667,18 +667,18 @@ func updateCommission(_ *cli.Context, core *listener) error {
 }
 
 func quicklyRegisterValidator(ctx *cli.Context, core *listener) error {
-	//---------------------------- create account ----------------------------------
+	// ---------------------------- create account ----------------------------------
 	createAccount(core)
 
 	if isContinueError && core.cfg.SignerPriv != "" {
 		authorizeValidatorSigner(ctx, core)
 	}
-	//---------------------------- lock ----------------------------------
+	// ---------------------------- lock ----------------------------------
 	if isContinueError {
 		lockedMAP(ctx, core)
 	}
 
-	//----------------------------- registerValidator ---------------------------------
+	// ----------------------------- registerValidator ---------------------------------
 	if isContinueError {
 		registerValidator(ctx, core)
 	}
@@ -720,9 +720,9 @@ func createAccount(core *listener) {
 }
 
 /*
-   note:account function before become to be a validator
-   signer sign account
-   need signer private
+note:account function before become to be a validator
+signer sign account
+need signer private
 */
 func authorizeValidatorSigner(_ *cli.Context, core *listener) error {
 	// 	SignatureStr, signer := makeECDSASignatureFromsigner_(core) // signer sign account
@@ -765,10 +765,10 @@ func authorizeValidatorSignerBySignature(_ *cli.Context, core *listener) error {
 }
 
 /*
-  Query the account of a target signer
+Query the account of a target signer
 */
 func signerToAccount(_ *cli.Context, core *listener) error {
-	//----------------------------- signerToAccount ---------------------------------
+	// ----------------------------- signerToAccount ---------------------------------
 	logger := log.New("func", "signerToAccount")
 	AccountContractAddress := core.cfg.AccountsParameters.AccountsAddress
 	abiAccount := core.cfg.AccountsParameters.AccountsABI
@@ -785,7 +785,7 @@ note:signer function
 print a ECDSASignature that signer sign the account(validator)
 */
 func makeECDSASignatureFromSigner(_ *cli.Context, core *listener) error {
-	//core.cfg.From = core.cfg.TargetAddress
+	// core.cfg.From = core.cfg.TargetAddress
 	makeECDSASignatureFromSigner_(core.cfg.TargetAddress, core.cfg.SignerPriv)
 	return nil
 }
@@ -805,7 +805,7 @@ func makeECDSASignatureFromSigner_(validator common.Address, signerPrivate strin
 	if err != nil {
 		panic(err)
 	}
-	//for test
+	// for test
 	recoverPubKey, err := crypto.SigToPub(hash, sig)
 	if err != nil {
 		panic(err)
@@ -816,9 +816,9 @@ func makeECDSASignatureFromSigner_(validator common.Address, signerPrivate strin
 }
 
 /*
-  note:signer function
-  use for makerCfg marker/config/markerConfig.json and cmd/marker/listener.go:553 authorizeValidatorSigner
-  print a BLSProofOfPossession that signer BLSSign the account(validator)
+note:signer function
+use for makerCfg marker/config/markerConfig.json and cmd/marker/listener.go:553 authorizeValidatorSigner
+print a BLSProofOfPossession that signer BLSSign the account(validator)
 */
 func makeBLSProofOfPossessionFromsigner(_ *cli.Context, core *listener) error {
 	// 	signature := makeBLSProofOfPossessionFromsigner_(core.cfg.AccountAddress, core)
@@ -830,7 +830,7 @@ func makeBLSProofOfPossessionFromsigner(_ *cli.Context, core *listener) error {
 // func makeBLSProofOfPossessionFromsigner_(message common.Address, core *listener) *bls.UnsafeSignature {
 func makeBLSProofOfPossessionFromSigner_(message common.Address, signerPrivate string) *bls.UnsafeSignature {
 	log.Info("=== makeBLSProofOfPossessionFromSigner ===")
-	//SignerPriv := core.cfg.SignerPriv
+	// SignerPriv := core.cfg.SignerPriv
 	privECDSA, err := crypto.ToECDSA(common.FromHex(signerPrivate))
 	if err != nil {
 		panic(err)
@@ -848,12 +848,12 @@ func makeBLSProofOfPossessionFromSigner_(message common.Address, signerPrivate s
 	if err != nil {
 		panic(err)
 	}
-	//blsPubKeyText, err := publicKey.MarshalText()
-	//if err != nil {
+	// blsPubKeyText, err := publicKey.MarshalText()
+	// if err != nil {
 	//	panic(err)
-	//}
-	//log.Info("makeBLSProofOfPossessionFromsigner","BLS Public key", blsPubKeyText)
-	//test
+	// }
+	// log.Info("makeBLSProofOfPossessionFromsigner","BLS Public key", blsPubKeyText)
+	// test
 	if err := bls.VerifyUnsafe2(pk, message.Bytes(), signature); err != nil {
 		panic(err)
 	}
@@ -861,13 +861,13 @@ func makeBLSProofOfPossessionFromSigner_(message common.Address, signerPrivate s
 }
 
 func deregisterValidator(_ *cli.Context, core *listener) error {
-	//----------------------------- deregisterValidator ---------------------------------
+	// ----------------------------- deregisterValidator ---------------------------------
 	log.Info("=== deregisterValidator ===")
-	//list := _getRegisteredValidatorSigners(core)
-	//index, err := GetIndex(core.cfg.From, list)
-	//if err != nil {
+	// list := _getRegisteredValidatorSigners(core)
+	// index, err := GetIndex(core.cfg.From, list)
+	// if err != nil {
 	//	log.Crit("deregisterValidator", "err", err)
-	//}
+	// }
 	ValidatorAddress := core.cfg.ValidatorParameters.ValidatorAddress
 	abiValidators := core.cfg.ValidatorParameters.ValidatorABI
 	m := NewMessage(SolveSendTranstion1, core.msgCh, core.cfg, ValidatorAddress, nil, abiValidators, "deregisterValidator")
@@ -876,11 +876,11 @@ func deregisterValidator(_ *cli.Context, core *listener) error {
 	return nil
 }
 
-//---------- voter -----------------
+// ---------- voter -----------------
 func vote(_ *cli.Context, core *listener) error {
 	ElectionsAddress := core.cfg.ElectionParameters.ElectionAddress
 	abiElections := core.cfg.ElectionParameters.ElectionABI
-	//greater, lesser := getGreaterLesser(core, core.cfg.TargetAddress)
+	// greater, lesser := getGreaterLesser(core, core.cfg.TargetAddress)
 	greater, lesser, err := getGL(core, core.cfg.TargetAddress)
 	if err != nil {
 		log.Error("vote", "err", err)
@@ -895,13 +895,13 @@ func vote(_ *cli.Context, core *listener) error {
 }
 
 func quicklyVote(ctx *cli.Context, core *listener) error {
-	//---------------------------- create account ----------------
+	// ---------------------------- create account ----------------
 	createAccount(core)
-	//---------------------------- lock --------------------------
+	// ---------------------------- lock --------------------------
 	if isContinueError {
 		lockedMAP(ctx, core)
 	}
-	//---------------------------- vote --------------------------
+	// ---------------------------- vote --------------------------
 	if isContinueError {
 		vote(ctx, core)
 	}
@@ -943,7 +943,7 @@ func revokePending(_ *cli.Context, core *listener) error {
 	if err != nil {
 		log.Crit("revokePending", "err", err)
 	}
-	//fmt.Println("=== greater,lesser,index ===", greater, lesser, index)
+	// fmt.Println("=== greater,lesser,index ===", greater, lesser, index)
 	_params := []interface{}{validator, LockedNum, lesser, greater, index}
 	log.Info("=== revokePending ===", "admin", core.cfg.From)
 	m := NewMessage(SolveSendTranstion1, core.msgCh, core.cfg, ElectionsAddress, nil, abiElections, "revokePending", _params...)
@@ -976,7 +976,7 @@ func revokeActive(_ *cli.Context, core *listener) error {
 	if err != nil {
 		log.Crit("revokePending", "err", err)
 	}
-	//fmt.Println("=== greater,lesser,index ===", greater, lesser, index)
+	// fmt.Println("=== greater,lesser,index ===", greater, lesser, index)
 	_params := []interface{}{validator, LockedNum, lesser, greater, index}
 	log.Info("=== revokeActive ===", "admin", core.cfg.From)
 	m := NewMessage(SolveSendTranstion1, core.msgCh, core.cfg, ElectionsAddress, nil, abiElections, "revokeActive", _params...)
@@ -985,7 +985,7 @@ func revokeActive(_ *cli.Context, core *listener) error {
 	return nil
 }
 
-//---------- query -----------------
+// ---------- query -----------------
 func getRegisteredValidatorSigners(_ *cli.Context, core *listener) error {
 	log.Info("==== getRegisteredValidatorSigners ===")
 	Validators := _getRegisteredValidatorSigners(core)
@@ -1072,7 +1072,7 @@ func getRewardInfo(_ *cli.Context, core *listener) error {
 		return err
 	}
 	for _, l := range logs {
-		//validator := common.Bytes2Hex(l.Topics[0].Bytes())
+		// validator := common.Bytes2Hex(l.Topics[0].Bytes())
 		validator := common.BytesToAddress(l.Topics[1].Bytes())
 		reward := big.NewInt(0).SetBytes(l.Data[:32])
 		log.Info("", "validator", validator, "reward", reward)
@@ -1083,19 +1083,19 @@ func getRewardInfo(_ *cli.Context, core *listener) error {
 
 func getVoterRewardInfo(ctx *cli.Context, core *listener) error {
 
-	////3.
-	//{
+	// //3.
+	// {
 	//	f := new(big.Float).SetInt(myVotes)
 	//	fSub := new(big.Float).SetInt(allVotes)
 	//	f.Quo(f, fSub)
 	//	log.Info("getExpectFraction", "balance", f)
-	//}
+	// }
 
 	curBlockNumber, err := core.conn.BlockNumber(context.Background())
 	epochSize := chain.DefaultGenesisBlock().Config.Istanbul.Epoch
-	//if curBlockNumber < epochSize {
+	// if curBlockNumber < epochSize {
 	//	log.Info("=== current block number less than first epoch number ===", "current", curBlockNumber, "epochSize", epochSize)
-	//}
+	// }
 	if err != nil {
 		return err
 	}
@@ -1115,7 +1115,7 @@ func getVoterRewardInfo(ctx *cli.Context, core *listener) error {
 		return err
 	}
 	for _, l := range logs {
-		//validator := common.Bytes2Hex(l.Topics[0].Bytes())
+		// validator := common.Bytes2Hex(l.Topics[0].Bytes())
 		validator := common.BytesToAddress(l.Topics[1].Bytes())
 		reward := big.NewInt(0).SetBytes(l.Data[:32])
 		log.Info("reward to voters", "validator", validator, "reward", reward)
@@ -1419,7 +1419,7 @@ func getPendingWithdrawals(_ *cli.Context, core *listener) error {
 	return nil
 }
 
-//--------------------- locked Map ------------------------
+// --------------------- locked Map ------------------------
 func lockedMAP(_ *cli.Context, core *listener) error {
 	lockedGold := new(big.Int).Mul(core.cfg.LockedNum, big.NewInt(1e18))
 	log.Info("=== Lock  gold ===")
@@ -1465,7 +1465,7 @@ func withdraw(_ *cli.Context, core *listener) error {
 	return nil
 }
 
-//-------------------------- owner ------------------------
+// -------------------------- owner ------------------------
 func setValidatorLockedGoldRequirements(_ *cli.Context, core *listener) error {
 	value := new(big.Int).Mul(big.NewInt(int64(core.cfg.Value)), big.NewInt(1e18))
 	duration := big.NewInt(core.cfg.Duration)
@@ -1479,7 +1479,7 @@ func setValidatorLockedGoldRequirements(_ *cli.Context, core *listener) error {
 }
 
 func setImplementation(_ *cli.Context, core *listener) error {
-	//implementation := common.HexToAddress("0x000000000000000000000000000000000000F012")
+	// implementation := common.HexToAddress("0x000000000000000000000000000000000000F012")
 	implementation := core.cfg.ImplementationAddress
 	ContractAddress := core.cfg.ContractAddress
 	ProxyAbi := mapprotocol.AbiFor("Proxy")
@@ -1492,7 +1492,7 @@ func setImplementation(_ *cli.Context, core *listener) error {
 
 func setContractOwner(_ *cli.Context, core *listener) error {
 	NewOwner := core.cfg.TargetAddress
-	ContractAddress := core.cfg.ContractAddress //代理地址
+	ContractAddress := core.cfg.ContractAddress // 代理地址
 	abiValidators := core.cfg.ValidatorParameters.ValidatorABI
 	log.Info("ProxyAddress", "ContractAddress", ContractAddress, "NewOwner", NewOwner.String())
 	log.Info("=== setOwner ===", "admin", core.cfg.From.String())
@@ -1504,9 +1504,9 @@ func setContractOwner(_ *cli.Context, core *listener) error {
 
 func setProxyContractOwner(_ *cli.Context, core *listener) error {
 	NewOwner := core.cfg.TargetAddress
-	ContractAddress := core.cfg.ContractAddress //代理地址
+	ContractAddress := core.cfg.ContractAddress // 代理地址
 	log.Info("ProxyAddress", "ContractAddress", ContractAddress, "NewOwner", NewOwner.String())
-	ProxyAbi := mapprotocol.AbiFor("Proxy") //代理ABI
+	ProxyAbi := mapprotocol.AbiFor("Proxy") // 代理ABI
 	log.Info("=== setOwner ===", "admin", core.cfg.From.String())
 	m := NewMessage(SolveSendTranstion1, core.msgCh, core.cfg, ContractAddress, nil, ProxyAbi, "_transferOwnership", NewOwner)
 	go core.writer.ResolveMessage(m)
@@ -1648,8 +1648,8 @@ func setAccountName(_ *cli.Context, core *listener) error {
 	return nil
 }
 
-//-------------------- getLesser getGreater -------
-//Sub todo judge locked and withdrawal comparison
+// -------------------- getLesser getGreater -------
+// Sub todo judge locked and withdrawal comparison
 func getGLSub(core *listener, SubValue *big.Int, target common.Address) (common.Address, common.Address, error) {
 	type ret struct {
 		Validators interface{} // indexed
@@ -1722,7 +1722,7 @@ type voteTotal struct {
 	Value     *big.Int
 }
 
-//getLesser getGreater use for register
+// getLesser getGreater use for register
 func getGL(core *listener, target common.Address) (common.Address, common.Address, error) {
 	type ret struct {
 		Validators interface{} // indexed

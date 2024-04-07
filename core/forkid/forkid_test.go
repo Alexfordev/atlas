@@ -24,7 +24,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
 
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // TestCreation tests that different genesis and fork rule combinations result in

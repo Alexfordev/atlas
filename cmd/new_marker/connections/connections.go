@@ -3,10 +3,10 @@ package connections
 import (
 	"context"
 	"fmt"
+	"github.com/Alexfordev/atlas/cmd/new_marker/define"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/mapprotocol/atlas/cmd/new_marker/define"
 )
 
 const (

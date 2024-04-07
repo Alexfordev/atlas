@@ -19,9 +19,9 @@ package backend
 import (
 	lru "github.com/hashicorp/golang-lru"
 
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
 )
 
 type GossipCache interface {

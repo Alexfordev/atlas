@@ -17,9 +17,8 @@
 package main
 
 import (
-	"github.com/mapprotocol/atlas/cmd"
+	"github.com/Alexfordev/atlas/cmd"
 )
-
 
 func main() {
 	cmd.Execute()

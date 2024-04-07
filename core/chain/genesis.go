@@ -23,7 +23,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/ethereum/go-ethereum/rlp"
-	blscrypto "github.com/mapprotocol/atlas/helper/bls"
+	blscrypto "github.com/Alexfordev/atlas/helper/bls"
 	"math/big"
 
 	"github.com/ethereum/go-ethereum/common"
@@ -32,11 +32,11 @@ import (
 	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/ethereum/go-ethereum/log"
 	ethparams "github.com/ethereum/go-ethereum/params"
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/params"
 )
 
 //go:generate gencodec -type Genesis -field-override genesisSpecMarshaling -out gen_genesis.go
@@ -464,7 +464,7 @@ func UseForGenesisBlock() *Genesis {
 }
 
 func defaultRelayer() GenesisAlloc {
-	balance, _ := new(big.Int).SetString("100000000000000000000000000", 10) //100 million
+	balance, _ := new(big.Int).SetString("100000000000000000000000000", 10) // 100 million
 	relayer := []common.Address{
 		common.HexToAddress("0xDf945e6FFd840Ed5787d367708307BD1Fa3d40f4"),
 		common.HexToAddress("0x32CD75ca677e9C37FD989272afA8504CB8F6eB52"),

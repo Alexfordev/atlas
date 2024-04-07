@@ -28,9 +28,9 @@ import (
 	"github.com/ethereum/go-ethereum/common/mclock"
 	"github.com/ethereum/go-ethereum/log"
 
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/metrics"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/metrics"
 )
 
 const (

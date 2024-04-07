@@ -19,7 +19,7 @@ package downloader
 import (
 	"errors"
 	"fmt"
-	params2 "github.com/mapprotocol/atlas/params"
+	params2 "github.com/Alexfordev/atlas/params"
 	"math/big"
 	"strings"
 	"sync"
@@ -27,15 +27,15 @@ import (
 	"testing"
 	"time"
 
+	"github.com/Alexfordev/atlas/atlas/protocols/eth"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state/snapshot"
+	"github.com/Alexfordev/atlas/core/types"
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/ethereum/go-ethereum/event"
 	"github.com/ethereum/go-ethereum/trie"
-	"github.com/mapprotocol/atlas/atlas/protocols/eth"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state/snapshot"
-	"github.com/mapprotocol/atlas/core/types"
 )
 
 // Reduce some of the parameters to make the tester faster.
@@ -68,9 +68,11 @@ type downloadTester struct {
 
 	lock sync.RWMutex
 }
+
 func (dl *downloadTester) Config() *params2.ChainConfig {
 	return nil
 }
+
 // newTester creates a new downloader test mocker.
 func newTester() *downloadTester {
 	tester := &downloadTester{
@@ -155,6 +157,7 @@ func (dl *downloadTester) GetHeaderByHash(hash common.Hash) *types.Header {
 func (dl *downloadTester) GetHeaderByNumber(num uint64) *types.Header {
 	return nil
 }
+
 // getHeaderByHash returns the header if found either within ancients or own blocks)
 // This method assumes that the caller holds at least the read-lock (dl.lock)
 func (dl *downloadTester) getHeaderByHash(hash common.Hash) *types.Header {
@@ -846,7 +849,7 @@ func testMultiProtoSync(t *testing.T, protocol uint, mode SyncMode) {
 
 	// Create peers of every type
 	tester.newPeer("peer 66", eth.ETH66, chain)
-	//tester.newPeer("peer 65", eth.ETH67, chain)
+	// tester.newPeer("peer 65", eth.ETH67, chain)
 
 	// Synchronise with the requested peer and make sure all blocks were retrieved
 	if err := tester.sync(fmt.Sprintf("peer %d", protocol), nil, mode); err != nil {

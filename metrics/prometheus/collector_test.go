@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mapprotocol/atlas/metrics"
+	"github.com/Alexfordev/atlas/metrics"
 )
 
 func TestMain(m *testing.M) {

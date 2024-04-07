@@ -3,12 +3,12 @@ package define
 import (
 	"crypto/ecdsa"
 	"fmt"
+	"github.com/Alexfordev/atlas/helper/bls"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/helper/bls"
 	"io/ioutil"
 )
 

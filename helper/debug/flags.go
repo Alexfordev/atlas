@@ -30,8 +30,8 @@ import (
 	"github.com/mattn/go-isatty"
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/mapprotocol/atlas/metrics"
-	"github.com/mapprotocol/atlas/metrics/exp"
+	"github.com/Alexfordev/atlas/metrics"
+	"github.com/Alexfordev/atlas/metrics/exp"
 )
 
 var Memsize memsizeui.Handler

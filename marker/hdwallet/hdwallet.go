@@ -12,13 +12,13 @@ import (
 
 	"github.com/ethereum/go-ethereum"
 
+	"github.com/Alexfordev/atlas/accounts"
+	"github.com/Alexfordev/atlas/core/types"
 	"github.com/btcsuite/btcd/btcutil/hdkeychain"
 	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/mapprotocol/atlas/accounts"
-	"github.com/mapprotocol/atlas/core/types"
 	"github.com/tyler-smith/go-bip39"
 )
 

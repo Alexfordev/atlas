@@ -18,23 +18,23 @@ package runtime
 
 import (
 	"fmt"
-	params2 "github.com/mapprotocol/atlas/params"
+	params2 "github.com/Alexfordev/atlas/params"
 	"math/big"
 	"os"
 	"strings"
 	"testing"
 	"time"
 
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/atlas/tracers"
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/core/asm"
+	atlaschain "github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/atlas/tracers"
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/core/asm"
-	atlaschain "github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
 )
 
 func TestDefaults(t *testing.T) {
@@ -241,8 +241,8 @@ func (d *dummyChain) GetHeader(h common.Hash, n uint64) *types.Header {
 	s := common.LeftPadBytes(big.NewInt(int64(n-1)).Bytes(), 32)
 	copy(parentHash[:], s)
 
-	//parentHash := common.Hash{byte(n - 1)}
-	//fmt.Printf("GetHeader(%x, %d) => header with parent %x\n", h, n, parentHash)
+	// parentHash := common.Hash{byte(n - 1)}
+	// fmt.Printf("GetHeader(%x, %d) => header with parent %x\n", h, n, parentHash)
 	return fakeHeader(n, parentHash)
 }
 
@@ -337,7 +337,7 @@ func (s *stepCounter) CaptureEnd(output []byte, gasUsed uint64, t time.Duration,
 func (s *stepCounter) CaptureState(env *vm.EVM, pc uint64, op vm.OpCode, gas, cost uint64, scope *vm.ScopeContext, rData []byte, depth int, err error) {
 	s.steps++
 	// Enable this for more output
-	//s.inner.CaptureState(env, pc, op, gas, cost, memory, stack, rStack, contract, depth, err)
+	// s.inner.CaptureState(env, pc, op, gas, cost, memory, stack, rStack, contract, depth, err)
 }
 
 // benchmarkNonModifyingCode benchmarks code, but if the code modifies the
@@ -378,7 +378,7 @@ func benchmarkNonModifyingCode(gas uint64, code []byte, name string, tracerCode 
 		})
 	}
 
-	//cfg.State.CreateAccount(cfg.Origin)
+	// cfg.State.CreateAccount(cfg.Origin)
 	// set the receiver's (the executing contract) code for execution.
 	cfg.State.SetCode(destination, code)
 	vmenv.Call(sender, destination, nil, gas, cfg.Value)
@@ -489,8 +489,8 @@ func BenchmarkSimpleLoop(b *testing.B) {
 		byte(vm.JUMP),
 	}
 
-	//tracer := vm.NewJSONLogger(nil, os.Stdout)
-	//Execute(loopingCode, nil, &Config{
+	// tracer := vm.NewJSONLogger(nil, os.Stdout)
+	// Execute(loopingCode, nil, &Config{
 	//	EVMConfig: vm.Config{
 	//		Debug:  true,
 	//		Tracer: tracer,
@@ -503,8 +503,8 @@ func BenchmarkSimpleLoop(b *testing.B) {
 	benchmarkNonModifyingCode(100000000, callEOA, "call-EOA-100M", "", b)
 	benchmarkNonModifyingCode(100000000, calllRevertingContractWithInput, "call-reverting-100M", "", b)
 
-	//benchmarkNonModifyingCode(10000000, staticCallIdentity, "staticcall-identity-10M", b)
-	//benchmarkNonModifyingCode(10000000, loopingCode, "loop-10M", b)
+	// benchmarkNonModifyingCode(10000000, staticCallIdentity, "staticcall-identity-10M", b)
+	// benchmarkNonModifyingCode(10000000, loopingCode, "loop-10M", b)
 }
 
 // TestEip2929Cases contains various testcases that are used for
@@ -566,13 +566,13 @@ func TestEip2929Cases(t *testing.T) {
 	{ // EXTCODECOPY
 		code := []byte{
 			// extcodecopy( 0xff,0,0,0,0)
-			byte(vm.PUSH1), 0x00, byte(vm.PUSH1), 0x00, byte(vm.PUSH1), 0x00, //length, codeoffset, memoffset
+			byte(vm.PUSH1), 0x00, byte(vm.PUSH1), 0x00, byte(vm.PUSH1), 0x00, // length, codeoffset, memoffset
 			byte(vm.PUSH1), 0xff, byte(vm.EXTCODECOPY),
 			// extcodecopy( 0xff,0,0,0,0)
-			byte(vm.PUSH1), 0x00, byte(vm.PUSH1), 0x00, byte(vm.PUSH1), 0x00, //length, codeoffset, memoffset
+			byte(vm.PUSH1), 0x00, byte(vm.PUSH1), 0x00, byte(vm.PUSH1), 0x00, // length, codeoffset, memoffset
 			byte(vm.PUSH1), 0xff, byte(vm.EXTCODECOPY),
 			// extcodecopy( this,0,0,0,0)
-			byte(vm.PUSH1), 0x00, byte(vm.PUSH1), 0x00, byte(vm.PUSH1), 0x00, //length, codeoffset, memoffset
+			byte(vm.PUSH1), 0x00, byte(vm.PUSH1), 0x00, byte(vm.PUSH1), 0x00, // length, codeoffset, memoffset
 			byte(vm.ADDRESS), byte(vm.EXTCODECOPY),
 
 			byte(vm.STOP),
@@ -771,7 +771,7 @@ func TestRuntimeJSTracer(t *testing.T) {
 				// outsize, outoffset, insize, inoffset
 				byte(vm.PUSH1), 0, byte(vm.PUSH1), 0, byte(vm.PUSH1), 0, byte(vm.PUSH1), 0,
 				byte(vm.PUSH1), 0, // value
-				byte(vm.PUSH1), 0xbb, //address
+				byte(vm.PUSH1), 0xbb, // address
 				byte(vm.GAS), // gas
 				byte(vm.CALL),
 				byte(vm.POP),
@@ -784,7 +784,7 @@ func TestRuntimeJSTracer(t *testing.T) {
 				// outsize, outoffset, insize, inoffset
 				byte(vm.PUSH1), 0, byte(vm.PUSH1), 0, byte(vm.PUSH1), 0, byte(vm.PUSH1), 0,
 				byte(vm.PUSH1), 0, // value
-				byte(vm.PUSH1), 0xcc, //address
+				byte(vm.PUSH1), 0xcc, // address
 				byte(vm.GAS), // gas
 				byte(vm.CALLCODE),
 				byte(vm.POP),
@@ -796,7 +796,7 @@ func TestRuntimeJSTracer(t *testing.T) {
 			code: []byte{
 				// outsize, outoffset, insize, inoffset
 				byte(vm.PUSH1), 0, byte(vm.PUSH1), 0, byte(vm.PUSH1), 0, byte(vm.PUSH1), 0,
-				byte(vm.PUSH1), 0xdd, //address
+				byte(vm.PUSH1), 0xdd, // address
 				byte(vm.GAS), // gas
 				byte(vm.STATICCALL),
 				byte(vm.POP),
@@ -808,7 +808,7 @@ func TestRuntimeJSTracer(t *testing.T) {
 			code: []byte{
 				// outsize, outoffset, insize, inoffset
 				byte(vm.PUSH1), 0, byte(vm.PUSH1), 0, byte(vm.PUSH1), 0, byte(vm.PUSH1), 0,
-				byte(vm.PUSH1), 0xee, //address
+				byte(vm.PUSH1), 0xee, // address
 				byte(vm.GAS), // gas
 				byte(vm.DELEGATECALL),
 				byte(vm.POP),
@@ -821,7 +821,7 @@ func TestRuntimeJSTracer(t *testing.T) {
 				// outsize, outoffset, insize, inoffset
 				byte(vm.PUSH1), 0, byte(vm.PUSH1), 0, byte(vm.PUSH1), 0, byte(vm.PUSH1), 0,
 				byte(vm.PUSH1), 0, // value
-				byte(vm.PUSH1), 0xff, //address
+				byte(vm.PUSH1), 0xff, // address
 				byte(vm.GAS), // gas
 				byte(vm.CALL),
 				byte(vm.POP),

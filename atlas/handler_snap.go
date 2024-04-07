@@ -17,8 +17,8 @@
 package atlas
 
 import (
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/atlas/protocols/snap"
+	"github.com/Alexfordev/atlas/atlas/protocols/snap"
+	"github.com/Alexfordev/atlas/core/chain"
 	"github.com/ethereum/go-ethereum/p2p/enode"
 )
 

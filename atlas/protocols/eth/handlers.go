@@ -25,7 +25,7 @@ import (
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/ethereum/go-ethereum/trie"
 
-	"github.com/mapprotocol/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/types"
 )
 
 // handleGetBlockHeaders66 is the eth/66 version of handleGetBlockHeaders
@@ -266,10 +266,10 @@ func handleNewBlock(backend Backend, msg Decoder, peer *Peer) error {
 	if err := ann.sanityCheck(); err != nil {
 		return err
 	}
-	//if hash := types.CalcUncleHash(ann.Block.Uncles()); hash != ann.Block.UncleHash() {
+	// if hash := types.CalcUncleHash(ann.Block.Uncles()); hash != ann.Block.UncleHash() {
 	//	log.Warn("Propagated block has invalid uncles", "have", hash, "exp", ann.Block.UncleHash())
 	//	return nil // TODO(karalabe): return error eventually, but wait a few releases
-	//}
+	// }
 	if hash := types.DeriveSha(ann.Block.Transactions(), trie.NewStackTrie(nil)); hash != ann.Block.TxHash() {
 		log.Warn("Propagated block has invalid body", "have", hash, "exp", ann.Block.TxHash())
 		return nil // TODO(karalabe): return error eventually, but wait a few releases

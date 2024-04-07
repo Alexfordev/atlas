@@ -21,7 +21,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/mapprotocol/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 )
 
 func newView(seq, round uint64) *istanbul.View {

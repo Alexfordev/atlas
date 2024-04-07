@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/mapprotocol/atlas/cmd/new_marker/cmd"
+	"github.com/Alexfordev/atlas/cmd/new_marker/cmd"
 	"gopkg.in/urfave/cli.v1"
 	"os"
 	"sort"

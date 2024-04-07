@@ -6,9 +6,9 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mapprotocol/atlas/params"
 	"math/big"
 	"reflect"
 
@@ -120,11 +120,11 @@ func CryptoType() BLSCryptoSelector {
 		curve := BN256{}
 		return curve
 	case BLS12377Curve:
-		//curve := BLS12377{}
-		return nil //curve
+		// curve := BLS12377{}
+		return nil // curve
 	case BLS12381Curve:
-		//curve := BLS12381{}
-		return nil //curve
+		// curve := BLS12381{}
+		return nil // curve
 	default:
 		// Programming error.
 		panic(fmt.Sprintf("unknown bls crypto selection policy: %v", BLSCryptoType))
@@ -139,9 +139,9 @@ const (
 	MODULUSMASK = 63 // == 2**(254-(256-8)) - 1
 )
 
-//func (BN256) ECDSAToBLS(privateKeyECDSA *ecdsa.PrivateKey) ([]byte, error) {
-//	return crypto.FromECDSA(privateKeyECDSA), nil
-//}
+//	func (BN256) ECDSAToBLS(privateKeyECDSA *ecdsa.PrivateKey) ([]byte, error) {
+//		return crypto.FromECDSA(privateKeyECDSA), nil
+//	}
 func (BN256) ECDSAToBLS(privateKeyECDSA *ecdsa.PrivateKey) ([]byte, error) {
 	for i := 0; i < 256; i++ {
 		modulus := big.NewInt(0)

@@ -1,9 +1,9 @@
 package testutil
 
 import (
+	"github.com/Alexfordev/atlas/contracts/abis"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/contracts/abis"
-	"github.com/mapprotocol/atlas/params"
 )
 
 type RegistryMock struct {

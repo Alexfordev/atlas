@@ -2,18 +2,18 @@ package cmd
 
 import (
 	"bytes"
+	"github.com/Alexfordev/atlas/accounts"
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/cmd/marker/account"
+	"github.com/Alexfordev/atlas/cmd/new_marker/define"
+	"github.com/Alexfordev/atlas/cmd/new_marker/mapprotocol"
+	"github.com/Alexfordev/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mapprotocol/atlas/accounts"
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/cmd/marker/account"
-	"github.com/mapprotocol/atlas/cmd/new_marker/define"
-	"github.com/mapprotocol/atlas/cmd/new_marker/mapprotocol"
-	"github.com/mapprotocol/atlas/helper/bls"
-	"github.com/mapprotocol/atlas/params"
 	"gopkg.in/urfave/cli.v1"
 	"math/big"
 	"os"
@@ -112,7 +112,7 @@ func (v *Validator) RevertRegisterValidator(_ *cli.Context, cfg *define.Config) 
 }
 
 func (v *Validator) DeregisterValidator(_ *cli.Context, cfg *define.Config) error {
-	//----------------------------- deregisterValidator ---------------------------------
+	// ----------------------------- deregisterValidator ---------------------------------
 	log.Info("=== deregisterValidator ===")
 	v.handleType1Msg(cfg, v.to, nil, v.abi, "deregisterValidator")
 	return nil
@@ -150,16 +150,16 @@ func (v *Validator) GenerateSignerProof(_ *cli.Context, cfg *define.Config) erro
 }
 
 func (v *Validator) QuicklyRegisterValidator(ctx *cli.Context, cfg *define.Config) error {
-	//---------------------------- create account ----------------------------------
+	// ---------------------------- create account ----------------------------------
 	_ = v.account.CreateAccount(ctx, cfg)
 
 	if cfg.SignerPriv != "" {
 		_ = v.AuthorizeValidatorSigner(ctx, cfg)
 	}
-	//---------------------------- lock ----------------------------------
+	// ---------------------------- lock ----------------------------------
 	_ = v.LockedMAP(ctx, cfg)
 
-	//----------------------------- registerValidator ---------------------------------
+	// ----------------------------- registerValidator ---------------------------------
 	_ = v.RegisterValidator(ctx, cfg)
 	log.Info("=== End ===")
 	return nil
@@ -174,10 +174,10 @@ func (v *Validator) LockedMAP(_ *cli.Context, cfg *define.Config) error {
 }
 
 /*
-	AuthorizeValidatorSigner
-	note:account function before become to be a validator
-	signer sign account
-	need signer private
+AuthorizeValidatorSigner
+note:account function before become to be a validator
+signer sign account
+need signer private
 */
 func (v *Validator) AuthorizeValidatorSigner(_ *cli.Context, cfg *define.Config) error {
 	SignatureStr, signer := v.makeECDSASignatureFromSigner_(cfg.From, cfg.SignerPriv) // signer sign account
@@ -222,7 +222,7 @@ func (v *Validator) MakeBLSProofOfPossessionFromsigner(_ *cli.Context, cfg *defi
 }
 
 func (v *Validator) isPendingDeRegisterValidator(cfg *define.Config) bool {
-	//----------------------------- isPendingDeRegisterValidator ---------------------------------
+	// ----------------------------- isPendingDeRegisterValidator ---------------------------------
 	var ret bool
 	v.handleType3Msg(cfg, &ret, v.to, nil, v.abi, "isPendingDeRegisterValidator")
 	return ret
@@ -346,7 +346,7 @@ func (v *Validator) makeECDSASignatureFromSigner_(validator common.Address, sign
 	if err != nil {
 		panic(err)
 	}
-	//for test
+	// for test
 	recoverPubKey, err := crypto.SigToPub(hash, sig)
 	if err != nil {
 		panic(err)

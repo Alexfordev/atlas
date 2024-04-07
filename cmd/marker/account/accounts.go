@@ -3,12 +3,12 @@ package account
 import (
 	"crypto/ecdsa"
 	"fmt"
+	"github.com/Alexfordev/atlas/helper/bls"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/helper/bls"
 	"io/ioutil"
 )
 
@@ -40,17 +40,17 @@ func (a *Account) BLSProofOfPossession() ([]byte, error) {
 		log.Error("DeserializePrivateKey", "err", err)
 		return nil, err
 	}
-	//pkbytes, err := bls.CryptoType().PrivateToPublic(privateKey)
-	//if err != nil {
+	// pkbytes, err := bls.CryptoType().PrivateToPublic(privateKey)
+	// if err != nil {
 	//	privdata := crypto.FromECDSA(a.PrivateKey)
 	//	log.Error("PrivateToPublic", "err", err, "privdata", hexutil.Encode(privdata), "address", a.Address.String())
 	//	return nil, err
-	//}
-	//pubkey, err := bls.UnmarshalPk(pkbytes[:])
-	//if err != nil {
+	// }
+	// pubkey, err := bls.UnmarshalPk(pkbytes[:])
+	// if err != nil {
 	//	log.Error("bn256.UnmarshalPk", "err", err)
 	//	return nil, err
-	//}
+	// }
 
 	signature, err := bls.UnsafeSign2(key, a.Address.Bytes())
 	if err != nil {

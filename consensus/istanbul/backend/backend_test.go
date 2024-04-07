@@ -22,11 +22,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/types"
 )
 
 func TestSign(t *testing.T) {
@@ -36,7 +36,7 @@ func TestSign(t *testing.T) {
 	if err != nil {
 		t.Errorf("error mismatch: have %v, want nil", err)
 	}
-	//Check signature recover
+	// Check signature recover
 	hashData := crypto.Keccak256(data)
 	pubkey, _ := crypto.Ecrecover(hashData, sig)
 	var signer common.Address

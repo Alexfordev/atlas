@@ -1,7 +1,7 @@
 package ethereum
 
 //
-//import (
+// import (
 //	"errors"
 //	"math/big"
 //	"os"
@@ -18,18 +18,18 @@ package ethereum
 //	ethparams "github.com/ethereum/go-ethereum/params"
 //	"github.com/ethereum/go-ethereum/rlp"
 //
-//	"github.com/mapprotocol/atlas/chains"
-//	"github.com/mapprotocol/atlas/core/types"
-//	"github.com/mapprotocol/atlas/tools"
-//)
+//	"github.com/Alexfordev/atlas/chains"
+//	"github.com/Alexfordev/atlas/core/types"
+//	"github.com/Alexfordev/atlas/tools"
+// )
 //
-//func init() {
+// func init() {
 //	glogger := log.NewGlogHandler(log.StreamHandler(os.Stderr, log.TerminalFormat(false)))
 //	glogger.Verbosity(log.LvlInfo)
 //	log.Root().SetHandler(glogger)
-//}
+// }
 //
-//func TestHeaderStore_delOldHeaders(t *testing.T) {
+// func TestHeaderStore_delOldHeaders(t *testing.T) {
 //	type fields struct {
 //		headers map[string][]byte
 //		tds     map[string]*big.Int
@@ -78,9 +78,9 @@ package ethereum
 //			}
 //		})
 //	}
-//}
+// }
 //
-//func TestHeaderStore_Store(t *testing.T) {
+// func TestHeaderStore_Store(t *testing.T) {
 //	type fields struct {
 //		canonicalNumberToHash map[uint64]common.Hash
 //		headers               map[string][]byte
@@ -159,9 +159,9 @@ package ethereum
 //			t.Log("load hs: ", h)
 //		})
 //	}
-//}
+// }
 //
-//func TestHeaderStore_Load(t *testing.T) {
+// func TestHeaderStore_Load(t *testing.T) {
 //	type fields struct {
 //		CanonicalNumberToHash map[uint64]common.Hash
 //		Headers               map[string][]byte
@@ -287,9 +287,9 @@ package ethereum
 //			t.Log("load hs: ", h)
 //		})
 //	}
-//}
+// }
 //
-//func testInsert(t *testing.T, db types.StateDB, hs *HeaderStore, chain []byte, wantStatus WriteStatus, wantErr error) {
+// func testInsert(t *testing.T, db types.StateDB, hs *HeaderStore, chain []byte, wantStatus WriteStatus, wantErr error) {
 //	t.Helper()
 //
 //	res, err := hs.WriteHeaders(db, chain)
@@ -299,17 +299,17 @@ package ethereum
 //	if res.status != wantStatus {
 //		t.Errorf("wrong write status from WriteHeaders: got %v, want %v", res.status, wantStatus)
 //	}
-//}
+// }
 //
-//func rlpEncode(headers []*ethtypes.Header) []byte {
+// func rlpEncode(headers []*ethtypes.Header) []byte {
 //	bs, err := rlp.EncodeToBytes(headers)
 //	if err != nil {
 //		panic(err)
 //	}
 //	return bs
-//}
+// }
 //
-//func convertHeader(header *ethtypes.Header) *Header {
+// func convertHeader(header *ethtypes.Header) *Header {
 //	bs, err := rlp.EncodeToBytes(header)
 //	if err != nil {
 //		panic(err)
@@ -319,10 +319,10 @@ package ethereum
 //		panic(err)
 //	}
 //	return headers
-//}
+// }
 //
-//// This test checks status reporting of InsertHeader
-//func TestHeaderInsertion(t *testing.T) {
+// // This test checks status reporting of InsertHeader
+// func TestHeaderInsertion(t *testing.T) {
 //	var (
 //		db      = rawdb.NewMemoryDatabase()
 //		statedb = getStateDB()
@@ -381,4 +381,4 @@ package ethereum
 //	//}
 //	//sort.Ints(ns)
 //	//fmt.Println("============================== ns: ", ns)
-//}
+// }

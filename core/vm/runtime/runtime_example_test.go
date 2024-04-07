@@ -19,8 +19,8 @@ package runtime_test
 import (
 	"fmt"
 
+	"github.com/Alexfordev/atlas/core/vm/runtime"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/core/vm/runtime"
 )
 
 func ExampleExecute() {

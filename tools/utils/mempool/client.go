@@ -4,9 +4,9 @@ import (
 	"io"
 	"log"
 
+	"github.com/Alexfordev/atlas/tools/utils/btcapi"
 	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/btcsuite/btcd/wire"
-	"github.com/mapprotocol/atlas/tools/utils/btcapi"
 )
 
 type MempoolClient struct {

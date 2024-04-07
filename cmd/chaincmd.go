@@ -34,13 +34,13 @@ import (
 
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/mapprotocol/atlas/cmd/node"
-	"github.com/mapprotocol/atlas/cmd/utils"
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/metrics"
+	"github.com/Alexfordev/atlas/cmd/node"
+	"github.com/Alexfordev/atlas/cmd/utils"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/metrics"
 )
 
 var (

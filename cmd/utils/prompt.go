@@ -20,7 +20,7 @@ package utils
 import (
 	"fmt"
 
-	"github.com/mapprotocol/atlas/console/prompt"
+	"github.com/Alexfordev/atlas/console/prompt"
 )
 
 // GetPassPhrase displays the given text(prompt) to the user and requests some textual

@@ -28,12 +28,12 @@ import (
 	"strings"
 	"syscall"
 
+	"github.com/Alexfordev/atlas/apis/jsre"
+	"github.com/Alexfordev/atlas/apis/jsre/deps"
+	"github.com/Alexfordev/atlas/apis/web3ext"
 	"github.com/dop251/goja"
 	"github.com/ethereum/go-ethereum/console/prompt"
 	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/mapprotocol/atlas/apis/jsre"
-	"github.com/mapprotocol/atlas/apis/jsre/deps"
-	"github.com/mapprotocol/atlas/apis/web3ext"
 	"github.com/mattn/go-colorable"
 	"github.com/peterh/liner"
 )

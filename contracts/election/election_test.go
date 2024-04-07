@@ -3,8 +3,8 @@ package election
 import (
 	"testing"
 
-	"github.com/mapprotocol/atlas/contracts"
-	"github.com/mapprotocol/atlas/contracts/testutil"
+	"github.com/Alexfordev/atlas/contracts"
+	"github.com/Alexfordev/atlas/contracts/testutil"
 )
 
 func TestGetElectedValidators(t *testing.T) {

@@ -5,18 +5,18 @@ import (
 	"encoding/csv"
 	"encoding/json"
 	"fmt"
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/cmd/new_marker/connections"
+	"github.com/Alexfordev/atlas/cmd/new_marker/define"
+	"github.com/Alexfordev/atlas/cmd/new_marker/mapprotocol"
+	"github.com/Alexfordev/atlas/cmd/new_marker/writer"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/helper/fileutils"
+	"github.com/Alexfordev/atlas/marker/env"
+	"github.com/Alexfordev/atlas/marker/genesis"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/cmd/new_marker/connections"
-	"github.com/mapprotocol/atlas/cmd/new_marker/define"
-	"github.com/mapprotocol/atlas/cmd/new_marker/mapprotocol"
-	"github.com/mapprotocol/atlas/cmd/new_marker/writer"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/helper/fileutils"
-	"github.com/mapprotocol/atlas/marker/env"
-	"github.com/mapprotocol/atlas/marker/genesis"
-	"github.com/mapprotocol/atlas/params"
 	"gopkg.in/urfave/cli.v1"
 	"io/ioutil"
 	"math/big"
@@ -191,7 +191,7 @@ func (t *Tool) pollBlocks(ctx *cli.Context, cfg *define.Config, key define.Voter
 		if !exist {
 			log.Info(title+" the target validator Not selected ", "current validators", validatorList, "sign", key.Voter.String()+" to "+key.Validator.String())
 		}
-		//epochLast = istanbul.GetEpochLastBlockNumber(epochNum, epochSize)
+		// epochLast = istanbul.GetEpochLastBlockNumber(epochNum, epochSize)
 		if !exist {
 			log.Info(title+"The validator not be Selected ", "validator ", TargetAddress, "sign", key.Voter.String()+" to "+key.Validator.String())
 		}
@@ -259,7 +259,7 @@ var xlsFile *os.File
 func (t *Tool) writeInfo(epochNum uint64, latestBlock string, From string, TargetAddress string,
 	VPending *big.Int, VActive *big.Int, ValidatorReward *big.Int, f string, calcuR *big.Float,
 	nextAVote *big.Float, validators string, writeChan chan []string) {
-	//wStr := csv.NewWriter(xlsFile)
+	// wStr := csv.NewWriter(xlsFile)
 	f += "%"
 	wStr := csv.NewWriter(xlsFile)
 	go func() {

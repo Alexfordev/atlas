@@ -19,8 +19,8 @@ package atlas
 import (
 	"time"
 
+	"github.com/Alexfordev/atlas/core/rawdb"
 	"github.com/ethereum/go-ethereum/common/bitutil"
-	"github.com/mapprotocol/atlas/core/rawdb"
 )
 
 const (

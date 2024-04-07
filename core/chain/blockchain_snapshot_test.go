@@ -32,12 +32,12 @@ import (
 	"github.com/ethereum/go-ethereum/ethdb"
 	ethparams "github.com/ethereum/go-ethereum/params"
 
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/consensus/consensustest"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/consensus/consensustest"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // snapshotTestBasic wraps the common testing fields in the snapshot tests.
@@ -178,11 +178,11 @@ func (basic *snapshotTestBasic) dump() string {
 	}
 	fmt.Fprint(buffer, "\n")
 
-	//if crash {
+	// if crash {
 	//	fmt.Fprintf(buffer, "\nCRASH\n\n")
-	//} else {
+	// } else {
 	//	fmt.Fprintf(buffer, "\nSetHead(%d)\n\n", basic.setHead)
-	//}
+	// }
 	fmt.Fprintf(buffer, "------------------------------\n\n")
 
 	fmt.Fprint(buffer, "Expected in leveldb:\n  G")

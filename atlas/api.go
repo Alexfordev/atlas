@@ -35,11 +35,11 @@ import (
 	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/ethereum/go-ethereum/trie"
 
-	"github.com/mapprotocol/atlas/apis/atlasapi"
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
+	"github.com/Alexfordev/atlas/apis/atlasapi"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
 )
 
 // PublicEthereumAPI provides an API to access Ethereum full node-related
@@ -64,9 +64,9 @@ func (api *PublicEthereumAPI) Coinbase() (common.Address, error) {
 }
 
 // Hashrate returns the POW hashrate
-//func (api *PublicEthereumAPI) Hashrate() hexutil.Uint64 {
+// func (api *PublicEthereumAPI) Hashrate() hexutil.Uint64 {
 //	return hexutil.Uint64(api.e.Miner().Hashrate())
-//}
+// }
 
 // PublicMinerAPI provides an API to control the miner.
 // It offers only methods that operate on data that pose no security risk when it is publicly accessible.
@@ -132,10 +132,10 @@ func (api *PrivateMinerAPI) SetGasPrice(gasPrice hexutil.Big) bool {
 }
 
 // SetGasLimit sets the gaslimit to target towards during mining.
-//func (api *PrivateMinerAPI) SetGasLimit(gasLimit hexutil.Uint64) bool {
+// func (api *PrivateMinerAPI) SetGasLimit(gasLimit hexutil.Uint64) bool {
 //	api.e.Miner().SetGasCeil(uint64(gasLimit))
 //	return true
-//}
+// }
 
 // SetEtherbase sets the etherbase of the miner
 func (api *PrivateMinerAPI) SetEtherbase(etherbase common.Address) bool {
@@ -145,9 +145,9 @@ func (api *PrivateMinerAPI) SetEtherbase(etherbase common.Address) bool {
 }
 
 // SetRecommitInterval updates the interval for miner sealing work recommitting.
-//func (api *PrivateMinerAPI) SetRecommitInterval(interval int) {
+// func (api *PrivateMinerAPI) SetRecommitInterval(interval int) {
 //	api.e.Miner().SetRecommitInterval(time.Duration(interval) * time.Millisecond)
-//}
+// }
 
 // PrivateAdminAPI is the collection of Ethereum full node-related APIs
 // exposed over the private admin endpoint.

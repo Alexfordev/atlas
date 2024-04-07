@@ -21,7 +21,7 @@ import (
 	"encoding/hex"
 	"fmt"
 
-	"github.com/mapprotocol/atlas/core/vm"
+	"github.com/Alexfordev/atlas/core/vm"
 )
 
 // Iterator for disassembled EVM instructions

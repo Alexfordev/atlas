@@ -20,8 +20,8 @@ import (
 	"math/rand"
 	"testing"
 
+	"github.com/Alexfordev/atlas/core/rawdb"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/core/rawdb"
 	"github.com/ethereum/go-ethereum/ethdb/memorydb"
 )
 

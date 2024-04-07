@@ -6,6 +6,7 @@ import (
 	"crypto/ecdsa"
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"math/big"
 	"net/http"
@@ -13,10 +14,9 @@ import (
 	"sort"
 	"time"
 
-	"github.com/mapprotocol/atlas/cmd/marker/mapprotocol"
-	"github.com/mapprotocol/atlas/helper/fileutils"
-	"github.com/mapprotocol/atlas/params"
-
+	"github.com/Alexfordev/atlas/cmd/marker/mapprotocol"
+	"github.com/Alexfordev/atlas/helper/fileutils"
+	"github.com/Alexfordev/atlas/params"
 	ethchain "github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
@@ -24,8 +24,7 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rpc"
-	"io"
-	//"fmt"
+	// "fmt"
 )
 
 const DefaultGasLimit = 4500000
@@ -33,7 +32,7 @@ const DefaultGasLimit = 4500000
 var (
 	url       = "http://127.0.0.1:7445"
 	urlSendTx = "http://127.0.0.1:7445"
-	//urlSendTx = "http://13.67.118.60:7445"
+	// urlSendTx = "http://13.67.118.60:7445"
 	msgCh chan struct{} // wait for msg handles
 )
 
@@ -63,7 +62,7 @@ func main() {
 	if err != nil {
 		log.Error("Failed to connect to the Atlaschain client: ", err)
 	}
-	//from := "0x81f02fd21657df80783755874a92c996749777bf"
+	// from := "0x81f02fd21657df80783755874a92c996749777bf"
 	from := "0xbe27cf1ed3489b6add51a22ce4b25abd92cac3c8"
 	var ret bool
 	if err := conn.Call(&ret, "personal_unlockAccount", from, ""); err != nil {
@@ -71,12 +70,12 @@ func main() {
 	}
 	fmt.Println("personal_unlockAccount", ret)
 
-	//0xd3c21bcecceda0000000 100万
-	//0x21e19e0c9bab2400000  1万
-	//0x152d02c7e14af6000000 10万
-	//0x43c33c1937564800000  20万
+	// 0xd3c21bcecceda0000000 100万
+	// 0x21e19e0c9bab2400000  1万
+	// 0x152d02c7e14af6000000 10万
+	// 0x43c33c1937564800000  20万
 	// 0x3635c9adc5dea00000  1000
-	//0x14542ba12a337c00000  6000
+	// 0x14542ba12a337c00000  6000
 	for _, priv := range accounts {
 		to := crypto.PubkeyToAddress(priv.PublicKey)
 		params := map[string]interface{}{
@@ -114,14 +113,14 @@ func main() {
 
 	target := getValidators(conn)
 	l := int64(len(target))
-	//randIndex := rand.Int63n(l)
+	// randIndex := rand.Int63n(l)
 	i := 0
 	j := 0
 	counter := 0
 	for index, priv := range accounts {
 		counter++
 		i %= 5
-		i++ //1 - 5
+		i++ // 1 - 5
 
 		j++
 		j %= int(l) // j ==0
@@ -158,7 +157,7 @@ func createVoter(client *ethclient.Client, privateKey *ecdsa.PrivateKey, Name *b
 	toAddress = mapprotocol.MustProxyAddressFor("LockedGold")
 	commHash = sendContractTransaction(client, from, toAddress, lockedGold, privateKey, input)
 	getResult(client, commHash, false)
-	//vote
+	// vote
 	g, l, _ := getGL(privateKey, client, target, lockedGold)
 	toAddress = mapprotocol.MustProxyAddressFor("Election")
 	input = mapprotocol.PackInput(mapprotocol.AbiFor("Election"), "vote", target, lockedGold, l, g)
@@ -175,13 +174,13 @@ func sendContractTransaction(client *ethclient.Client, from, toAddress common.Ad
 		logger.Error("PendingNonceAt", "error", err)
 	}
 	gasPrice, err := client.SuggestGasPrice(context.Background())
-	//gasPrice = big.NewInt(1000 000 000 000)
+	// gasPrice = big.NewInt(1000 000 000 000)
 	if err != nil {
 		log.Error("SuggestGasPrice", "error", err)
 	}
 	gasLimit := uint64(DefaultGasLimit) // in units
 
-	//If the contract surely has code (or code is not needed), estimate the transaction
+	// If the contract surely has code (or code is not needed), estimate the transaction
 
 	msg := ethchain.CallMsg{From: from, To: &toAddress, GasPrice: gasPrice, Value: value, Data: input, GasFeeCap: big.NewInt(3000000000000)}
 	gasLimit, err = client.EstimateGas(context.Background(), msg)
@@ -189,7 +188,7 @@ func sendContractTransaction(client *ethclient.Client, from, toAddress common.Ad
 		logger.Error("Contract exec failed", "error", err)
 	}
 	if gasLimit < 1 {
-		//gasLimit = 866328
+		// gasLimit = 866328
 		gasLimit = 2100000
 	}
 	gasLimit = uint64(DefaultGasLimit)
@@ -259,14 +258,14 @@ func queryTx(conn *ethclient.Client, txHash common.Hash, contract bool, pending 
 	}
 
 	if receipt.Status == types.ReceiptStatusSuccessful {
-		//block, err := conn.BlockByHash(context.Background(), receipt.BlockHash)
-		//if err != nil {
+		// block, err := conn.BlockByHash(context.Background(), receipt.BlockHash)
+		// if err != nil {
 		//	logger.Error("BlockByHash", err)
-		//}
-		//logger.Info("Transaction Success", " block Number", receipt.BlockNumber.Uint64(), " block txs", len(block.Transactions()), "blockhash", block.Hash().Hex())
+		// }
+		// logger.Info("Transaction Success", " block Number", receipt.BlockNumber.Uint64(), " block txs", len(block.Transactions()), "blockhash", block.Hash().Hex())
 		logger.Info("Transaction Success", "block Number", receipt.BlockNumber.Uint64())
 	} else if receipt.Status == types.ReceiptStatusFailed {
-		//isContinueError = false
+		// isContinueError = false
 		logger.Info("Transaction Failed ", "Block Number", receipt.BlockNumber.Uint64())
 	}
 }
@@ -292,7 +291,7 @@ func Post(contentType string, body io.Reader) (result []byte, err error) {
 	return result, err
 }
 
-//Send Transtion (Post Way)
+// Send Transtion (Post Way)
 type voteTotal struct {
 	Validator common.Address
 	Value     *big.Int
@@ -308,7 +307,7 @@ func getGL(privateKey *ecdsa.PrivateKey, client *ethclient.Client, target common
 	abiElection := mapprotocol.AbiFor("Election")
 
 	from := crypto.PubkeyToAddress(privateKey.PublicKey)
-	//vote
+	// vote
 	input := mapprotocol.PackInput(mapprotocol.AbiFor("Election"), "getTotalVotesForEligibleValidators")
 	sendContractTransaction(client, from, electionAddress, nil, privateKey, input)
 	header, err := client.HeaderByNumber(context.Background(), nil)
@@ -328,10 +327,10 @@ func getGL(privateKey *ecdsa.PrivateKey, client *ethclient.Client, target common
 	for i, addr := range validators {
 		voteTotals[i] = voteTotal{addr, votes[i]}
 	}
-	//fmt.Println(target, VoteNum)
-	//for i, v := range voteTotals {
+	// fmt.Println(target, VoteNum)
+	// for i, v := range voteTotals {
 	//	fmt.Println("=== ", i, "===", v.Validator.String(), v.Value.String())
-	//}
+	// }
 
 	for _, voteTotal := range voteTotals {
 		if bytes.Equal(voteTotal.Validator.Bytes(), target.Bytes()) {

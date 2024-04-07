@@ -16,12 +16,12 @@
 package election
 
 import (
+	"github.com/Alexfordev/atlas/contracts"
+	"github.com/Alexfordev/atlas/contracts/abis"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/contracts"
-	"github.com/mapprotocol/atlas/contracts/abis"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/params"
 	"math/big"
 	"sort"
 	"time"
@@ -139,7 +139,7 @@ func ActiveAllPending(vmRunner vm.EVMRunner, validators []common.Address) (bool,
 	vmRunner.StopGasMetering()
 	defer vmRunner.StartGasMetering()
 	start := time.Now()
-	//debug voters
+	// debug voters
 	for _, ele := range validators {
 		var voters []common.Address
 		getPendingVotersForValidatorMethod.Query(vmRunner, &voters, ele)

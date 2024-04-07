@@ -37,7 +37,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/rlp"
 
-	"github.com/mapprotocol/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/chain"
 )
 
 type allocItem struct{ Addr, Balance *big.Int }

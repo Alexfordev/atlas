@@ -18,8 +18,8 @@ package atlas
 
 import (
 	"errors"
+	"github.com/Alexfordev/atlas/consensus"
 	"github.com/ethereum/go-ethereum/p2p/enode"
-	"github.com/mapprotocol/atlas/consensus"
 	"math"
 	"math/big"
 	"sync"
@@ -33,15 +33,15 @@ import (
 	"github.com/ethereum/go-ethereum/params"
 	"github.com/ethereum/go-ethereum/trie"
 
-	"github.com/mapprotocol/atlas/atlas/downloader"
-	"github.com/mapprotocol/atlas/atlas/fetcher"
-	"github.com/mapprotocol/atlas/atlas/protocols/eth"
-	"github.com/mapprotocol/atlas/atlas/protocols/snap"
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/forkid"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/p2p"
+	"github.com/Alexfordev/atlas/atlas/downloader"
+	"github.com/Alexfordev/atlas/atlas/fetcher"
+	"github.com/Alexfordev/atlas/atlas/protocols/eth"
+	"github.com/Alexfordev/atlas/atlas/protocols/snap"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/forkid"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/p2p"
 )
 
 const (
@@ -132,7 +132,7 @@ type handler struct {
 	wg        sync.WaitGroup
 	peerWG    sync.WaitGroup
 
-	//engine consensus.Engine
+	// engine consensus.Engine
 
 	server      *p2p.Server
 	proxyServer *p2p.Server
@@ -300,7 +300,7 @@ func (h *handler) runEthPeer(peer *eth.Peer, handler eth.Handler) error {
 	if handler, ok := h.chain.Engine().(consensus.Handler); ok {
 		isValidator, err := handler.Handshake(peer)
 		if err != nil {
-			//isValidator = false
+			// isValidator = false
 			peer.Log().Warn("Istanbul handshake failed", "err", err)
 			return err
 		}
@@ -518,7 +518,7 @@ func (h *handler) BroadcastBlock(block *types.Block, propagate bool) {
 		// Calculate the TD of the block (it's not imported yet, so block.Td is not valid)
 		var td *big.Int
 		if parent := h.chain.GetBlock(block.ParentHash(), block.NumberU64()-1); parent != nil {
-			//td = new(big.Int).Add(block.TotalDifficulty(), h.chain.GetTd(block.ParentHash(), block.NumberU64()-1))
+			// td = new(big.Int).Add(block.TotalDifficulty(), h.chain.GetTd(block.ParentHash(), block.NumberU64()-1))
 			td = block.TotalDifficulty()
 		} else {
 			log.Error("Propagating dangling block", "number", block.Number(), "hash", hash)

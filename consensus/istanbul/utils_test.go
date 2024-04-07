@@ -22,7 +22,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/mapprotocol/atlas/helper/bls"
+	"github.com/Alexfordev/atlas/helper/bls"
 )
 
 func TestValidatorSetDiff(t *testing.T) {
@@ -125,7 +125,7 @@ func TestValidatorSetDiff(t *testing.T) {
 			})
 		}
 		addedVals, removedVals := ValidatorSetDiff(convertedInputOldValSet, convertedInputNewValSet)
-		addedValsAddresses,_, _ := SeparateValidatorDataIntoIstanbulExtra(addedVals)
+		addedValsAddresses, _, _ := SeparateValidatorDataIntoIstanbulExtra(addedVals)
 
 		if !CompareValidatorSlices(addedValsAddresses, tt.expectedAddedVals) || removedVals.Cmp(tt.expectedRemovedVals) != 0 {
 			t.Errorf("test %d failed - have: addedVals %v, removedVals %v; want: addedVals %v, removedVals %v", i, addedValsAddresses, removedVals, tt.expectedAddedVals, tt.expectedRemovedVals)

@@ -3,16 +3,16 @@ package cmd
 import (
 	"bytes"
 	"context"
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/cmd/new_marker/define"
+	"github.com/Alexfordev/atlas/cmd/new_marker/mapprotocol"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/helper/decimal"
+	"github.com/Alexfordev/atlas/helper/decimal/fixed"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/cmd/new_marker/define"
-	"github.com/mapprotocol/atlas/cmd/new_marker/mapprotocol"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/helper/decimal"
-	"github.com/mapprotocol/atlas/helper/decimal/fixed"
-	"github.com/mapprotocol/atlas/params"
 	"gopkg.in/urfave/cli.v1"
 	"math/big"
 	"os"
@@ -59,11 +59,11 @@ func (v *Voter) Vote(_ *cli.Context, cfg *define.Config) error {
 }
 
 func (v *Voter) QuicklyVote(ctx *cli.Context, cfg *define.Config) error {
-	//---------------------------- create account ----------------
+	// ---------------------------- create account ----------------
 	_ = v.account.CreateAccount(ctx, cfg)
-	//---------------------------- lock --------------------------
+	// ---------------------------- lock --------------------------
 	_ = v.validator.LockedMAP(ctx, cfg)
-	//---------------------------- vote --------------------------
+	// ---------------------------- vote --------------------------
 	_ = v.Vote(ctx, cfg)
 	log.Info("=== End ===")
 	return nil
@@ -121,7 +121,7 @@ func (v *Voter) RevokePending(_ *cli.Context, cfg *define.Config) error {
 	if err != nil {
 		log.Crit("revokePending", "err", err)
 	}
-	//fmt.Println("=== greater,lesser,index ===", greater, lesser, index)
+	// fmt.Println("=== greater,lesser,index ===", greater, lesser, index)
 	_params := []interface{}{validator, LockedNum, lesser, greater, index}
 	log.Info("=== revokePending ===", "admin", cfg.From)
 	v.handleType1Msg(cfg, v.electionTo, nil, v.electionAbi, "revokePending", _params...)
@@ -268,7 +268,7 @@ func (v *Voter) GetRewardInfo(_ *cli.Context, cfg *define.Config) error {
 		return err
 	}
 	for _, l := range logs {
-		//validator := common.Bytes2Hex(l.Topics[0].Bytes())
+		// validator := common.Bytes2Hex(l.Topics[0].Bytes())
 		validator := common.BytesToAddress(l.Topics[1].Bytes())
 		reward := big.NewInt(0).SetBytes(l.Data[:32])
 		log.Info("", "validator", validator, "reward", reward)
@@ -407,9 +407,9 @@ func (v *Voter) setContractOwner(_ *cli.Context, cfg *define.Config) error {
 
 func (v *Voter) setProxyContractOwner(_ *cli.Context, cfg *define.Config) error {
 	NewOwner := cfg.TargetAddress
-	ContractAddress := cfg.ContractAddress //代理地址
+	ContractAddress := cfg.ContractAddress // 代理地址
 	log.Info("ProxyAddress", "ContractAddress", ContractAddress, "NewOwner", NewOwner.String())
-	ProxyAbi := mapprotocol.AbiFor("Proxy") //代理ABI
+	ProxyAbi := mapprotocol.AbiFor("Proxy") // 代理ABI
 	log.Info("=== setOwner ===", "admin", cfg.From.String())
 	v.handleType1Msg(cfg, ContractAddress, nil, ProxyAbi, "_transferOwnership", NewOwner)
 	return nil

@@ -4,9 +4,9 @@
 package bls
 
 import (
-	"github.com/mapprotocol/atlas/chains/eth2/bls12381/blst"
-	"github.com/mapprotocol/atlas/chains/eth2/bls12381/common"
-	"github.com/mapprotocol/atlas/chains/eth2/bls12381/herumi"
+	"github.com/Alexfordev/atlas/chains/eth2/bls12381/blst"
+	"github.com/Alexfordev/atlas/chains/eth2/bls12381/common"
+	"github.com/Alexfordev/atlas/chains/eth2/bls12381/herumi"
 )
 
 // Initialize herumi temporarily while we transition to blst for ethdo.

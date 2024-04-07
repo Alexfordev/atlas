@@ -17,7 +17,7 @@
 package core
 
 import (
-	"github.com/mapprotocol/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 )
 
 type backlogEvent struct {

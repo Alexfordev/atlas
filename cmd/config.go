@@ -28,13 +28,13 @@ import (
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/naoina/toml"
 
-	"github.com/mapprotocol/atlas/apis/atlasapi"
-	"github.com/mapprotocol/atlas/atlas/catalyst"
-	"github.com/mapprotocol/atlas/atlas/ethconfig"
-	"github.com/mapprotocol/atlas/cmd/node"
-	"github.com/mapprotocol/atlas/cmd/utils"
-	"github.com/mapprotocol/atlas/metrics"
-	params2 "github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/apis/atlasapi"
+	"github.com/Alexfordev/atlas/atlas/catalyst"
+	"github.com/Alexfordev/atlas/atlas/ethconfig"
+	"github.com/Alexfordev/atlas/cmd/node"
+	"github.com/Alexfordev/atlas/cmd/utils"
+	"github.com/Alexfordev/atlas/metrics"
+	params2 "github.com/Alexfordev/atlas/params"
 )
 
 var (
@@ -122,7 +122,7 @@ func makeConfigNode(ctx *cli.Context) (*node.Node, atlasConfig) {
 	}
 
 	if ctx.GlobalBool(utils.SingleFlag.Name) {
-		//set node config
+		// set node config
 		if !ctx.GlobalBool(utils.HTTPListenAddrFlag.Name) {
 			cfg.Node.HTTPHost = "127.0.0.1"
 		}
@@ -159,12 +159,12 @@ func makeConfigNode(ctx *cli.Context) (*node.Node, atlasConfig) {
 // makeFullNode loads atlas configuration and creates the Ethereum backend.
 func makeFullNode(ctx *cli.Context) (*node.Node, atlasapi.Backend) {
 	stack, cfg := makeConfigNode(ctx)
-	//if ctx.GlobalIsSet(utils.OverrideLondonFlag.Name) {
+	// if ctx.GlobalIsSet(utils.OverrideLondonFlag.Name) {
 	//	cfg.Eth.OverrideLondon = new(big.Int).SetUint64(ctx.GlobalUint64(utils.OverrideLondonFlag.Name))
-	//}
+	// }
 	backend, eth := utils.RegisterEthService(stack, &cfg.Eth)
 	// todo init header store
-	//chainsdb.NewStoreDb(ctx, cfg.Eth.DatabaseCache, cfg.Eth.DatabaseHandles)
+	// chainsdb.NewStoreDb(ctx, cfg.Eth.DatabaseCache, cfg.Eth.DatabaseHandles)
 	// Configure catalyst.
 	if ctx.GlobalBool(utils.CatalystFlag.Name) {
 		if eth == nil {
@@ -176,9 +176,9 @@ func makeFullNode(ctx *cli.Context) (*node.Node, atlasapi.Backend) {
 	}
 
 	// Add the Ethereum Stats daemon if requested.
-	//if cfg.Ethstats.URL != "" {
+	// if cfg.Ethstats.URL != "" {
 	//	utils.RegisterEthStatsService(stack, backend, cfg.Ethstats.URL)
-	//}
+	// }
 	return stack, backend
 }
 

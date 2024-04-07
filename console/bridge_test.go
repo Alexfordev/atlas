@@ -19,8 +19,8 @@ package console
 import (
 	"testing"
 
+	"github.com/Alexfordev/atlas/apis/jsre"
 	"github.com/dop251/goja"
-	"github.com/mapprotocol/atlas/apis/jsre"
 )
 
 // TestUndefinedAsParam ensures that personal functions can receive

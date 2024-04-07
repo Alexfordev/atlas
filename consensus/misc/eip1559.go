@@ -24,8 +24,8 @@ import (
 	"github.com/ethereum/go-ethereum/common/math"
 	ethparams "github.com/ethereum/go-ethereum/params"
 
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // VerifyEip1559Header verifies some header attributes which were changed in EIP-1559,

@@ -25,7 +25,7 @@ import (
 	"github.com/ethereum/go-ethereum/p2p/nat"
 	"github.com/ethereum/go-ethereum/rpc"
 
-	"github.com/mapprotocol/atlas/p2p"
+	"github.com/Alexfordev/atlas/p2p"
 )
 
 const (

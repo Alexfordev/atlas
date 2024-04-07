@@ -17,13 +17,13 @@
 package backend
 
 import (
-	"github.com/mapprotocol/atlas/p2p"
+	"github.com/Alexfordev/atlas/p2p"
 	"sync"
 	"time"
 
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/p2p/enode"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
 )
 
 type validatorPeerHandler struct {

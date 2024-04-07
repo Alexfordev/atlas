@@ -31,8 +31,8 @@ import (
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/trie"
 
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/metrics"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/metrics"
 )
 
 const (
@@ -65,7 +65,7 @@ type fetchRequest struct {
 type fetchResult struct {
 	pending int32 // Flag telling what deliveries are outstanding
 
-	//Uncles       []*types.Header
+	// Uncles       []*types.Header
 	Header         *types.Header
 	Transactions   types.Transactions
 	Receipts       types.Receipts
@@ -369,9 +369,9 @@ func (q *queue) Results(block bool) []*fetchResult {
 	for _, result := range results {
 		// Recalculate the result item weights to prevent memory exhaustion
 		size := result.Header.Size()
-		//for _, uncle := range result.Uncles {
+		// for _, uncle := range result.Uncles {
 		//	size += uncle.Size()
-		//}
+		// }
 		for _, receipt := range result.Receipts {
 			size += receipt.Size()
 		}
@@ -481,9 +481,10 @@ func (q *queue) ReserveReceipts(p *peerConnection, count int) (*fetchRequest, bo
 // to access the queue, so they already need a lock anyway.
 //
 // Returns:
-//   item     - the fetchRequest
-//   progress - whether any progress was made
-//   throttle - if the caller should throttle for a while
+//
+//	item     - the fetchRequest
+//	progress - whether any progress was made
+//	throttle - if the caller should throttle for a while
 func (q *queue) reserveHeaders(p *peerConnection, count int, taskPool map[common.Hash]*types.Header, taskQueue *prque.Prque,
 	pendPool map[string]*fetchRequest, kind uint) (*fetchRequest, bool, bool) {
 	// Short circuit if the pool has been depleted, or if the peer's already
@@ -797,9 +798,9 @@ func (q *queue) DeliverBodies(id string, txLists [][]*types.Transaction, randomn
 		if types.DeriveSha(types.Transactions(txLists[index]), trieHasher) != header.TxHash {
 			return errInvalidBody
 		}
-		//if types.CalcUncleHash(uncleLists[index]) != header.UncleHash {
+		// if types.CalcUncleHash(uncleLists[index]) != header.UncleHash {
 		//	return errInvalidBody
-		//}
+		// }
 		return nil
 	}
 

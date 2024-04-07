@@ -22,8 +22,8 @@ import (
 	"net/http"
 	"sort"
 
+	"github.com/Alexfordev/atlas/metrics"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/metrics"
 )
 
 // Handler returns an HTTP handler which dump metrics in Prometheus format.

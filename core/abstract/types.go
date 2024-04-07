@@ -18,12 +18,12 @@ package abstract
 
 import (
 	"context"
+	"github.com/Alexfordev/atlas/consensus"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/consensus"
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
 	"github.com/ethereum/go-ethereum/event"
 )
 

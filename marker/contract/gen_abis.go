@@ -2,7 +2,7 @@
 // 2021-02-23 16:02:29.096161 -0600 CST m=+0.252353841
 package contract
 
-import "github.com/mapprotocol/atlas/accounts/abi"
+import "github.com/Alexfordev/atlas/accounts/abi"
 
 var abis map[string]*abi.ABI
 

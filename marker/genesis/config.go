@@ -1,13 +1,13 @@
 package genesis
 
 import (
-	"github.com/mapprotocol/atlas/helper/decimal/bigintstr"
-	"github.com/mapprotocol/atlas/helper/decimal/fixed"
+	"github.com/Alexfordev/atlas/helper/decimal/bigintstr"
+	"github.com/Alexfordev/atlas/helper/decimal/fixed"
 	"math/big"
 
+	"github.com/Alexfordev/atlas/marker/internal/utils"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/marker/internal/utils"
-	"github.com/mapprotocol/atlas/params"
 )
 
 // durations in seconds

@@ -23,8 +23,8 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/mapprotocol/atlas/core/forkid"
-	"github.com/mapprotocol/atlas/p2p"
+	"github.com/Alexfordev/atlas/core/forkid"
+	"github.com/Alexfordev/atlas/p2p"
 )
 
 const (

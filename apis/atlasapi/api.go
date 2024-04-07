@@ -36,20 +36,20 @@ import (
 	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/tyler-smith/go-bip39"
 
-	"github.com/mapprotocol/atlas/accounts"
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/accounts/keystore"
-	"github.com/mapprotocol/atlas/accounts/scwallet"
-	"github.com/mapprotocol/atlas/chains"
-	"github.com/mapprotocol/atlas/chains/interfaces"
-	"github.com/mapprotocol/atlas/consensus/misc"
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/p2p"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/accounts"
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/accounts/keystore"
+	"github.com/Alexfordev/atlas/accounts/scwallet"
+	"github.com/Alexfordev/atlas/chains"
+	"github.com/Alexfordev/atlas/chains/interfaces"
+	"github.com/Alexfordev/atlas/consensus/misc"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/p2p"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // PublicEthereumAPI provides an API to access Ethereum related information.
@@ -1136,11 +1136,11 @@ func RPCMarshalHeader(head *types.Header) map[string]interface{} {
 		"parentHash": head.ParentHash,
 		"nonce":      head.Nonce,
 		"mixHash":    head.MixDigest,
-		//"sha3Uncles":       head.UncleHash,
+		// "sha3Uncles":       head.UncleHash,
 		"logsBloom": head.Bloom,
 		"stateRoot": head.Root,
 		"miner":     head.Coinbase,
-		//"difficulty":       (*hexutil.Big)(head.Difficulty),
+		// "difficulty":       (*hexutil.Big)(head.Difficulty),
 		"extraData":        hexutil.Bytes(head.Extra),
 		"size":             hexutil.Uint64(head.Size()),
 		"gasLimit":         hexutil.Uint64(head.GasLimit),
@@ -1195,12 +1195,12 @@ func RPCMarshalBlock(block *types.Block, inclTx bool, fullTx bool, config *param
 		}
 		fields["transactions"] = transactions
 	}
-	//uncles := block.Uncles()
-	//uncleHashes := make([]common.Hash, len(uncles))
-	//for i, uncle := range uncles {
+	// uncles := block.Uncles()
+	// uncleHashes := make([]common.Hash, len(uncles))
+	// for i, uncle := range uncles {
 	//	uncleHashes[i] = uncle.Hash()
-	//}
-	//fields["uncles"] = uncleHashes
+	// }
+	// fields["uncles"] = uncleHashes
 
 	return fields, nil
 }
@@ -1906,7 +1906,7 @@ func (api *PublicDebugAPI) GetBlockRlp(ctx context.Context, number uint64) (hexu
 //
 // This is a temporary method to debug the externalsigner integration,
 // TODO: Remove this method when the integration is mature
-//func (api *PublicDebugAPI) TestSignCliqueBlock(ctx context.Context, address common.Address, number uint64) (common.Address, error) {
+// func (api *PublicDebugAPI) TestSignCliqueBlock(ctx context.Context, address common.Address, number uint64) (common.Address, error) {
 //	block, _ := api.b.BlockByNumber(ctx, rpc.BlockNumber(number))
 //	if block == nil {
 //		return common.Address{}, fmt.Errorf("block #%d not found", number)
@@ -1938,7 +1938,7 @@ func (api *PublicDebugAPI) GetBlockRlp(ctx context.Context, number uint64) (hexu
 //	copy(signer[:], crypto.Keccak256(pubkey[1:])[12:])
 //
 //	return signer, nil
-//}
+// }
 
 // PrintBlock retrieves a block and returns its pretty printed form.
 func (api *PublicDebugAPI) PrintBlock(ctx context.Context, number uint64) (string, error) {
@@ -2069,7 +2069,7 @@ func (p *PublicHeaderStoreAPI) LatestState() (*state.StateDB, error) {
 }
 
 func (p *PublicHeaderStoreAPI) CurrentHeaderNumber(chainID uint64) (uint64, error) {
-	//return new(ethereum.Validate).GetCurrentHeaderNumber(chains.ChainType(chainID))
+	// return new(ethereum.Validate).GetCurrentHeaderNumber(chains.ChainType(chainID))
 	group, err := chains.ChainType2ChainGroup(chains.ChainType(chainID))
 	if err != nil {
 		return 0, err
@@ -2091,7 +2091,7 @@ func (p *PublicHeaderStoreAPI) CurrentHeaderNumber(chainID uint64) (uint64, erro
 }
 
 func (p *PublicHeaderStoreAPI) GetHashByNumber(chainID uint64, number uint64) (common.Hash, error) {
-	//return new(ethereum.Validate).GetHashByNumber(chains.ChainType(chainID), number)
+	// return new(ethereum.Validate).GetHashByNumber(chains.ChainType(chainID), number)
 	group, err := chains.ChainType2ChainGroup(chains.ChainType(chainID))
 	if err != nil {
 		return common.Hash{}, err

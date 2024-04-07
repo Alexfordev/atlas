@@ -27,9 +27,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/Alexfordev/atlas/accounts"
 	"github.com/cespare/cp"
 	"github.com/davecgh/go-spew/spew"
-	"github.com/mapprotocol/atlas/accounts"
 	"github.com/ethereum/go-ethereum/common"
 )
 

@@ -30,9 +30,9 @@ import (
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/ethereum/go-ethereum/trie"
 
-	"github.com/mapprotocol/atlas/core/chain"
-	"github.com/mapprotocol/atlas/metrics"
-	"github.com/mapprotocol/atlas/p2p"
+	"github.com/Alexfordev/atlas/core/chain"
+	"github.com/Alexfordev/atlas/metrics"
+	"github.com/Alexfordev/atlas/p2p"
 )
 
 const (

@@ -3,8 +3,8 @@ package testutil
 import (
 	"math/big"
 
-	"github.com/mapprotocol/atlas/contracts/abis"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/contracts/abis"
+	"github.com/Alexfordev/atlas/params"
 )
 
 type BlockchainParametersMock struct {

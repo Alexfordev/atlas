@@ -20,21 +20,19 @@ import (
 	"context"
 	"encoding/binary"
 	"fmt"
-	"github.com/mapprotocol/atlas/core"
+	"github.com/Alexfordev/atlas/core"
 	"sync"
 	"sync/atomic"
 	"time"
 
+	"github.com/Alexfordev/atlas/core/abstract"
+	"github.com/Alexfordev/atlas/core/rawdb"
+	"github.com/Alexfordev/atlas/core/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/core/rawdb"
-	"github.com/mapprotocol/atlas/core/types"
 	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/ethereum/go-ethereum/event"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/core/abstract"
 )
-
-
 
 // ChainIndexer does a post-processing job for equally sized sections of the
 // canonical chain (like BlooomBits and CHT structures). A ChainIndexer is
@@ -46,10 +44,10 @@ import (
 // after an entire section has been finished or in case of rollbacks that might
 // affect already finished sections.
 type ChainIndexer struct {
-	chainDb  ethdb.Database      // Chain database to index the data from
-	indexDb  ethdb.Database      // Prefixed table-view of the db to write index metadata into
+	chainDb  ethdb.Database               // Chain database to index the data from
+	indexDb  ethdb.Database               // Prefixed table-view of the db to write index metadata into
 	backend  abstract.ChainIndexerBackend // Background processor generating the index data content
-	children []*ChainIndexer     // Child indexers to cascade chain updates to
+	children []*ChainIndexer              // Child indexers to cascade chain updates to
 
 	active    uint32          // Flag whether the event loop was started
 	update    chan struct{}   // Notification channel that headers should be processed

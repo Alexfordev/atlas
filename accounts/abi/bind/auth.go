@@ -28,10 +28,10 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/log"
 
-	"github.com/mapprotocol/atlas/accounts"
-	"github.com/mapprotocol/atlas/accounts/external"
-	"github.com/mapprotocol/atlas/accounts/keystore"
-	"github.com/mapprotocol/atlas/core/types"
+	"github.com/Alexfordev/atlas/accounts"
+	"github.com/Alexfordev/atlas/accounts/external"
+	"github.com/Alexfordev/atlas/accounts/keystore"
+	"github.com/Alexfordev/atlas/core/types"
 )
 
 // ErrNoChainID is returned whenever the user failed to specify a chain id.

@@ -1,11 +1,11 @@
 package contracts
 
 import (
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/contracts/abis"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/contracts/abis"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/params"
 )
 
 var getAddressMethod = NewBoundMethod(params.RegistrySmartContractAddress, abis.Registry, "getAddressFor", params.MaxGasForGetAddressFor)
@@ -15,8 +15,8 @@ var getAddressMethod = NewBoundMethod(params.RegistrySmartContractAddress, abis.
 // GetRegisteredAddress returns the address on the registry for a given id
 func GetRegisteredAddress(vmRunner vm.EVMRunner, registryId common.Hash) (common.Address, error) {
 
-	//vmRunner.StopGasMetering()
-	//defer vmRunner.StartGasMetering()
+	// vmRunner.StopGasMetering()
+	// defer vmRunner.StartGasMetering()
 
 	var contractAddress common.Address
 	err := getAddressMethod.Query(vmRunner, &contractAddress, registryId)

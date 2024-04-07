@@ -31,16 +31,16 @@ import (
 	"github.com/ethereum/go-ethereum/log"
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/mapprotocol/atlas/accounts"
-	"github.com/mapprotocol/atlas/accounts/keystore"
-	"github.com/mapprotocol/atlas/apis/atlasapi"
-	"github.com/mapprotocol/atlas/atlas"
-	"github.com/mapprotocol/atlas/atlas/downloader"
-	"github.com/mapprotocol/atlas/cmd/node"
-	"github.com/mapprotocol/atlas/cmd/utils"
-	"github.com/mapprotocol/atlas/helper/debug"
-	"github.com/mapprotocol/atlas/helper/flags"
-	"github.com/mapprotocol/atlas/metrics"
+	"github.com/Alexfordev/atlas/accounts"
+	"github.com/Alexfordev/atlas/accounts/keystore"
+	"github.com/Alexfordev/atlas/apis/atlasapi"
+	"github.com/Alexfordev/atlas/atlas"
+	"github.com/Alexfordev/atlas/atlas/downloader"
+	"github.com/Alexfordev/atlas/cmd/node"
+	"github.com/Alexfordev/atlas/cmd/utils"
+	"github.com/Alexfordev/atlas/helper/debug"
+	"github.com/Alexfordev/atlas/helper/flags"
+	"github.com/Alexfordev/atlas/metrics"
 )
 
 const (
@@ -67,7 +67,7 @@ var (
 		utils.NoUSBFlag,
 		utils.USBFlag,
 		utils.SmartCardDaemonPathFlag,
-		//utils.OverrideLondonFlag,
+		// utils.OverrideLondonFlag,
 		utils.TxPoolLocalsFlag,
 		utils.TxPoolNoLocalsFlag,
 		utils.TxPoolJournalFlag,
@@ -109,15 +109,15 @@ var (
 		utils.MaxPeersFlag,
 		utils.MaxPendingPeersFlag,
 		utils.VerifyCheckPointFlag,
-		//utils.MiningEnabledFlag,
-		//utils.MinerThreadsFlag,
-		//utils.MinerNotifyFlag,
-		//utils.MinerGasLimitFlag,
-		//utils.MinerGasPriceFlag,
-		//utils.MinerValidatorFlag,
-		//utils.MinerExtraDataFlag,
-		//utils.MinerRecommitIntervalFlag,
-		//utils.MinerNoVerifyFlag,
+		// utils.MiningEnabledFlag,
+		// utils.MinerThreadsFlag,
+		// utils.MinerNotifyFlag,
+		// utils.MinerGasLimitFlag,
+		// utils.MinerGasPriceFlag,
+		// utils.MinerValidatorFlag,
+		// utils.MinerExtraDataFlag,
+		// utils.MinerRecommitIntervalFlag,
+		// utils.MinerNoVerifyFlag,
 		utils.NATFlag,
 		utils.NoDiscoverFlag,
 		utils.DiscoveryV5Flag,
@@ -137,7 +137,7 @@ var (
 		utils.GpoBlocksFlag,
 		utils.GpoPercentileFlag,
 		utils.GpoMaxGasPriceFlag,
-		//utils.MinerNotifyFullFlag,
+		// utils.MinerNotifyFullFlag,
 		configFileFlag,
 		utils.CatalystFlag,
 		utils.MiningEnabledFlag,
@@ -209,8 +209,8 @@ func init() {
 		attachCommand,
 		javascriptCommand,
 		// See misccmd.go:
-		//makecacheCommand,
-		//makedagCommand,
+		// makecacheCommand,
+		// makedagCommand,
 		versionCommand,
 		licenseCommand,
 		// See config.go
@@ -394,8 +394,8 @@ func startNode(ctx *cli.Context, stack *node.Node, backend atlasapi.Backend) {
 			utils.Fatalf("Ethereum service not running: %v", err)
 		}
 		// Set the gas price to the limits from the CLI and start mining
-		//gasprice := utils.GlobalBig(ctx, utils.MinerGasPriceFlag.Name)
-		//ethBackend.TxPool().SetGasPrice(gasprice)
+		// gasprice := utils.GlobalBig(ctx, utils.MinerGasPriceFlag.Name)
+		// ethBackend.TxPool().SetGasPrice(gasprice)
 		// start mining
 		threads := ctx.GlobalInt(utils.MinerThreadsFlag.Name)
 		if err := ethBackend.StartMining(threads); err != nil {

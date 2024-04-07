@@ -3,7 +3,7 @@ package p2p
 import (
 	"net"
 
-	"github.com/mapprotocol/atlas/metrics"
+	"github.com/Alexfordev/atlas/metrics"
 )
 
 const (

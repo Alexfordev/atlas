@@ -20,12 +20,12 @@ import (
 	"math/big"
 	"time"
 
+	"github.com/Alexfordev/atlas/contracts"
+	"github.com/Alexfordev/atlas/contracts/abis"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/params"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/contracts"
-	"github.com/mapprotocol/atlas/contracts/abis"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/params"
 )
 
 var (
@@ -67,7 +67,7 @@ func GetIntrinsicGasForAlternativeFeeCurrencyOrDefault(vmRunner vm.EVMRunner) ui
 // with an alternative currency
 func getIntrinsicGasForAlternativeFeeCurrency(vmRunner vm.EVMRunner) (uint64, error) {
 	return 0, nil
-	//TODO Replace with the following in the future
+	// TODO Replace with the following in the future
 	var gas *big.Int
 	err := intrinsicGasForAlternativeFeeCurrencyMethod.Query(vmRunner, &gas)
 

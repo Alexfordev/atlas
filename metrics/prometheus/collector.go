@@ -22,7 +22,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/mapprotocol/atlas/metrics"
+	"github.com/Alexfordev/atlas/metrics"
 )
 
 var (

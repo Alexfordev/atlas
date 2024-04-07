@@ -3,7 +3,7 @@ package uptime
 import (
 	"errors"
 	"fmt"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
 )
 
 const (

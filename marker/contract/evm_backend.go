@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"math/big"
 
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/core/vm/runtime"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/core/vm/runtime"
 )
 
 // EVMBackend represents a contract interface that talks directly to an EVM

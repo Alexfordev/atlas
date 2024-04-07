@@ -3,11 +3,11 @@ package test
 import (
 	"context"
 	"fmt"
+	"github.com/Alexfordev/atlas/core/types"
+	blscrypto "github.com/Alexfordev/atlas/helper/bls"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mapprotocol/atlas/core/types"
-	blscrypto "github.com/mapprotocol/atlas/helper/bls"
 	"golang.org/x/crypto/sha3"
 	"io"
 	"log"
@@ -17,10 +17,10 @@ import (
 )
 
 func TestData(t *testing.T) {
-	//url := fmt.Sprintf("http://127.0.0.1:7445")
-	//ip := "127.0.0.1" //utils.RPCListenAddrFlag.Name)
-	//port := 7415                //utils.RPCPortFlag.Name)
-	//url := fmt.Sprintf("http://%s", fmt.Sprintf("%s:%d", ip, port))
+	// url := fmt.Sprintf("http://127.0.0.1:7445")
+	// ip := "127.0.0.1" //utils.RPCListenAddrFlag.Name)
+	// port := 7415                //utils.RPCPortFlag.Name)
+	// url := fmt.Sprintf("http://%s", fmt.Sprintf("%s:%d", ip, port))
 	url := fmt.Sprintf("https://poc2-rpc.maplabs.io")
 	conn, err := Dial(url)
 	if err != nil {
@@ -30,57 +30,57 @@ func TestData(t *testing.T) {
 	if Header == nil {
 		t.Fatal("header is nil")
 	}
-	//fmt.Println("ParentHash",Header.ParentHash)
-	//fmt.Println("Coinbase",Header.Coinbase)
-	//fmt.Println("Root",Header.Root)
-	//fmt.Println("TxHash",Header.TxHash)
-	//fmt.Println("ReceiptHash",Header.ReceiptHash)
-	//fmt.Printf("Bloom:%x\n",Header.Bloom)
-	//fmt.Println("Number",Header.Number)
-	//fmt.Println("GasLimit",Header.GasLimit)
-	//fmt.Println("GasUsed",Header.GasUsed)
-	//fmt.Println("Time",Header.Time)
-	//fmt.Printf("Extra:%x\n",Header.Extra)
-	//fmt.Printf("Extra[32:]:%x\n",Header.Extra[32:])
-	//fmt.Println("MixDigest",Header.MixDigest)
-	//fmt.Printf("Nonce:%x\n",Header.Nonce)
-	//fmt.Println("BaseFee",Header.BaseFee)
-	//fmt.Println("================================================")
+	// fmt.Println("ParentHash",Header.ParentHash)
+	// fmt.Println("Coinbase",Header.Coinbase)
+	// fmt.Println("Root",Header.Root)
+	// fmt.Println("TxHash",Header.TxHash)
+	// fmt.Println("ReceiptHash",Header.ReceiptHash)
+	// fmt.Printf("Bloom:%x\n",Header.Bloom)
+	// fmt.Println("Number",Header.Number)
+	// fmt.Println("GasLimit",Header.GasLimit)
+	// fmt.Println("GasUsed",Header.GasUsed)
+	// fmt.Println("Time",Header.Time)
+	// fmt.Printf("Extra:%x\n",Header.Extra)
+	// fmt.Printf("Extra[32:]:%x\n",Header.Extra[32:])
+	// fmt.Println("MixDigest",Header.MixDigest)
+	// fmt.Printf("Nonce:%x\n",Header.Nonce)
+	// fmt.Println("BaseFee",Header.BaseFee)
+	// fmt.Println("================================================")
 
-	//fmt.Println("sigHash2(Header):",sigHash2(Header))
+	// fmt.Println("sigHash2(Header):",sigHash2(Header))
 	HB, _ := rlp.EncodeToBytes(&Header)
 	fmt.Printf("rlpHeader: %x \n", HB)
 	fmt.Println("sigHash(Header):", sigHash(Header))
 	fmt.Println("hash:", Header.Hash())
 
-	//HB, _ := rlp.EncodeToBytes(&Header)
-	//fmt.Printf("Header Bytes:%x\n",HB)
-	//fmt.Println("Header.Coinbase:",Header.Coinbase)
-	//fmt.Println("Header.Hash:",Header.Hash())
-	//fmt.Printf("extra:%x\n",Header.Extra[32:])
-	//extra, err := types.ExtractIstanbulExtra(Header)
-	//fmt.Println("extra addr:",extra.AddedValidators)
-	//fmt.Println("extra pk:",extra.AddedValidatorsPublicKeys)
-	//for i:=0;i< len(extra.AddedValidatorsPublicKeys);i++{
+	// HB, _ := rlp.EncodeToBytes(&Header)
+	// fmt.Printf("Header Bytes:%x\n",HB)
+	// fmt.Println("Header.Coinbase:",Header.Coinbase)
+	// fmt.Println("Header.Hash:",Header.Hash())
+	// fmt.Printf("extra:%x\n",Header.Extra[32:])
+	// extra, err := types.ExtractIstanbulExtra(Header)
+	// fmt.Println("extra addr:",extra.AddedValidators)
+	// fmt.Println("extra pk:",extra.AddedValidatorsPublicKeys)
+	// for i:=0;i< len(extra.AddedValidatorsPublicKeys);i++{
 	//	fmt.Printf("%d pk:%x\n",i,extra.AddedValidatorsPublicKeys[i])
-	//}
-	//fmt.Printf("extra seal: %x \n",extra.Seal)
-	//fmt.Println("extra removed:",extra.RemovedValidators.Bits())
-	//fmt.Println("extra blsSeal:",extra.AggregatedSeal.String())
-	//fmt.Println("extra parentBlsSeal:",extra.ParentAggregatedSeal.String())
+	// }
+	// fmt.Printf("extra seal: %x \n",extra.Seal)
+	// fmt.Println("extra removed:",extra.RemovedValidators.Bits())
+	// fmt.Println("extra blsSeal:",extra.AggregatedSeal.String())
+	// fmt.Println("extra parentBlsSeal:",extra.ParentAggregatedSeal.String())
 	//
-	//addr, err := istanbul.GetSignatureAddress(sigHash(Header).Bytes(), extra.Seal)
-	//fmt.Printf("verify params: %x %x \n",sigHash(Header).Bytes(), extra.Seal)
-	//fmt.Println("verify sign",addr,Header.Coinbase,err)
+	// addr, err := istanbul.GetSignatureAddress(sigHash(Header).Bytes(), extra.Seal)
+	// fmt.Printf("verify params: %x %x \n",sigHash(Header).Bytes(), extra.Seal)
+	// fmt.Println("verify sign",addr,Header.Coinbase,err)
 }
 
 func sigHash2(header *types.Header) (hash common.Hash) {
 	hasher := sha3.NewLegacyKeccak256()
 
 	// Clean seal is required for calculating proposer seal.
-	//rlp.Encode(hasher, header) //types.IstanbulFilteredHeader(header, false)//Hash(HeaderWithExtra)
-	//rlp.Encode(hasher, types.IstanbulFilteredHeader(header, false))//sigHash()
-	rlp.Encode(hasher, types.IstanbulFilteredHeader(header, true)) //Header.Hash()
+	// rlp.Encode(hasher, header) //types.IstanbulFilteredHeader(header, false)//Hash(HeaderWithExtra)
+	// rlp.Encode(hasher, types.IstanbulFilteredHeader(header, false))//sigHash()
+	rlp.Encode(hasher, types.IstanbulFilteredHeader(header, true)) // Header.Hash()
 	hasher.Sum(hash[:0])
 	return hash
 }
@@ -102,9 +102,9 @@ func TestRlp(t *testing.T) {
 		AddedValidators:           addrs,
 		AddedValidatorsPublicKeys: publicKeys,
 		RemovedValidators:         nil, // big.NewInt(1),
-		Seal:                      nil, //common.FromHex("0x9f625663217f82a8765f8a6277bea12e953cd219adc9ff967c783946f00bbcae615ae014687384abb019b37cfb507fe418a52558a78585408cc797016703885901"),
+		Seal:                      nil, // common.FromHex("0x9f625663217f82a8765f8a6277bea12e953cd219adc9ff967c783946f00bbcae615ae014687384abb019b37cfb507fe418a52558a78585408cc797016703885901"),
 		AggregatedSeal:            types.IstanbulAggregatedSeal{big.NewInt(1000000000), common.FromHex("0x15c8954e105e86ea231c0af668416d4a6260da9bde72047e1af44828cb5d6cc571ce32787b4ef3850685425072f36600"), big.NewInt(1)},
-		ParentAggregatedSeal:      types.IstanbulAggregatedSeal{}, //types.IstanbulAggregatedSeal{big.NewInt(2),common.FromHex("0x15c8954e105e86ea231c0af668416d4a6260da9bde72047e1af44828cb5d6cc571ce32787b4ef3850685425072f36600"),big.NewInt(2)},
+		ParentAggregatedSeal:      types.IstanbulAggregatedSeal{}, // types.IstanbulAggregatedSeal{big.NewInt(2),common.FromHex("0x15c8954e105e86ea231c0af668416d4a6260da9bde72047e1af44828cb5d6cc571ce32787b4ef3850685425072f36600"),big.NewInt(2)},
 	}
 	fmt.Println("=======================================")
 	fmt.Println("data AddedValidators", ist.AddedValidators)
@@ -214,7 +214,7 @@ func TestRlpEncode(t *testing.T) {
 	fmt.Println("len:", len(istPayload))
 	fmt.Printf("encode bytes %x\n", istPayload)
 
-	///////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////
 	te1 := TestEncode1{
 		testbytes(256),
 		testbytes(256),
@@ -225,7 +225,7 @@ func TestRlpEncode(t *testing.T) {
 	}
 	fmt.Println("len:", len(istPayload1))
 	fmt.Printf("encode bytes: %x\n", istPayload1)
-	/////////////////////////////////////////////////////////////
+	// ///////////////////////////////////////////////////////////
 	te2 := TestEncode2{
 		common.FromHex("0x9f625663217f82a8765f8a6277bea12e953cd219adc9ff967c783946f00bbcae615ae014687384abb019b37cfb507fe418a52558a78585408cc797016703885901"),
 	}
@@ -235,10 +235,10 @@ func TestRlpEncode(t *testing.T) {
 	}
 	fmt.Println("len:", len(istPayload2))
 	fmt.Printf("encode bytes: %x\n", istPayload2)
-	///////////////////////////////////////////////////////
-	te1Te2 := common.FromHex("0xf90143b89ff843b8419f625663217f82a8765f8a6277bea12e953cd2adc9ff967c783946f00bbcae615ae014687384abb019b37cfb507fe418a52558a78585408cc7970159019f625663217f82a8765f8a6277bea12e953cd219adc9ff967c783946f00bbcae615ae014687384abb019a78585408cc797016703885901a6277bea12e953cd219adc9ff967c783946f00bbcae615ae014687384abb019a78585408cc7970b89ff843b8419f625663217f82a8765f8a6277bea12e953cd2adc9ff967c783946f00bbcae615ae014687384abb019b37cfb507fe418a52558a78585408cc7970159019f625663217f82a8765f8a6277bea12e953cd219adc9ff967c783946f00bbcae615ae014687384abb019a78585408cc797016703885901a6277bea12e953cd219adc9ff967c783946f00bbcae615ae014687384abb019a78585408cc797080") //append(istPayload1[2:],istPayload2[2:]...)
-	//fmt.Printf("te1te2:%x\n",te1Te2)
-	//te1Te2 = append(common.FromHex("f8c9"), te1Te2...)
+	// /////////////////////////////////////////////////////
+	te1Te2 := common.FromHex("0xf90143b89ff843b8419f625663217f82a8765f8a6277bea12e953cd2adc9ff967c783946f00bbcae615ae014687384abb019b37cfb507fe418a52558a78585408cc7970159019f625663217f82a8765f8a6277bea12e953cd219adc9ff967c783946f00bbcae615ae014687384abb019a78585408cc797016703885901a6277bea12e953cd219adc9ff967c783946f00bbcae615ae014687384abb019a78585408cc7970b89ff843b8419f625663217f82a8765f8a6277bea12e953cd2adc9ff967c783946f00bbcae615ae014687384abb019b37cfb507fe418a52558a78585408cc7970159019f625663217f82a8765f8a6277bea12e953cd219adc9ff967c783946f00bbcae615ae014687384abb019a78585408cc797016703885901a6277bea12e953cd219adc9ff967c783946f00bbcae615ae014687384abb019a78585408cc797080") // append(istPayload1[2:],istPayload2[2:]...)
+	// fmt.Printf("te1te2:%x\n",te1Te2)
+	// te1Te2 = append(common.FromHex("f8c9"), te1Te2...)
 	fmt.Println("len:", len(te1Te2))
 	fmt.Printf("encode bytes::%x\n", te1Te2)
 	var te3 *TestEncode
@@ -246,9 +246,9 @@ func TestRlpEncode(t *testing.T) {
 	if err1 != nil {
 		t.Fatal("decode err", err1)
 	}
-	//fmt.Printf("d1:%x\n",testbytes(254))
-	//fmt.Printf("d2:%x\n",testbytes(25))
-	//fmt.Printf("d3:%x\n",testbytes(25))
+	// fmt.Printf("d1:%x\n",testbytes(254))
+	// fmt.Printf("d2:%x\n",testbytes(25))
+	// fmt.Printf("d3:%x\n",testbytes(25))
 }
 
 type TestEncode struct {
@@ -282,7 +282,7 @@ func (te *TestEncode) DecodeRLP(s *rlp.Stream) error {
 	return nil
 }
 
-/////////////////////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////////
 type TestEncode1 struct {
 	D1 []byte
 	D2 []byte
@@ -311,7 +311,7 @@ func (te *TestEncode1) DecodeRLP(s *rlp.Stream) error {
 	return nil
 }
 
-////////////////////////////////////////////////////////////////////
+// //////////////////////////////////////////////////////////////////
 type TestEncode2 struct {
 	D1 []byte
 }
@@ -338,12 +338,12 @@ func (te *TestEncode2) DecodeRLP(s *rlp.Stream) error {
 func testbytes(len int) []byte {
 	token := make([]byte, len)
 	rand.Read(token)
-	//return token
+	// return token
 	return common.FromHex("0xf843b8419f625663217f82a8765f8a6277bea12e953cd2adc9ff967c783946f00bbcae615ae014687384abb019b37cfb507fe418a52558a78585408cc7970159019f625663217f82a8765f8a6277bea12e953cd219adc9ff967c783946f00bbcae615ae014687384abb019a78585408cc797016703885901a6277bea12e953cd219adc9ff967c783946f00bbcae615ae014687384abb019a78585408cc7970")
-	//return common.FromHex("0x9f625663217f82a8765f8a6277bea12e953cd219adc9ff967c783946f00bbcae615ae014687384abb019b37cfb507fe418a52558a78585408cc797016703885901")
+	// return common.FromHex("0x9f625663217f82a8765f8a6277bea12e953cd219adc9ff967c783946f00bbcae615ae014687384abb019b37cfb507fe418a52558a78585408cc797016703885901")
 }
 
-/////////////////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////
 
 type AggSeal struct {
 	Bitmap    *big.Int

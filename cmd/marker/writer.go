@@ -6,9 +6,9 @@ import (
 
 	"gopkg.in/urfave/cli.v1"
 
+	"github.com/Alexfordev/atlas/cmd/marker/config"
+	"github.com/Alexfordev/atlas/cmd/marker/connections"
 	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/mapprotocol/atlas/cmd/marker/config"
-	"github.com/mapprotocol/atlas/cmd/marker/connections"
 )
 
 type writer struct {

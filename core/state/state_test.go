@@ -21,10 +21,10 @@ import (
 	"math/big"
 	"testing"
 
+	"github.com/Alexfordev/atlas/core/rawdb"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/mapprotocol/atlas/core/rawdb"
 )
 
 type stateTest struct {
@@ -91,7 +91,7 @@ func TestNull(t *testing.T) {
 	s := newStateTest()
 	address := common.HexToAddress("0x823140710bf13990e4500136726d8b55")
 	s.state.CreateAccount(address)
-	//value := common.FromHex("0x823140710bf13990e4500136726d8b55")
+	// value := common.FromHex("0x823140710bf13990e4500136726d8b55")
 	var value common.Hash
 
 	s.state.SetState(address, common.Hash{}, value)

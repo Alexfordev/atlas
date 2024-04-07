@@ -26,9 +26,9 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/params"
 
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
 )
 
 var emptyCodeHash = crypto.Keccak256Hash(nil)

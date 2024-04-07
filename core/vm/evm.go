@@ -17,8 +17,8 @@
 package vm
 
 import (
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/core/types"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/core/types"
 	"math/big"
 	"sync/atomic"
 	"time"
@@ -28,7 +28,7 @@ import (
 	ethparams "github.com/ethereum/go-ethereum/params"
 	"github.com/holiman/uint256"
 
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/params"
 )
 
 // emptyCodeHash is used by create to ensure deployment is disallowed to already
@@ -44,7 +44,7 @@ type (
 	// and is used by the BLOCKHASH EVM op code.
 	GetHashFunc func(uint64) common.Hash
 
-	////////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////
 	// GetHeaderByNumberFunc returns the header of the nth block in the chain.
 	GetHeaderByNumberFunc func(uint64) *types.Header
 	// VerifySealFunc returns true if the given header contains a valid seal
@@ -93,7 +93,7 @@ type BlockContext struct {
 	Difficulty  *big.Int       // Provides information for DIFFICULTY
 	BaseFee     *big.Int       // Provides information for BASEFEE
 
-	////////////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////
 	// GetParentSealBitmap returns the parent seal bitmap corresponding to n
 	GetHeaderByNumber GetHeaderByNumberFunc
 	// VerifySeal verifies or returns an error for the given header
@@ -270,7 +270,7 @@ func (evm *EVM) Call(caller ContractRef, addr common.Address, input []byte, gas 
 			gas = 0
 		}
 		// TODO: consider clearing up unused snapshots:
-		//} else {
+		// } else {
 		//	evm.StateDB.DiscardSnapshot(snapshot)
 	}
 	return ret, gas, err

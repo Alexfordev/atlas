@@ -1,8 +1,8 @@
 package consensus
 
 import (
+	"github.com/Alexfordev/atlas/p2p"
 	"github.com/ethereum/go-ethereum/p2p/enode"
-	"github.com/mapprotocol/atlas/p2p"
 )
 
 // Broadcaster defines the interface to enqueue blocks to fetcher, find peer

@@ -1,13 +1,13 @@
 package cmd
 
 import (
+	"github.com/Alexfordev/atlas/accounts/abi"
+	"github.com/Alexfordev/atlas/cmd/new_marker/connections"
+	"github.com/Alexfordev/atlas/cmd/new_marker/define"
+	"github.com/Alexfordev/atlas/cmd/new_marker/writer"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/mapprotocol/atlas/accounts/abi"
-	"github.com/mapprotocol/atlas/cmd/new_marker/connections"
-	"github.com/mapprotocol/atlas/cmd/new_marker/define"
-	"github.com/mapprotocol/atlas/cmd/new_marker/writer"
 	"math/big"
 )
 

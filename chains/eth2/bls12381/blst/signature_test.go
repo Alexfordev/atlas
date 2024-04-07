@@ -7,7 +7,7 @@ package blst
 import (
 	"bytes"
 	"errors"
-	"github.com/mapprotocol/atlas/chains/eth2/bls12381/common"
+	"github.com/Alexfordev/atlas/chains/eth2/bls12381/common"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"strings"

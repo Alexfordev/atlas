@@ -17,9 +17,9 @@
 package backend
 
 import (
+	"github.com/Alexfordev/atlas/contracts/random"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/mapprotocol/atlas/contracts/random"
 )
 
 // String for creating the random seed

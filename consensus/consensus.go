@@ -23,14 +23,14 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rpc"
 
-	"github.com/mapprotocol/atlas/chains"
-	"github.com/mapprotocol/atlas/consensus/istanbul"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/p2p"
-	"github.com/mapprotocol/atlas/params"
-	params2 "github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/chains"
+	"github.com/Alexfordev/atlas/consensus/istanbul"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/p2p"
+	"github.com/Alexfordev/atlas/params"
+	params2 "github.com/Alexfordev/atlas/params"
 )
 
 // ChainHeaderReader defines a small collection of methods needed to access the local
@@ -81,7 +81,7 @@ type Engine interface {
 
 	// VerifyUncles verifies that the given block's uncles conform to the consensus
 	// rules of a given engine.
-	//VerifyUncles(chain ChainReader, block *types.Block) error
+	// VerifyUncles(chain ChainReader, block *types.Block) error
 
 	// Prepare initializes the consensus fields of a block header according to the
 	// rules of a particular engine. The changes are executed inline.
@@ -256,15 +256,15 @@ func initEthereumStore(state *state.StateDB) {
 	key := common.BytesToHash(chains.EthereumHeaderStoreAddress[:])
 	getState := state.GetPOWState(chains.EthereumHeaderStoreAddress, key)
 	if len(getState) == 0 {
-		//var header ethereum.Header
+		// var header ethereum.Header
 		//
-		//if err := json.Unmarshal([]byte(params.EthereumTestnetGenesisHeader), &header); err != nil {
+		// if err := json.Unmarshal([]byte(params.EthereumTestnetGenesisHeader), &header); err != nil {
 		//	log.Crit("json unmarshal ethereum testnet header failed", "error", err)
-		//}
+		// }
 		//
-		//if err := ethereum.InitHeaderStore(state, &header, params.EthereumTestnetGenesisTD); err != nil {
+		// if err := ethereum.InitHeaderStore(state, &header, params.EthereumTestnetGenesisTD); err != nil {
 		//	log.Crit("init header store failed, ", "error", err)
-		//}
+		// }
 		state.SetCode(params.HeaderStoreAddress, params.HeaderStoreAddress[:])
 	}
 }

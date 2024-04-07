@@ -23,8 +23,8 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/holiman/uint256"
 
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/params"
 )
 
 type dummyContractRef struct {

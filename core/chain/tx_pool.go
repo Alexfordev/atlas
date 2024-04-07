@@ -31,14 +31,14 @@ import (
 	"github.com/ethereum/go-ethereum/log"
 	ethparams "github.com/ethereum/go-ethereum/params"
 
-	"github.com/mapprotocol/atlas/consensus/misc"
-	"github.com/mapprotocol/atlas/contracts/blockchain_parameters"
-	"github.com/mapprotocol/atlas/core"
-	"github.com/mapprotocol/atlas/core/state"
-	"github.com/mapprotocol/atlas/core/types"
-	"github.com/mapprotocol/atlas/core/vm"
-	"github.com/mapprotocol/atlas/metrics"
-	"github.com/mapprotocol/atlas/params"
+	"github.com/Alexfordev/atlas/consensus/misc"
+	"github.com/Alexfordev/atlas/contracts/blockchain_parameters"
+	"github.com/Alexfordev/atlas/core"
+	"github.com/Alexfordev/atlas/core/state"
+	"github.com/Alexfordev/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/vm"
+	"github.com/Alexfordev/atlas/metrics"
+	"github.com/Alexfordev/atlas/params"
 )
 
 const (
@@ -315,7 +315,7 @@ func NewTxPool(config TxPoolConfig, chainconfig *params.ChainConfig, chain block
 		pool.locals.add(addr)
 	}
 
-	//pool.priced = newTxPricedList(pool.all, &pool.currentCtx)
+	// pool.priced = newTxPricedList(pool.all, &pool.currentCtx)
 	pool.priced = newTxPricedList(pool.all)
 	pool.reset(nil, chain.CurrentBlock().Header())
 
@@ -636,9 +636,9 @@ func (pool *TxPool) validateTx(tx *types.Transaction, local bool) error {
 		return ErrInvalidSender
 	}
 	// Drop non-local transactions under our own minimal accepted gas price or tip
-	//if !local && tx.Type() == types.LegacyTxType && tx.GasTipCapIntCmp(pool.gasPrice) < 0 {
+	// if !local && tx.Type() == types.LegacyTxType && tx.GasTipCapIntCmp(pool.gasPrice) < 0 {
 	//	return ErrUnderpriced
-	//}
+	// }
 	if tx.GasFeeCapIntCmp(pool.gasPrice) < 0 {
 		return ErrUnderpriced
 	}
@@ -655,9 +655,9 @@ func (pool *TxPool) validateTx(tx *types.Transaction, local bool) error {
 
 	// Transactor should have enough funds to cover the costs
 	// cost == V + GP * GL
-	//if pool.currentState.GetBalance(from).Cmp(tx.Cost()) < 0 {
+	// if pool.currentState.GetBalance(from).Cmp(tx.Cost()) < 0 {
 	//	return core.ErrInsufficientFunds
-	//}
+	// }
 	// Ensure the transaction has more gas than the basic tx fee.
 	intrGas, err := IntrinsicGas(tx.Data(), tx.AccessList(), tx.To() == nil, true, pool.istanbul)
 	if err != nil {
@@ -678,23 +678,23 @@ func ValidateTransactorBalanceCoversTx(tx *types.Transaction, from common.Addres
 			"value", tx.Value(), "fee currency", tx.FeeCurrency(), "balance", currentState.GetBalance(from))
 		return errors.New("insufficient funds for gas * price + value + gatewayFee")
 	} else if tx.FeeCurrency() != nil {
-		//feeCurrencyBalance, err := currency.GetBalanceOf(currentVMRunner, from, *tx.FeeCurrency())
+		// feeCurrencyBalance, err := currency.GetBalanceOf(currentVMRunner, from, *tx.FeeCurrency())
 		//
-		//if err != nil {
+		// if err != nil {
 		//	log.Debug("validateTx error in getting fee currency balance", "feeCurrency", tx.FeeCurrency(), "error", err)
 		//	return err
-		//}
+		// }
 
 		// This is required to match the logic in canPayFee() state_transition.go
 		//   - Prior to E hardfork: we require the balance to be strictly greater than the fee,
 		//     which means we reject the transaction if balance <= fee
 		//   - After E hardfork: we require the balance to be greater than or equal to the fee,
 		//     which means we reject the transaction if balance < fee
-		//fee := tx.Fee()
-		//if (eHardfork && feeCurrencyBalance.Cmp(fee) < 0) || (!eHardfork && feeCurrencyBalance.Cmp(fee) <= 0) {
+		// fee := tx.Fee()
+		// if (eHardfork && feeCurrencyBalance.Cmp(fee) < 0) || (!eHardfork && feeCurrencyBalance.Cmp(fee) <= 0) {
 		//	log.Debug("validateTx insufficient fee currency", "feeCurrency", tx.FeeCurrency(), "feeCurrencyBalance", feeCurrencyBalance)
 		//	return errors.New("insufficient funds for gas * price + value + gatewayFee")
-		//}
+		// }
 
 		if currentState.GetBalance(from).Cmp(tx.Value()) < 0 {
 			log.Debug("validateTx insufficient funds", "balance", currentState.GetBalance(from).String())
@@ -735,7 +735,7 @@ func (pool *TxPool) add(tx *types.Transaction, local bool) (replaced bool, err e
 		// todo ibft upgrade???
 		// todo ibft cancel
 		if !isLocal && pool.priced.Underpriced(tx) {
-			//if !isLocal && pool.priced.Underpriced(tx, pool.locals) {
+			// if !isLocal && pool.priced.Underpriced(tx, pool.locals) {
 			log.Trace("Discarding underpriced transaction", "hash", hash, "gasTipCap", tx.GasTipCap(), "gasFeeCap", tx.GasFeeCap())
 			underpricedTxMeter.Mark(1)
 			return false, ErrUnderpriced
@@ -787,8 +787,8 @@ func (pool *TxPool) add(tx *types.Transaction, local bool) (replaced bool, err e
 		}
 		// todo ibft upgrade???
 		// todo ibft cancel
-		//pool.all.Add(tx)
-		//pool.priced.Put(tx)
+		// pool.all.Add(tx)
+		// pool.priced.Put(tx)
 		pool.all.Add(tx, isLocal)
 		pool.priced.Put(tx, isLocal)
 		pool.journalTx(from, tx)
@@ -808,7 +808,7 @@ func (pool *TxPool) add(tx *types.Transaction, local bool) (replaced bool, err e
 	if local && !pool.locals.contains(from) {
 		log.Info("Setting new local account", "address", from)
 		pool.locals.add(from)
-		//pool.priced.Removed(pool.all.RemoteToLocals(pool.locals)) // Migrate the remotes if it's marked as local first time.
+		// pool.priced.Removed(pool.all.RemoteToLocals(pool.locals)) // Migrate the remotes if it's marked as local first time.
 	}
 	if isLocal {
 		localGauge.Inc(1)
@@ -829,7 +829,7 @@ func (pool *TxPool) enqueueTx(hash common.Hash, tx *types.Transaction, local boo
 	if pool.queue[from] == nil {
 		// todo ibft compare
 		// todo ibft cancel
-		//pool.queue[from] = newTxList(false, &pool.currentCtx)
+		// pool.queue[from] = newTxList(false, &pool.currentCtx)
 		pool.queue[from] = newTxList(false)
 	}
 	inserted, old := pool.queue[from].Add(tx, pool.config.PriceBump)
@@ -884,7 +884,7 @@ func (pool *TxPool) promoteTx(addr common.Address, hash common.Hash, tx *types.T
 	if pool.pending[addr] == nil {
 		// todo ibft compare
 		// todo ibft cancel
-		//pool.pending[addr] = newTxList(true, &pool.currentCtx)
+		// pool.pending[addr] = newTxList(true, &pool.currentCtx)
 		pool.pending[addr] = newTxList(true)
 	}
 	list := pool.pending[addr]
@@ -1365,11 +1365,11 @@ func (pool *TxPool) reset(oldHead, newHead *types.Header) {
 	pool.currentState = statedb
 	pool.pendingNonces = newTxNoncer(statedb)
 	pool.currentVMRunner = pool.chain.NewEVMRunner(newHead, statedb)
-	pool.currentMaxGas = blockchain_parameters.GetBlockGasLimitOrDefault(pool.currentVMRunner, true) //newHead.GasLimit
+	pool.currentMaxGas = blockchain_parameters.GetBlockGasLimitOrDefault(pool.currentVMRunner, true) // newHead.GasLimit
 	// atomic store of the new txPoolContext
 	newCtx := txPoolContext{
 		NewBlockContext(pool.currentVMRunner),
-		//currency.NewManager(pool.currentVMRunner),
+		// currency.NewManager(pool.currentVMRunner),
 	}
 	pool.currentCtx.Store(newCtx)
 
@@ -1408,17 +1408,17 @@ func (pool *TxPool) promoteExecutables(accounts []common.Address) []*types.Trans
 
 		// todo ibft cancel
 		// Get balances in each currency
-		//balances := make(map[common.Address]*big.Int)
-		//allCurrencies := list.FeeCurrencies()
-		//for _, feeCurrency := range allCurrencies {
+		// balances := make(map[common.Address]*big.Int)
+		// allCurrencies := list.FeeCurrencies()
+		// for _, feeCurrency := range allCurrencies {
 		//	feeCurrencyBalance, _ := currency.GetBalanceOf(pool.currentVMRunner, addr, feeCurrency)
 		//	balances[feeCurrency] = feeCurrencyBalance
-		//}
+		// }
 
 		// Drop all transactions that are too costly (low balance or out of gas)
 		// todo ibft upgrade???
 		// todo ibft cancel
-		//drops, _ := list.Filter(pool.currentState.GetBalance(addr), balances, pool.currentMaxGas)
+		// drops, _ := list.Filter(pool.currentState.GetBalance(addr), balances, pool.currentMaxGas)
 		drops, _ := list.Filter(pool.currentState.GetBalance(addr), pool.currentMaxGas)
 		for _, tx := range drops {
 			hash := tx.Hash()
@@ -1617,16 +1617,16 @@ func (pool *TxPool) demoteUnexecutables() {
 		}
 
 		// todo ibft cancel
-		//// Get balances in each currency
-		//balances := make(map[common.Address]*big.Int)
-		//allCurrencies := list.FeeCurrencies()
-		//for _, feeCurrency := range allCurrencies {
+		// // Get balances in each currency
+		// balances := make(map[common.Address]*big.Int)
+		// allCurrencies := list.FeeCurrencies()
+		// for _, feeCurrency := range allCurrencies {
 		//	feeCurrencyBalance, _ := currency.GetBalanceOf(pool.currentVMRunner, addr, feeCurrency)
 		//	balances[feeCurrency] = feeCurrencyBalance
-		//}
+		// }
 
 		// Drop all transactions that are too costly (low balance or out of gas), and queue any invalids back for later
-		//drops, invalids := list.Filter(pool.currentState.GetBalance(addr), balances, pool.currentMaxGas)
+		// drops, invalids := list.Filter(pool.currentState.GetBalance(addr), balances, pool.currentMaxGas)
 		// todo ibft cancel
 		drops, invalids := list.Filter(pool.currentState.GetBalance(addr), pool.currentMaxGas)
 		for _, tx := range drops {

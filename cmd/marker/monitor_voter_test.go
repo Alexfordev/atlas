@@ -5,11 +5,11 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"github.com/Alexfordev/atlas/helper/fileutils"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/mapprotocol/atlas/helper/fileutils"
 	exec "golang.org/x/sys/execabs"
 	"io"
 	"io/ioutil"
@@ -18,7 +18,7 @@ import (
 	"testing"
 )
 
-//creat new keystore at remote
+// creat new keystore at remote
 func Test_NewAccount(t *testing.T) {
 	var voterAccounts []common.Address
 	url := "http://13.67.118.60:7445"
@@ -61,7 +61,7 @@ func Test_NewAccount2(t *testing.T) {
 	}
 }
 
-//creat new address use exec.Command()
+// creat new address use exec.Command()
 func Test_newAccount3(t *testing.T) {
 	cmd := exec.Command("D:/root/atlas", "account", "new")
 	out, err := cmd.CombinedOutput()
@@ -94,15 +94,15 @@ func Post(url, contentType string, body io.Reader) (result []byte, err error) {
 	return result, err
 }
 
-//Send Transtion (Post Way)
+// Send Transtion (Post Way)
 func Test_SendTranstion(t *testing.T) {
-	//url := "http://localhost:8545"
+	// url := "http://localhost:8545"
 	url := "http://13.67.118.60:7445"
 	conn, err := rpc.Dial(url)
 	if err != nil {
 		t.Error("Failed to connect to the Atlaschain client: ", err)
 	}
-	//from := "0x81f02fd21657df80783755874a92c996749777bf"
+	// from := "0x81f02fd21657df80783755874a92c996749777bf"
 	from := "0xbe27cf1ed3489b6add51a22ce4b25abd92cac3c8"
 	var ret bool
 	if err := conn.Call(&ret, "personal_unlockAccount", from, ""); err != nil {
@@ -120,10 +120,10 @@ func Test_SendTranstion(t *testing.T) {
 	}
 	var accounts []Info
 	_ = json.Unmarshal(data, &accounts)
-	//0xd3c21bcecceda0000000 100万
-	//0x21e19e0c9bab2400000  1万
-	//0x152d02c7e14af6000000 10万
-	//0x43c33c1937564800000  20万
+	// 0xd3c21bcecceda0000000 100万
+	// 0x21e19e0c9bab2400000  1万
+	// 0x152d02c7e14af6000000 10万
+	// 0x43c33c1937564800000  20万
 	for index, v := range accounts {
 		to := v.Account
 		fmt.Println("from  ", from, "to    ", to)

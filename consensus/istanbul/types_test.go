@@ -25,7 +25,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
 
-	"github.com/mapprotocol/atlas/core/types"
+	"github.com/Alexfordev/atlas/core/types"
 	"golang.org/x/crypto/sha3"
 	"gotest.tools/assert"
 )
@@ -123,8 +123,8 @@ func dummyBlock(number int64) *types.Block {
 		Time:    100,
 		Extra:   []byte{01, 02},
 	}
-	//feeCurrencyAddr := common.HexToAddress("02")
-	//gatewayFeeRecipientAddr := common.HexToAddress("03")
+	// feeCurrencyAddr := common.HexToAddress("02")
+	// gatewayFeeRecipientAddr := common.HexToAddress("03")
 	tx := types.NewTransaction(1, common.HexToAddress("01"), big.NewInt(1), 10000, big.NewInt(10), []byte{04})
 	return types.NewBlock(header, []*types.Transaction{tx}, nil, nil)
 }
